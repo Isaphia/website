@@ -1,0 +1,343 @@
+/* =========================
+   Reset and Base
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================
+   Header & Navigation
+========================= */
+.navbar {
+    background-color: #0a1f44;
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 90px;
+    margin-right: 20px;
+    transition: height 0.3s;
+}
+
+.company-name {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.8rem;
+    justify-content: center;
+    flex: 1;
+}
+
+.nav-links a {
+    color: #e0e7ff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.15rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+/* =========================
+   Hero Section
+========================= */
+.hero {
+    background: linear-gradient(rgba(10, 31, 68, 0.85), rgba(10, 31, 68, 0.85)),
+        url('https://images.unsplash.com/photo-1555949963-aa79d0ebc8fb?auto=format&fit=crop&q=80')
+        center/cover no-repeat;
+    color: white;
+    text-align: center;
+    padding: 8rem 1rem 6rem;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #2563eb;
+}
+
+/* =========================
+   Sections (Global)
+========================= */
+.section {
+    padding: 5rem 0;
+}
+
+.section h1,
+.section h2,
+.section h3,
+.section h4 {
+    color: #0a1f44;
+}
+
+.lead {
+    font-size: 1.3rem;
+    color: #4b5563;
+    margin-bottom: 2rem;
+}
+
+.expertise,
+.about,
+.services-hero,
+.contact,
+.why-choose,
+.frameworks,
+.testimonials,
+.team-hero {
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    margin: 2rem 0;
+    border-radius: 8px;
+}
+
+/* =========================
+   Shared UI Elements
+========================= */
+.icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #f4f6f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icon svg {
+    width: 22px;
+    height: 22px;
+    fill: #1f2937;
+}
+
+/* =========================
+   Why Choose Us (Services)
+========================= */
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+}
+
+.service-item {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+}
+
+.service-item strong {
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+}
+
+.service-item p {
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* =========================
+   Expertise & Credentials
+========================= */
+.section-intro {
+    max-width: 720px;
+    margin: 0.75rem 0 2rem;
+    color: #555;
+}
+
+.credential-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.credential-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.credential-item span {
+    font-weight: 500;
+}
+
+/* =========================
+   Contact
+========================= */
+.contact-details h3,
+.contact-details h4 {
+    margin: 1.5rem 0 0.5rem;
+    color: #0a1f44;
+}
+
+.pgp-key {
+    background: #f1f5f9;
+    padding: 1.2rem;
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    font-size: 0.95rem;
+    margin: 1rem 0;
+}
+
+/* =========================
+   Testimonials
+========================= */
+.testimonials blockquote {
+    font-style: italic;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f1f5f9;
+    border-left: 4px solid #3b82f6;
+    border-radius: 4px;
+}
+
+/* =========================
+   Forms
+========================= */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 2rem 0;
+}
+
+label {
+    font-weight: 500;
+}
+
+input,
+textarea {
+    padding: 0.8rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+textarea {
+    min-height: 150px;
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+    background-color: #0a1f44;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1.2rem 0;
+    }
+
+    .navbar-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        height: 65px;
+    }
+
+    .company-name {
+        font-size: 1.5rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1.3rem;
+        width: 100%;
+        margin-top: 1.2rem;
+        text-align: center;
+    }
+
+    .hero {
+        padding: 6rem 1rem 4rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
