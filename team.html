@@ -4,31 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Our Team | Isaphia Security Consulting</title>
+    <title>Our Team | Isaphia Security</title>
 
-    <!-- SEO microcopy -->
-    <meta name="description" content="Meet the cybersecurity professionals behind Isaphia Security Consulting. Our team brings deep expertise in offensive security, penetration testing, and strategic advisory services across regulated industries.">
+    <meta name="description" content="Isaphia Security delivers practitioner-led offensive security and cybersecurity advisory services, backed by industry-recognized certifications and real-world experience.">
 
     <link rel="stylesheet" href="styles.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <!-- TEAM PAGE SAFE STYLES -->
+    <style>
+        .cert-section {
+            margin-top: 3.5rem;
+        }
+
+        .cert-category {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .cert-category h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .cert-category .cert-icon {
+            font-size: 2.8rem;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.6rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.8rem 1.5rem;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .cert-card .cert-badge {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+
+        .cert-card strong {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .cert-card span {
+            font-size: 0.95rem;
+            color: #555;
+        }
+    </style>
 </head>
+
 <body>
 
 <header>
     <nav class="navbar">
         <div class="container navbar-container">
+
             <div class="logo-container">
-                <img src="logo.png" alt="Isaphia Security Consulting Logo" class="logo">
-                <span class="company-name">Isaphia Security Consulting</span>
+                <img src="logo.png" alt="Isaphia Security Logo" class="logo">
+                <span class="company-name">Isaphia Security</span>
             </div>
+
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="team.html">Team</a></li>
+                <li><a href="team.html" class="active">Team</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+
         </div>
     </nav>
 </header>
@@ -38,77 +97,125 @@
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content">
-        <h1>Security Expertise You Can Trust</h1>
+        <h1>Practitioner-Led Security Expertise</h1>
         <p class="hero-subtitle">
-            Experienced cybersecurity professionals delivering hands-on offensive security, strategic insight, and measurable results.
+            Offensive security professionals with credentials that reflect real-world capability.
         </p>
     </div>
 </section>
 
-<!-- TEAM INTRO -->
-<section class="section team-hero">
-    <div class="container">
-        <h2>Our Team</h2>
-        <p class="lead">
-            Isaphia Security Consulting is led by practitioners with real-world experience securing complex environments across multiple industries.
+<!-- OVERVIEW -->
+<section class="section" style="background-color:#ffffff;">
+    <div class="container" style="max-width:900px;">
+
+        <h2>Our Expertise</h2>
+        <p class="lead" style="margin-bottom:2.4rem;">
+            Isaphia Security is built around hands-on practitioners — not theoretical consultants.
         </p>
+
+        <p style="line-height:1.75; margin-bottom:1.6rem;">
+            We deliver offensive security, penetration testing, and cybersecurity advisory services
+            for organizations operating in regulated and high-risk environments. Our focus is on
+            realistic attack paths, measurable risk reduction, and defensible security decisions.
+        </p>
+
+        <p style="line-height:1.75;">
+            Our certifications represent continuous validation of practical, real-world expertise —
+            not checkbox compliance.
+        </p>
+
     </div>
 </section>
 
-<!-- TEAM MEMBER -->
-<section class="section">
-    <div class="container">
+<!-- CERTIFICATIONS -->
+<section class="section" style="background-color:#ffffff;">
+    <div class="container" style="max-width:1100px;">
 
-        <h2>David</h2>
-        <h3>Principal Cybersecurity Consultant</h3>
-
-        <p>
-            David is the Principal Cybersecurity Consultant at Isaphia Security Consulting, specializing in offensive security, penetration testing, and security advisory services. His work focuses on identifying real-world attack paths, reducing organizational risk, and helping leadership teams make informed security decisions.
+        <h2 style="text-align:center;">Certifications & Professional Credentials</h2>
+        <p class="lead" style="text-align:center; margin-bottom:3.6rem;">
+            Proven capability across offensive security, governance, and adversary simulation.
         </p>
 
-        <p>
-            With experience supporting organizations across finance, retail, hospitality, government, nonprofit, and enterprise environments, David brings a practitioner-first approach grounded in hands-on testing and strategic alignment. His engagements prioritize clarity, actionable remediation, and measurable improvements to security posture.
-        </p>
+        <div class="cert-section">
 
-        <p>
-            David holds advanced industry certifications and academic credentials, reflecting both technical depth and a strong understanding of governance, risk, and compliance requirements in regulated environments.
-        </p>
+            <!-- OFFENSIVE SECURITY -->
+            <div class="cert-category">
+                <span class="cert-icon">🛡️</span>
+                <h3>Offensive Security & Penetration Testing</h3>
 
-        <!-- CONTACT + SECURITY -->
-        <div class="contact-details">
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <span class="cert-badge">💣</span>
+                        <strong>OSCP</strong>
+                        <span>Offensive Security Certified Professional</span>
+                    </div>
 
-            <h4>Professional Contact</h4>
-            <p>
-                <strong>Email:</strong>
-                <a href="mailto:david@isaphia.com">david@isaphia.com</a>
-            </p>
-            <p>
-                <strong>Signal:</strong> nanobyte.38
-            </p>
+                    <div class="cert-card">
+                        <span class="cert-badge">🕸️</span>
+                        <strong>OSWE</strong>
+                        <span>Offensive Security Web Expert</span>
+                    </div>
 
-            <h4>PGP Public Key</h4>
-            <p>
-                For secure communication, David’s public PGP key is provided below.
-            </p>
+                    <div class="cert-card">
+                        <span class="cert-badge">🌐</span>
+                        <strong>GWAPT</strong>
+                        <span>GIAC Web Application Penetration Tester</span>
+                    </div>
 
-            <pre class="pgp-key">
------BEGIN PGP PUBLIC KEY BLOCK-----
-xjMEaWqXxBYJKwYBBAHaRw8BAQdACG3aH64ZQmwcd02ZXtxcFzLAk34SFHOc
-6NHR+obOVrPNJWRhdmlkQGlzYXBoaWEuY29tIDxkYXZpZEBpc2FwaGlhLmNv
-bT7CwBEEExYKAIMFgmlql8QDCwkHCRAD1CUs2rmY+0UUAAAAAAAcACBzYWx0
-QG5vdGF0aW9ucy5vcGVucGdwanMub3JnrEKnCAzZ1m0+qvgOJd5hokABshnG
-c2WcaLZI3Ofg8YcDFQoIBBYAAgECGQECmwMCHgEWIQSTUpe7HYDOIYqq684D
-1CUs2rmY+wAAE40BAKigiVok/AkIEwzv7nSU66cbhU8bP0iV8YEiJFbMIdFG
-AP9gHSNlztWR07lqGxV0HGcmE3F2/YUGhG2kkVPn/RnZBM44BGlql8QSCisG
-AQQBl1UBBQEBB0D+RPGiGLokoaYETYkAG+1wJ97NPQANa0gCYNkSsvXTFQMB
-CAfCvgQYFgoAcAWCaWqXxAkQA9QlLNq5mPtFFAAAAAAAHAAgc2FsdEBub3Rh
-dGlvbnMub3BlbnBncGpzLm9yZ6UtpWEcaK6hHqAA8xjDxa59wsqIirFsjU/K
-xgPnVOYxApsMFiEEk1KXux2AziGKquvOA9QlLNq5mPsAAGSSAQCshHGrp8EB
-2KFCVlY5ln+xLSb6yqJu3mKey3TLAP/9mAEA9OhrKYqO3VsB2jHcVhg3rfgY
-jKmaE4Uj6udnEyxrggI=
-=/O0w
------END PGP PUBLIC KEY BLOCK-----
-            </pre>
+                    <div class="cert-card">
+                        <span class="cert-badge">🎯</span>
+                        <strong>CREST CPSA</strong>
+                        <span>CREST Practitioner Security Analyst</span>
+                    </div>
+
+                    <div class="cert-card">
+                        <span class="cert-badge">🧪</span>
+                        <strong>CEH</strong>
+                        <span>Certified Ethical Hacker</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GOVERNANCE -->
+            <div class="cert-category">
+                <span class="cert-icon">📊</span>
+                <h3>Governance, Risk & Assurance</h3>
+
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <span class="cert-badge">📘</span>
+                        <strong>CISSP</strong>
+                        <span>Certified Information Systems Security Professional</span>
+                    </div>
+
+                    <div class="cert-card">
+                        <span class="cert-badge">🧾</span>
+                        <strong>CISA</strong>
+                        <span>Certified Information Systems Auditor</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ADVANCED PRACTICE -->
+            <div class="cert-category">
+                <span class="cert-icon">🧠</span>
+                <h3>Advanced Security Practice</h3>
+
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <span class="cert-badge">🟣</span>
+                        <strong>Purple Team Operations</strong>
+                        <span>Detection validation & adversary emulation</span>
+                    </div>
+
+                    <div class="cert-card">
+                        <span class="cert-badge">⚔️</span>
+                        <strong>Red Team Operations</strong>
+                        <span>Threat-led attack simulation</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -116,12 +223,12 @@ jKmaE4Uj6udnEyxrggI=
 
 <!-- CTA -->
 <section class="section contact">
-    <div class="container">
-        <h2>Work Directly With a Security Expert</h2>
+    <div class="container" style="text-align:center;">
+        <h2>Work With Proven Security Professionals</h2>
         <p class="lead">
-            Engage directly with senior-level expertise focused on real risk reduction—not generic assessments.
+            Engage directly with practitioners whose expertise is validated in practice — not theory.
         </p>
-        <a href="contact.html" class="cta-button">Start a Conversation</a>
+        <a href="contact.html" class="cta-button">Schedule a Conversation</a>
     </div>
 </section>
 
@@ -129,7 +236,7 @@ jKmaE4Uj6udnEyxrggI=
 
 <footer>
     <div class="container">
-        <p>&copy; 2026 Isaphia Security Consulting. All rights reserved.</p>
+        <p>&copy; 2026 Isaphia Security. All rights reserved.</p>
     </div>
 </footer>
 

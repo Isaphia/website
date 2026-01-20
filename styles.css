@@ -1,4 +1,15 @@
 /* =========================
+   Theme Variables
+========================= */
+:root {
+    --brand-green: #0f7a5c;
+    --brand-green-dark: #0b5e46;
+    --brand-green-light: #e6f4ef;
+    --text-dark: #1a1a1a;
+    --text-light: #ffffff;
+}
+
+/* =========================
    Reset and Base
 ========================= */
 * {
@@ -10,8 +21,8 @@
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
-    color: #1a1a1a;
-    background-color: #f8f9fa;
+    color: var(--text-dark);
+    background-color: var(--brand-green-light);
 }
 
 .container {
@@ -24,12 +35,12 @@ body {
    Header & Navigation
 ========================= */
 .navbar {
-    background-color: #0a1f44;
-    padding: 1.5rem 0;
+    background-color: var(--brand-green-dark);
+    padding: 1.8rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
 }
 
 .navbar-container {
@@ -45,14 +56,13 @@ body {
 }
 
 .logo {
-    height: 90px;
-    margin-right: 20px;
-    transition: height 0.3s;
+    height: 120px;
+    margin-right: 22px;
 }
 
 .company-name {
-    color: #fff;
-    font-size: 1.8rem;
+    color: var(--text-light);
+    font-size: 2rem;
     font-weight: 700;
     white-space: nowrap;
 }
@@ -60,164 +70,165 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 2.8rem;
-    justify-content: center;
-    flex: 1;
+    gap: 2.6rem;
 }
 
 .nav-links a {
-    color: #e0e7ff;
+    color: #d1fae5;
     text-decoration: none;
     font-weight: 500;
     font-size: 1.15rem;
-    transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: #fff;
+    color: #ffffff;
 }
 
 /* =========================
    Hero Section
 ========================= */
 .hero {
-    background: linear-gradient(rgba(10, 31, 68, 0.85), rgba(10, 31, 68, 0.85)),
+    background:
+        linear-gradient(
+            rgba(15, 122, 92, 0.9),
+            rgba(15, 122, 92, 0.9)
+        ),
         url('https://images.unsplash.com/photo-1555949963-aa79d0ebc8fb?auto=format&fit=crop&q=80')
         center/cover no-repeat;
+
     color: white;
     text-align: center;
-    padding: 8rem 1rem 6rem;
+    padding: 5.5rem 1rem 4.5rem;
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 780px;
     margin: 0 auto;
 }
 
 .hero h1 {
-    font-size: 3.2rem;
-    margin-bottom: 1rem;
+    font-size: 2.7rem;
+    margin-bottom: 0.8rem;
 }
 
 .hero-subtitle {
-    font-size: 1.4rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
+    font-size: 1.25rem;
+    margin-bottom: 1.8rem;
+    opacity: 0.95;
 }
 
+/* CTA base */
 .cta-button {
     display: inline-block;
-    background-color: #3b82f6;
-    color: white;
-    padding: 0.9rem 2rem;
+    padding: 0.85rem 2rem;
     border-radius: 6px;
     text-decoration: none;
-    font-weight: 600;
-    transition: background 0.3s;
+    font-weight: 700;
 }
 
-.cta-button:hover {
-    background-color: #2563eb;
+/* CTA on green backgrounds (hero) */
+.hero .cta-button {
+    background-color: #ffffff;
+    color: var(--brand-green-dark);
+}
+
+.hero .cta-button:hover {
+    background-color: #d1fae5;
 }
 
 /* =========================
    Sections (Global)
 ========================= */
 .section {
-    padding: 5rem 0;
+    padding: 4.5rem 0;
 }
 
 .section h1,
 .section h2,
 .section h3,
 .section h4 {
-    color: #0a1f44;
+    color: var(--brand-green-dark);
 }
 
-.lead {
-    font-size: 1.3rem;
-    color: #4b5563;
-    margin-bottom: 2rem;
-}
-
-.expertise,
+/* White card sections (INDEX) */
 .about,
-.services-hero,
-.contact,
-.why-choose,
-.frameworks,
-.testimonials,
-.team-hero {
-    background-color: white;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    margin: 2rem 0;
-    border-radius: 8px;
+.expertise,
+.why-choose {
+    background-color: #ffffff;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+    margin: 2.5rem 0;
+    border-radius: 10px;
+}
+
+/* ✅ White card sections (SERVICES) */
+.services-hero {
+    background-color: #ffffff;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+    margin: 2.5rem 0;
+    border-radius: 10px;
+}
+
+/* CTA inside white sections */
+.section:not(.hero) .cta-button {
+    background-color: var(--brand-green-dark);
+    color: #ffffff;
+}
+
+.section:not(.hero) .cta-button:hover {
+    background-color: var(--brand-green);
 }
 
 /* =========================
-   Shared UI Elements
+   Icons
 ========================= */
 .icon {
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 10px;
-    background: #f4f6f8;
+    background: var(--brand-green-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
 }
 
 .icon svg {
     width: 22px;
     height: 22px;
-    fill: #1f2937;
+    fill: var(--brand-green-dark);
 }
 
 /* =========================
-   Why Choose Us (Services)
+   Service Lists
 ========================= */
 .service-list {
     list-style: none;
-    padding: 0;
     margin-top: 2rem;
 }
 
 .service-item {
     display: flex;
-    gap: 1.25rem;
+    gap: 1.3rem;
     margin-bottom: 2rem;
-    align-items: flex-start;
 }
 
 .service-item strong {
-    display: block;
-    font-size: 1.05rem;
-    margin-bottom: 0.25rem;
-}
-
-.service-item p {
-    margin: 0;
-    color: #555;
-    line-height: 1.6;
+    font-size: 1.1rem;
 }
 
 /* =========================
-   Expertise & Credentials
+   Expertise
 ========================= */
 .section-intro {
     max-width: 720px;
     margin: 0.75rem 0 2rem;
-    color: #555;
+    color: #4b5563;
 }
 
 .credential-list {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.25rem;
+    gap: 1.3rem;
 }
 
 .credential-item {
@@ -225,104 +236,39 @@ body {
     align-items: center;
     gap: 0.75rem;
     padding: 1rem 1.25rem;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #d1fae5;
     border-radius: 10px;
-    background: #fff;
-}
-
-.credential-item span {
-    font-weight: 500;
-}
-
-/* =========================
-   Contact
-========================= */
-.contact-details h3,
-.contact-details h4 {
-    margin: 1.5rem 0 0.5rem;
-    color: #0a1f44;
-}
-
-.pgp-key {
-    background: #f1f5f9;
-    padding: 1.2rem;
-    border-radius: 6px;
-    font-family: 'Roboto Mono', monospace;
-    white-space: pre-wrap;
-    overflow-x: auto;
-    font-size: 0.95rem;
-    margin: 1rem 0;
-}
-
-/* =========================
-   Testimonials
-========================= */
-.testimonials blockquote {
-    font-style: italic;
-    margin: 1rem 0;
-    padding: 1rem;
-    background: #f1f5f9;
-    border-left: 4px solid #3b82f6;
-    border-radius: 4px;
-}
-
-/* =========================
-   Forms
-========================= */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 600px;
-    margin: 2rem 0;
-}
-
-label {
-    font-weight: 500;
-}
-
-input,
-textarea {
-    padding: 0.8rem;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    font-family: inherit;
-}
-
-textarea {
-    min-height: 150px;
+    background: #ffffff;
 }
 
 /* =========================
    Footer
 ========================= */
 footer {
-    background-color: #0a1f44;
-    color: #cbd5e1;
+    background-color: var(--brand-green-dark);
+    color: #d1fae5;
     text-align: center;
-    padding: 2rem 0;
-    margin-top: 3rem;
+    padding: 2.2rem 0;
 }
 
 /* =========================
    Responsive
 ========================= */
 @media (max-width: 768px) {
-    .navbar {
-        padding: 1.2rem 0;
-    }
-
-    .navbar-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
     .logo {
-        height: 65px;
+        height: 90px;
     }
 
     .company-name {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+    }
+
+    .hero {
+        padding: 4.5rem 1rem 3.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2.3rem;
     }
 
     .nav-links {
@@ -331,13 +277,5 @@ footer {
         width: 100%;
         margin-top: 1.2rem;
         text-align: center;
-    }
-
-    .hero {
-        padding: 6rem 1rem 4rem;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
     }
 }
