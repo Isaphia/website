@@ -242,17 +242,86 @@ body {
 }
 
 /* =========================
-   Footer
+   Footer (Enhanced)
 ========================= */
 footer {
     background-color: var(--brand-green-dark);
     color: #d1fae5;
+    padding: 2.5rem 0;
+    margin-top: 3rem;
     text-align: center;
-    padding: 2.2rem 0;
+}
+
+footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0.8rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.8rem; /* generous spacing for clean look */
+}
+
+.footer-links li a {
+    color: #d1fae5;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.25s ease, transform 0.2s ease;
+}
+
+.footer-links li a:hover {
+    color: #ffffff;
+    transform: translateY(-2px); /* subtle lift on hover */
+}
+
+/* Optional: Add small icons via Font Awesome (add CDN to <head> if using) */
+/* Example: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> */
+/* Then in HTML: <i class="fas fa-envelope"></i> Contact Us  etc. */
+/* If using icons, uncomment and adjust below: */
+/*
+.footer-links li a::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 0.5rem;
+    opacity: 0.8;
+}
+.footer-links li a[href*="contact"]::before { content: "\f0e0"; } /* envelope */
+.footer-links li a[href*="privacy"]::before { content: "\f3ed"; } /* shield */
+.footer-links li a[href*="linkedin"]::before { content: "\f08c"; } /* linkedin */
+*/
+
+/* Simple arrow fallback if no Font Awesome */
+.footer-links li a::before {
+    content: "→ ";
+    margin-right: 0.4rem;
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+/* Responsive: stack links on very small screens */
+@media (max-width: 480px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
 }
 
 /* =========================
-   Responsive
+   Responsive (existing + minor footer tweak)
 ========================= */
 @media (max-width: 768px) {
     .logo {
@@ -278,4 +347,28 @@ footer {
         margin-top: 1.2rem;
         text-align: center;
     }
+
+    footer {
+        padding: 2rem 1rem;
+    }
+}
+
+/* =========================
+   Header Banner Only (White)
+========================= */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+.company-name {
+    color: var(--brand-green-dark);
+}
+
+.nav-links a {
+    color: var(--brand-green);
+}
+
+.nav-links a:hover {
+    color: var(--brand-green-dark);
 }
