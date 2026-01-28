@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Zero-Day Watch by Isaphia Security continuously monitors newly published CVEs and identifies exposure within your environment in hours, not weeks. Shrink mean time to detect and reduce zero-day risk during the most critical window.">
+
+    <title>Zero-Day Watch | Continuous CVE Exposure Detection – Isaphia Security</title>
+    <link rel="canonical" href="https://isaphia.com/zero-day-watch">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Zero-Day Watch | Continuous CVE Exposure Detection">
+    <meta property="og:description" content="Automatically detect exposure to newly published CVEs within hours. Reduce mean time to detect and close the most dangerous vulnerability window.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://isaphia.com/zero-day-watch">
+    <meta property="og:image" content="https://isaphia.com/social-banner.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        :root {
+            --primary: #111827;
+            --accent: #3b82f6;
+            --light: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #1f2937;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #111827 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 1rem 6rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.1;
+        }
+
+        .hero .hero-subtitle {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section.gray {
+            background: var(--light);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.25rem 1.75rem;
+            transition: all 0.22s ease;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            border-color: #d1d5db;
+        }
+
+        .feature-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .feature-card p {
+            color: #4b5563;
+            text-align: center;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 3.5rem auto 0;
+            border-left: 4px solid var(--accent);
+            padding-left: 2.5rem;
+            position: relative;
+        }
+
+        .timeline-step {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-step strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3.5rem;
+        }
+
+        .value-grid h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.15rem;
+            margin-top: 1.8rem;
+            transition: all 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #111827;
+            color: #d1d5db;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            margin: 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero .hero-subtitle { font-size: 1.25rem; }
+            .section { padding: 4.5rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Isaphia Security Logo" class="logo">
+                <span class="company-name">Isaphia Security</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="zero-day-watch.html" class="active">Zero-Day Watch</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Zero-Day Watch™</h1>
+            <p class="hero-subtitle">
+                Identify exposure to newly published CVEs <strong>within hours</strong> — not weeks or months.<br>
+                Close the most dangerous vulnerability window before attackers do.
+            </p>
+            <a href="contact.html" class="cta-button">Request Early Access / Demo</a>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="section">
+        <div class="container" style="max-width:920px; text-align:center;">
+            <h2>The Deadly Gap in Traditional Vulnerability Management</h2>
+            <p class="lead" style="margin: 1.8rem auto 2.5rem; max-width:700px;">
+                Periodic scans leave you blind for weeks — or months — after a zero-day is public.
+            </p>
+            <p style="max-width:720px; margin:0 auto;">
+                Attackers weaponize CVEs within days. Defenders often discover them only during the next scan cycle.<br>
+                <strong>Zero-Day Watch eliminates that blind spot.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section gray">
+        <div class="container">
+            <h2 style="text-align:center;">How It Works</h2>
+            <p class="lead" style="text-align:center; max-width:680px; margin:1.2rem auto 3rem;">
+                Continuous monitoring + context-aware analysis = dramatically faster detection.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-step">
+                    <strong>1. Real-time CVE & Disclosure Monitoring</strong>
+                    <p>We track NVD, vendor advisories, exploit databases, and high-signal sources the moment they publish.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong>2. Asset & Scope-Aware Matching</strong>
+                    <p>Only vulnerabilities relevant to your technologies, versions, cloud footprint, and exposure profile are flagged.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong>3. Instant Prioritized Alerting</strong>
+                    <p>High-confidence exposure notifications delivered to your team — usually within hours of disclosure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY CAPABILITIES – improved balance -->
+    <section class="section">
+        <div class="container">
+            <h2 style="text-align:center;">Key Capabilities</h2>
+            <p class="lead" style="text-align:center; max-width:760px; margin:1rem auto 3.5rem;">
+                Purpose-built to shrink zero-day exposure windows — without overwhelming your team.
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="icon">⚡</span>
+                    <h3>Near-Real-Time Detection</h3>
+                    <p>MTTD reduced from weeks to hours for newly disclosed critical CVEs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="icon">🎯</span>
+                    <h3>Zero Noise – Scope-Focused</h3>
+                    <p>Analyzes every CVE against your actual environment — only relevant alerts reach you.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="icon">🛡️</span>
+                    <h3>Targets the Critical Window</h3>
+                    <p>Focuses on the post-disclosure, pre-patch period where most zero-day damage occurs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="icon">🔗</span>
+                    <h3>Augments — Doesn’t Replace</h3>
+                    <p>Works alongside scanners, EDR, CNAPP, and patch management workflows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUE PROP -->
+    <section class="section gray">
+        <div class="container">
+            <h2 style="text-align:center;">Who Benefits Most</h2>
+
+            <div class="value-grid">
+                <div>
+                    <h3>Small & Mid-Size Security Teams</h3>
+                    <p>Continuous zero-day visibility without needing a full threat intel team or 24/7 SOC.</p>
+                </div>
+
+                <div>
+                    <h3>Large / Regulated Enterprises</h3>
+                    <p>Close blind spots between scans, strengthen governance, and prove proactive controls to auditors.</p>
+                </div>
+
+                <div>
+                    <h3>CISOs & Security Leaders</h3>
+                    <p>Quantifiable reduction in exposure time — defensible metrics during board and compliance reviews.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section" style="text-align:center; background: linear-gradient(135deg, #1e40af, #111827); color:white; padding:7rem 1rem;">
+        <div class="container">
+            <h2 style="color:white;">Stop Discovering Zero-Days After the Damage Is Done</h2>
+            <p class="lead" style="color:#dbeafe; max-width:720px; margin:1.5rem auto 2.5rem;">
+                Zero-Day Watch gives you hours — not weeks — to respond.
+            </p>
+            <a href="contact.html" class="cta-button" style="background:white; color:#1e40af;">Talk to Us About Zero-Day Watch</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2026 Isaphia Security. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="https://www.linkedin.com/company/isaphia" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>
