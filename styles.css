@@ -18,11 +18,32 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--brand-green-light);
+}
+
+/* Inline content links in body copy — keep them on-brand,
+   not browser-default blue. Navbar, footer, CTA buttons, and
+   download cards all set their own colors and are unaffected. */
+.section p a,
+.asm-section p a {
+    color: var(--brand-green);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.section p a:hover,
+.asm-section p a:hover {
+    color: var(--brand-green-dark);
 }
 
 .container {
@@ -381,4 +402,57 @@ footer p {
 
 .nav-links a:hover {
     color: var(--brand-green-dark);
+}
+
+/* =========================
+   Back-to-top button (shared across all pages)
+========================= */
+.back-to-top {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: var(--brand-green-dark);
+    color: #ffffff;
+    text-decoration: none;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(11, 94, 70, 0.4);
+    z-index: 2147483000; /* sit above sticky nav, dialogs, and embeds */
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.back-to-top svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+    display: block;
+}
+
+.back-to-top:hover {
+    background-color: var(--brand-green);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(11, 94, 70, 0.5);
+    color: #ffffff;
+}
+
+.back-to-top:focus-visible {
+    outline: 3px solid #6ee7b7;
+    outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 18px;
+        right: 18px;
+        width: 46px;
+        height: 46px;
+    }
+    .back-to-top svg {
+        width: 20px;
+        height: 20px;
+    }
 }
