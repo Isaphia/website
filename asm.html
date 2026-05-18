@@ -28,13 +28,26 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Product",
+      "@type": "SoftwareApplication",
       "name": "Isaphia ASM",
       "description": "Continuous attack surface management platform that discovers, monitors, and prioritizes every internet-facing asset across cloud and on-prem environments.",
-      "brand": { "@type": "Brand", "name": "Isaphia Security" },
+      "applicationCategory": "SecurityApplication",
+      "applicationSubCategory": "Attack Surface Management",
+      "operatingSystem": "Web-based",
       "url": "https://isaphia.com/asm",
       "image": "https://isaphia.com/social-banner.jpg",
-      "category": "Attack Surface Management"
+      "brand": { "@type": "Brand", "name": "Isaphia Security" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://isaphia.com/contact",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "description": "Quote-based pricing. Scales with external attack surface size and choice of Self-Service SaaS or Managed Service. Users are unlimited within tenant."
+        }
+      }
     }
     </script>
 
