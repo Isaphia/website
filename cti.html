@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Isaphia CTI is asset-aware Cyber Threat Intelligence: it ingests global threat feeds, your own IOCs, and dark-web exposure signals, then correlates every indicator against your continuously-discovered attack surface — so your team sees the findings that matter today instead of triaging tens of thousands of IOCs a week.">
+
+    <title>Isaphia CTI | Asset-Aware Cyber Threat Intelligence – Isaphia Security</title>
+    <link rel="canonical" href="https://isaphia.com/cti">
+
+    <link rel="alternate" hreflang="en-ca" href="https://isaphia.com/cti" />
+    <link rel="alternate" hreflang="en" href="https://isaphia.com/cti" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Isaphia CTI | Threat Intelligence That Knows Your Attack Surface">
+    <meta property="og:description" content="Asset-aware Cyber Threat Intelligence: global IOC feeds, custom watchlists, IP reputation, MITRE ATT&CK mapping, threat-actor landscape, and dark-web exposure — correlated against your real surface.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://isaphia.com/cti">
+    <meta property="og:image" content="https://isaphia.com/social-banner.jpg">
+    <meta property="og:image:alt" content="Isaphia Cyber Threat Intelligence Platform">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Isaphia CTI | Asset-Aware Cyber Threat Intelligence">
+    <meta name="twitter:description" content="Threat intelligence correlated against your continuously-discovered attack surface — the findings that matter today, not 50,000 IOCs a week.">
+    <meta name="twitter:image" content="https://isaphia.com/social-banner.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Isaphia CTI",
+      "description": "Asset-aware Cyber Threat Intelligence platform that ingests global threat feeds, custom IOCs, and dark-web exposure signals, then correlates every indicator against the continuously-discovered external attack surface from Isaphia ASM.",
+      "applicationCategory": "SecurityApplication",
+      "applicationSubCategory": "Cyber Threat Intelligence",
+      "operatingSystem": "Web-based",
+      "url": "https://isaphia.com/cti",
+      "image": "https://isaphia.com/social-banner.jpg",
+      "brand": { "@type": "Brand", "name": "Isaphia Security" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://isaphia.com/contact",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "description": "Tiered subscription with optional Managed Service. Users are unlimited within tenant. Contact Isaphia for a scoped quote."
+        }
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Isaphia CTI, in plain English?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Isaphia CTI is a cloud-based threat intelligence platform. It collects global signals about attackers — malicious IPs, malware infrastructure, leaked credentials, exploit chatter — and matches them against the assets you actually own. Instead of tens of thousands of generic indicators, your team sees the small set that maps to your real surface today." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Isaphia CTI different from Isaphia ASM?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Isaphia ASM tells you what you have exposed. Isaphia CTI tells you who is targeting things like it, what they use, and which of those things touch your environment right now. CTI is built on top of ASM and reuses your discovered asset inventory — that is what makes it asset-aware." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I buy CTI without ASM?",
+          "acceptedAnswer": { "@type": "Answer", "text": "ASM is bundled into every CTI tier because the asset correlation is what makes the intelligence actionable. You do not need to be an existing ASM customer — both modules are provisioned together." }
+        },
+        {
+          "@type": "Question",
+          "name": "What threat feeds are included?",
+          "acceptedAnswer": { "@type": "Answer", "text": "CISA KEV (known-exploited vulnerabilities), EPSS exploit-prediction scoring, global IOC feeds (botnet C2, malware URLs, malicious infrastructure), multi-source IP reputation, MITRE ATT&CK technique mapping, sector-relevant threat-actor profiles, and paste / leak monitoring. You can also bring your own indicators or subscribe to feeds via TAXII 2.1." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a CTI analyst to get value from it?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The Self-Service tier is designed for security teams without a dedicated CTI function — findings are pre-prioritized and routed to your existing inbox (email, Slack, Teams, SIEM, ticketing). If you would rather not run it at all, the Managed Service has Isaphia analysts triage every finding and ship monthly intelligence briefs." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can my SOC or SIEM consume the intelligence?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. High-confidence indicators export as an authenticated External Dynamic List (EDL) feed for firewalls and EDR, as STIX 2.1 bundles, and over a TAXII 2.1 server. Findings also push into Splunk HEC, Elastic / OpenSearch, and CEF-compatible SIEMs (QRadar, Sentinel, ArcSight), plus Jira, ServiceNow, Slack, Teams, and webhooks." }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is our data stored, and how is it secured?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Data is stored in a hardened cloud tenant with per-customer isolation at the database query layer, RBAC, SAML / OIDC single sign-on, TOTP 2FA per role, immutable audit logs, TLS 1.3 in transit, and AES-256 at rest. Bring-your-own-key (BYOK) is available on request. Detailed security documentation is provided under NDA." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to get started with Isaphia CTI?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Provisioning is same-day. Because asset discovery and intelligence collection run on independent schedulers, indicator correlation begins as soon as your ASM seed finishes its first discovery pass — typically within hours." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I try Isaphia CTI before buying?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Request a demo and Isaphia will walk through findings against your actual external surface — not a generic demo tenant — so you can see which threats correlate to your environment before deciding." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Isaphia CTI pricing work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Three self-service tiers plus an optional Managed Service add-on. ASM is bundled in every tier. Per-asset pricing with no à la carte line items and no per-seat fees. Contact Isaphia for a scoped quote." }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css?v=10">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* Product-page styles for Isaphia CTI — same brand-green palette as ASM. */
+
+        .cti-hero {
+            background:
+                linear-gradient(135deg, rgba(11, 94, 70, 0.94), rgba(15, 122, 92, 0.94)),
+                url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80')
+                center/cover no-repeat;
+            color: #ffffff;
+            text-align: center;
+            padding: 7rem 1rem 5.5rem;
+        }
+
+        .cti-hero h1 {
+            color: #ffffff;
+            font-size: 3.2rem;
+            line-height: 1.1;
+            margin-bottom: 1.1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+        }
+
+        .cti-hero h1 .accent {
+            color: #6ee7b7;
+        }
+
+        .cti-hero .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 760px;
+            margin: 0 auto 2rem;
+            color: #f0fdf4;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .cti-hero .platform-chip {
+            display: inline-block;
+            margin-bottom: 1.4rem;
+            padding: 0.4rem 0.95rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            color: #ecfdf5;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .cti-hero .cta-button {
+            background-color: #ffffff;
+            color: var(--brand-green-dark);
+        }
+
+        .cti-hero .cta-button:hover {
+            background-color: #d1fae5;
+        }
+
+        .cti-section {
+            padding: 5rem 0;
+        }
+
+        .cti-section.tint {
+            background: var(--brand-green-light);
+        }
+
+        .cti-section .container.narrow {
+            max-width: 820px;
+        }
+
+        .cti-section h2,
+        .cti-section h3 {
+            color: var(--brand-green-dark);
+        }
+
+        .cti-section h2 {
+            font-size: 1.9rem;
+        }
+
+        .cti-section .lead {
+            font-size: 1.2rem;
+            color: #4b5563;
+            margin-top: 0.6rem;
+        }
+
+        /* Capability grid */
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .capability-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 12px;
+            padding: 1.4rem 1.3rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .capability-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(11, 94, 70, 0.1);
+            border-color: var(--brand-green);
+        }
+
+        .capability-card .cap-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--brand-green-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.9rem;
+        }
+
+        .capability-card .cap-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--brand-green-dark);
+        }
+
+        .capability-card strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .capability-card p {
+            font-size: 0.92rem;
+            color: #4b5563;
+            margin: 0;
+        }
+
+        /* Product screenshot showcase */
+        .showcase-lead {
+            margin-top: 2.8rem;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(11, 94, 70, 0.18);
+            border: 1px solid #d1fae5;
+            cursor: zoom-in;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .showcase-lead:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 26px 50px rgba(11, 94, 70, 0.22);
+        }
+
+        .showcase-lead:focus-visible {
+            outline: 3px solid var(--brand-green);
+            outline-offset: 4px;
+        }
+
+        .showcase-lead img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .showcase-caption {
+            text-align: center;
+            margin-top: 1.1rem;
+            font-size: 0.98rem;
+            color: #4b5563;
+        }
+
+        .showcase-caption strong {
+            color: var(--brand-green-dark);
+            font-weight: 600;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.6rem;
+            margin-top: 2.8rem;
+        }
+
+        .showcase-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(11, 94, 70, 0.08);
+            display: flex;
+            flex-direction: column;
+            cursor: zoom-in;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px rgba(11, 94, 70, 0.14);
+            border-color: var(--brand-green);
+        }
+
+        .showcase-card:focus-visible {
+            outline: 3px solid var(--brand-green);
+            outline-offset: 4px;
+        }
+
+        .showcase-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ecfdf5;
+        }
+
+        .showcase-card .showcase-card-body {
+            padding: 1.1rem 1.2rem 1.3rem;
+        }
+
+        .showcase-card strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: 1.02rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .showcase-card p {
+            margin: 0;
+            color: #4b5563;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        /* How-it-works timeline */
+        .cti-timeline {
+            max-width: 780px;
+            margin: 3rem auto 0;
+            border-left: 4px solid var(--brand-green);
+            padding-left: 2.2rem;
+        }
+
+        .cti-timeline-step {
+            margin-bottom: 2.3rem;
+        }
+
+        .cti-timeline-step strong {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .cti-timeline-step p {
+            color: #4b5563;
+            margin: 0;
+        }
+
+        /* Deployment two-card layout */
+        .deploy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2.8rem;
+        }
+
+        .deploy-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 14px;
+            padding: 2rem 1.8rem;
+        }
+
+        .deploy-card .deploy-tag {
+            display: inline-block;
+            background: var(--brand-green-light);
+            color: var(--brand-green-dark);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .deploy-card h3 {
+            font-size: 1.4rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.7rem;
+        }
+
+        .deploy-card p {
+            color: #4b5563;
+        }
+
+        /* Integrations bands */
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.3rem;
+            margin-top: 2.6rem;
+        }
+
+        .integration-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 10px;
+            padding: 1.3rem 1.3rem;
+        }
+
+        .integration-card strong {
+            display: block;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.45rem;
+        }
+
+        .integration-card span {
+            color: #4b5563;
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        /* Standards / reliability / security tri-column band */
+        .posture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.6rem;
+        }
+
+        .posture-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 12px;
+            padding: 1.5rem 1.4rem;
+        }
+
+        .posture-card h3 {
+            font-size: 1.05rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .posture-card ul {
+            margin: 0;
+            padding-left: 1.1rem;
+            color: #4b5563;
+            font-size: 0.93rem;
+            line-height: 1.6;
+        }
+
+        .posture-card ul li {
+            margin-bottom: 0.4rem;
+        }
+
+        .posture-card ul li strong {
+            color: var(--brand-green-dark);
+            font-weight: 600;
+        }
+
+        /* Downloads */
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .download-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 12px;
+            padding: 1.5rem 1.3rem;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .download-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(11, 94, 70, 0.1);
+            border-color: var(--brand-green);
+        }
+
+        .download-card .file-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--brand-green-light);
+            color: var(--brand-green-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .download-card .file-meta strong {
+            display: block;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
+        }
+
+        .download-card .file-meta span {
+            display: block;
+            color: #4b5563;
+            font-size: 0.92rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .download-card .file-meta em {
+            color: var(--brand-green);
+            font-style: normal;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* Final CTA — flows directly into the dark footer on this page,
+           so override the global footer margin-top set in styles.css. */
+        body > footer { margin-top: 0; }
+
+        .cti-final-cta {
+            background: linear-gradient(135deg, var(--brand-green-dark), #093d2e);
+            color: #ffffff;
+            text-align: center;
+            padding: 5.5rem 1rem;
+        }
+
+        .cti-final-cta h2 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cti-final-cta .lead {
+            color: #d1fae5;
+            max-width: 680px;
+            margin: 0.5rem auto 2rem;
+        }
+
+        .cti-final-cta .cta-button {
+            background-color: #ffffff;
+            color: var(--brand-green-dark);
+        }
+
+        .cti-final-cta .cta-button:hover {
+            background-color: #d1fae5;
+        }
+
+        /* Lightbox */
+        .image-lightbox {
+            border: none;
+            padding: 0;
+            background: transparent;
+            max-width: 95vw;
+            max-height: 95vh;
+            overflow: visible;
+        }
+
+        .image-lightbox::backdrop {
+            background: rgba(8, 40, 30, 0.88);
+            backdrop-filter: blur(2px);
+        }
+
+        .image-lightbox[open] {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+        }
+
+        .image-lightbox img {
+            display: block;
+            max-width: 95vw;
+            max-height: 82vh;
+            width: auto;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+        }
+
+        .lightbox-caption {
+            color: #d1fae5;
+            font-size: 0.95rem;
+            text-align: center;
+            max-width: 720px;
+            margin: 0;
+            padding: 0 0.8rem;
+            line-height: 1.5;
+        }
+
+        .lightbox-caption strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: #ffffff;
+            color: var(--brand-green-dark);
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .lightbox-close:hover {
+            background: #d1fae5;
+        }
+
+        /* Plain-English callout in the problem section */
+        .plain-callout {
+            max-width: 720px;
+            margin: 1.8rem auto 0;
+            padding: 1.2rem 1.4rem;
+            background: var(--brand-green-light);
+            border-left: 4px solid var(--brand-green);
+            border-radius: 6px;
+            color: #1f2937;
+            text-align: left;
+            font-size: 0.98rem;
+            line-height: 1.55;
+        }
+
+        .plain-callout strong {
+            color: var(--brand-green-dark);
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 820px;
+            margin: 2.5rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 10px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .faq-item[open] {
+            border-color: var(--brand-green);
+            box-shadow: 0 6px 18px rgba(11, 94, 70, 0.08);
+        }
+
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1.1rem 1.3rem;
+            font-weight: 600;
+            color: var(--brand-green-dark);
+            font-size: 1.02rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-item summary::-webkit-details-marker { display: none; }
+
+        .faq-item summary::after {
+            content: "+";
+            color: var(--brand-green);
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .faq-item[open] summary::after {
+            content: "\2212"; /* minus */
+        }
+
+        .faq-item summary:hover {
+            color: var(--brand-green);
+        }
+
+        .faq-item p {
+            margin: 0;
+            padding: 0 1.3rem 1.2rem;
+            color: #4b5563;
+            font-size: 0.97rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .cti-hero h1 { font-size: 2.4rem; }
+            .cti-hero .hero-subtitle { font-size: 1.1rem; }
+            .cti-section { padding: 3.5rem 0; }
+            .lightbox-close { top: 4px; right: 4px; }
+            .faq-item summary { font-size: 0.98rem; padding: 1rem 1.1rem; }
+            .faq-item p { padding: 0 1.1rem 1.1rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header id="top">
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Isaphia Security Logo" class="logo logo--large">
+                <span class="company-name">Isaphia Security</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="services">Services</a></li>
+                <li class="nav-product"><a href="asm"><span class="nav-acronym">ASM</span><span class="nav-tagline">Attack Surface</span></a></li>
+                <li class="nav-product"><a href="cti" class="active"><span class="nav-acronym">CTI</span><span class="nav-tagline">Threat Intel</span></a></li>
+                <li><a href="team">Team</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="cti-hero">
+        <div class="container">
+            <span class="platform-chip">Isaphia Platform · CTI Module</span>
+            <h1>Threat intelligence that knows <span class="accent">your attack surface.</span></h1>
+            <p class="hero-subtitle">
+                Isaphia CTI ingests global threat feeds, your own IOCs, and dark-web exposure signals — then correlates every indicator against your continuously-discovered surface. Your team sees the dozen findings that matter today instead of triaging fifty thousand IOCs a week.
+            </p>
+            <a href="contact" class="cta-button">Request a Demo</a>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="cti-section">
+        <div class="container narrow" style="text-align:center;">
+            <h2>Most threat intelligence wasn't built for your environment</h2>
+            <p class="lead" style="margin: 1.6rem auto 1.4rem; max-width: 720px;">
+                A weekly torrent of indicators. No way to tell which ones touch <em>your</em> assets. Analyst time burned on noise.
+            </p>
+            <p style="max-width: 720px; margin: 0 auto; color: #4b5563;">
+                Enterprise CTI platforms ship hundreds of thousands of indicators a month, but treat your environment as an afterthought. Isaphia CTI inverts that. Every signal — malicious IP, exploited CVE, leaked credential, adversary technique — is matched against the live asset inventory continuously discovered by Isaphia ASM. What you see on screen is the intersection: real threats, against real assets you own, right now.
+            </p>
+
+            <p class="plain-callout">
+                <strong>In plain terms:</strong> Isaphia CTI is the threat-intelligence module of the Isaphia platform. It runs in the same cloud (SaaS) dashboard as Isaphia ASM — log in from any web browser, with nothing to install. You can run it yourself, or have our analysts triage findings and ship monthly intel briefs on your behalf.
+            </p>
+        </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section class="cti-section tint">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>What Isaphia CTI Covers</h2>
+                <p class="lead" style="max-width: 740px; margin: 1rem auto 0;">
+                    One platform. Sixteen capabilities. Threat intelligence and attack-surface context, unified.
+                </p>
+            </div>
+
+            <div class="capability-grid">
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5.25-3.5 10.74-8 12-4.5-1.26-8-6.75-8-12V6l8-4zm-1 12.59l4.3-4.3-1.4-1.4L11 11.79 9.1 9.89l-1.4 1.4 3.3 3.3z"/></svg>
+                    </span>
+                    <strong>CISA KEV Correlation</strong>
+                    <p>Actively-exploited CVEs mapped directly to your discovered surface.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 17h3v4H3v-4zm6-6h3v10H9V11zm6-4h3v14h-3V7zm6-4h3v18h-3V3z"/></svg>
+                    </span>
+                    <strong>EPSS Exploit Scoring</strong>
+                    <p>Real-world exploit probability per CVE — fed into the Unified Risk Score.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19.35 10.04A7.49 7.49 0 0012 4a7.5 7.5 0 00-6.93 4.66A5.5 5.5 0 006 19h13a4.5 4.5 0 00.35-8.96z"/></svg>
+                    </span>
+                    <strong>Global IOC Feeds</strong>
+                    <p>Botnet C2, malware URLs, and malicious infrastructure from curated open feeds.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 4a3 3 0 100 6 3 3 0 000-6zm0 14c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08C16.71 18.72 14.5 20 12 20z"/></svg>
+                    </span>
+                    <strong>IP Reputation</strong>
+                    <p>Multi-source consensus scoring (GreyNoise, AbuseIPDB, VirusTotal, Spamhaus, Censys and more).</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z"/></svg>
+                    </span>
+                    <strong>MITRE ATT&amp;CK Mapping</strong>
+                    <p>Findings auto-tagged with technique IDs across all 11 tactics. Navigator layer export.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93C7.06 19.45 4 16.08 4 12c0-.61.07-1.21.19-1.78L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41C17.93 5.43 20 8.47 20 12c0 2.19-.81 4.19-2.1 5.39z"/></svg>
+                    </span>
+                    <strong>Threat-Actor Landscape</strong>
+                    <p>Sector-relevant APTs scored by live TTP overlap against your environment.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 00-5 5v3H5v12h14V10h-2V7a5 5 0 00-5-5zm-3 8V7a3 3 0 016 0v3H9z"/></svg>
+                    </span>
+                    <strong>Custom Watchlists</strong>
+                    <p>Your own IOCs, brand keywords, and executive terms — monitored continuously.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 4a3 3 0 100 6 3 3 0 000-6zm0 14c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08C16.71 18.72 14.5 20 12 20z"/></svg>
+                    </span>
+                    <strong>Paste &amp; Leak Monitoring</strong>
+                    <p>Domain and email exposure across paste sites and known leak sources.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                    </span>
+                    <strong>Unified Risk Score</strong>
+                    <p>Seven-signal blend (0–100) ranks every finding so triage has one queue, not seven.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M2 6C2 4.9 2.9 4 4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6ZM4 6V6.01L12 11L20 6.01V6H4ZM20 18V8L12 13L4 8V18H20Z"/></svg>
+                    </span>
+                    <strong>Auto Intel Briefs</strong>
+                    <p>Daily, weekly, or monthly markdown reports generated per organization.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.23 5.6 12.66 3 9.5 3S3.77 5.6 3.77 8.39 6.34 13.78 9.5 13.78c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l4.25 4.25 1.49-1.49L15.5 14zM9.5 12c-2.01 0-3.63-1.63-3.63-3.63S7.49 4.73 9.5 4.73 13.13 6.36 13.13 8.37 11.51 12 9.5 12z"/></svg>
+                    </span>
+                    <strong>IOC Relationship Graph</strong>
+                    <p>Indicator → Finding → Technique → Actor visualization for kill-chain investigation.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6 20 6l-11 11z"/></svg>
+                    </span>
+                    <strong>Analyst RFI Workflow</strong>
+                    <p>Org-scoped question / answer threads with suppression and false-positive triage.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 1l9 4v6c0 6-4 11-9 12-5-1-9-6-9-12V5l9-4z"/></svg>
+                    </span>
+                    <strong>Blocklist &amp; EDL Export</strong>
+                    <p>Push high-confidence IOCs to firewall and EDR feeds via authenticated External Dynamic List.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 8V4l8 8-8 8v-4H4V8h8z"/></svg>
+                    </span>
+                    <strong>Continuous Collection</strong>
+                    <p>Per-feed cadence scheduler — intelligence collection decoupled from asset scans.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 6h-4V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H3c-.55 0-1 .45-1 1v13c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V7c0-.55-.45-1-1-1zM9 4h6v2H9V4z"/></svg>
+                    </span>
+                    <strong>TAXII 2.1 Sharing</strong>
+                    <p>Inbound and outbound peer / ISAC indicator exchange. STIX 2.1 bundle export.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.23 5.6 12.66 3 9.5 3S3.77 5.6 3.77 8.39 6.34 13.78 9.5 13.78c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l4.25 4.25 1.49-1.49L15.5 14zM9.5 12c-2.01 0-3.63-1.63-3.63-3.63S7.49 4.73 9.5 4.73 13.13 6.36 13.13 8.37 11.51 12 9.5 12z"/></svg>
+                    </span>
+                    <strong>Indicator Search &amp; Pivot</strong>
+                    <p>TIP-style analyst browser with full-text filter, sort, and pivot across millions of IOCs.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEE IT IN ACTION -->
+    <section class="cti-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>See It in Action</h2>
+                <p class="lead" style="max-width: 740px; margin: 1rem auto 0;">
+                    The same dashboard your team uses every day — built so analysts can answer questions, not just look at charts.
+                </p>
+            </div>
+
+            <figure class="showcase-lead" tabindex="0" role="button"
+                    aria-label="Enlarge: Threat Intel Dashboard"
+                    data-caption="<strong>Threat Intel Dashboard.</strong> Risk-prioritized findings across your assets — KEV-exploited CVEs, malicious IP hits, and high-confidence indicators ranked by Unified Risk Score, not feed volume.">
+                <img src="downloads/cti/images/threat-intel.png" alt="Isaphia CTI Threat Intel dashboard showing external feed indicators correlated against attack surface: KEV findings, watchlist matches, IP reputation hits, dark web exposures, and a Risk-Prioritized Findings table for Acme Corporation." loading="lazy">
+            </figure>
+            <p class="showcase-caption">
+                <strong>Threat Intel Dashboard.</strong> Risk-prioritized findings across your assets — KEV-exploited CVEs, malicious IP hits, and high-confidence indicators ranked by Unified Risk Score, not feed volume.
+            </p>
+
+            <div class="showcase-grid">
+
+                <figure class="showcase-card" tabindex="0" role="button"
+                        aria-label="Enlarge: MITRE ATT&amp;CK live technique heatmap"
+                        data-caption="<strong>ATT&amp;CK Matrix — live technique heatmap.</strong> Findings auto-mapped to the techniques attackers actually use against you, with mapped-finding counts per cell so you can see where the pressure is.">
+                    <img src="downloads/cti/images/attack-matrix.png" alt="Isaphia CTI ATT&CK Matrix view showing 10 techniques observed across 5 tactics — Reconnaissance, Resource Development, Initial Access, Credential Access, Command and Control — with 92 mapped findings." loading="lazy">
+                    <figcaption class="showcase-card-body">
+                        <strong>MITRE ATT&amp;CK live heatmap</strong>
+                        <p>Findings auto-mapped to the techniques attackers actually use against you — with Navigator JSON export for your SOC.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="showcase-card" tabindex="0" role="button"
+                        aria-label="Enlarge: IOC Relationship Graph"
+                        data-caption="<strong>IOC Relationship Graph.</strong> Indicator → Finding → Technique → Actor — pivot the full kill chain from a single suspicious IP to the ransomware crews known to use it.">
+                    <img src="downloads/cti/images/relationship-graph.png" alt="Isaphia CTI Relationship Graph visualization linking domains and IPs to MITRE technique T1190 Exploit Public-Facing Application, then to threat actors CL0p, Conti, LockBit and Magecart." loading="lazy">
+                    <figcaption class="showcase-card-body">
+                        <strong>IOC relationship graph</strong>
+                        <p>Pivot the full kill chain from a suspicious IP to the ransomware crews known to use it.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="showcase-card" tabindex="0" role="button"
+                        aria-label="Enlarge: IP Reputation — multi-source consensus"
+                        data-caption="<strong>IP Reputation — multi-source consensus.</strong> Every IP across your surface scored against GreyNoise, AbuseIPDB, VirusTotal, Spamhaus, Censys, OTX, urlscan.io and Shodan — at a glance.">
+                    <img src="downloads/cti/images/ip-reputation.png" alt="Isaphia CTI IP Reputation view showing three IPs scored against eight reputation sources, with worst-score 100, 50, and 15 highlighted in malicious, suspicious, and benign tiers." loading="lazy">
+                    <figcaption class="showcase-card-body">
+                        <strong>Multi-source IP reputation</strong>
+                        <p>Eight reputation sources, one consensus score per IP — malicious, suspicious, benign tiers at a glance.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="showcase-card" tabindex="0" role="button"
+                        aria-label="Enlarge: Threat Indicators store"
+                        data-caption="<strong>Threat Indicators store.</strong> A TIP-style browser of the global indicator corpus — filter by type, source, threat category, and confidence; pivot to enrichment in a single click.">
+                    <img src="downloads/cti/images/threat-indicators.png" alt="Isaphia CTI Threat Indicators page showing a paginated table of domain and IP indicators from ThreatFox tagged Payload Delivery and Botnet C2, with confidence scores of 75 and 100." loading="lazy">
+                    <figcaption class="showcase-card-body">
+                        <strong>Indicator search &amp; pivot</strong>
+                        <p>A TIP-style browser of the global indicator corpus — filter, sort, and pivot to enrichment in one click.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="showcase-card" tabindex="0" role="button"
+                        aria-label="Enlarge: Intel Requests workflow"
+                        data-caption="<strong>Analyst RFI workflow.</strong> Ask the threat-intel team to research an indicator, finding, or asset — track every question through to a closed answer, with full audit trail.">
+                    <img src="downloads/cti/images/intel-requests.png" alt="Isaphia CTI Intel Requests page showing two analyst RFIs for Acme Corporation — one open, one answered — with status filters and a New Request button." loading="lazy">
+                    <figcaption class="showcase-card-body">
+                        <strong>Analyst RFI workflow</strong>
+                        <p>Ask the threat-intel team a question against a real indicator — and track the answer to close.</p>
+                    </figcaption>
+                </figure>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="cti-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>How It Works</h2>
+                <p class="lead" style="max-width: 700px; margin: 1rem auto 0;">
+                    Continuous collection, contextual correlation, and routes to wherever your team already works.
+                </p>
+            </div>
+
+            <div class="cti-timeline">
+                <div class="cti-timeline-step">
+                    <strong>1. Collect, continuously</strong>
+                    <p>Per-feed cadence schedulers pull from CISA KEV, EPSS, abuse.ch, IP-reputation sources, paste / leak monitors, and any TAXII 2.1 server you peer with. Bring your own IOCs by paste, JSON, CSV, or STIX 2.1.</p>
+                </div>
+                <div class="cti-timeline-step">
+                    <strong>2. Correlate against your surface</strong>
+                    <p>Every indicator is matched against the live asset inventory continuously discovered by Isaphia ASM. What you see is the intersection — global threat × your actual environment.</p>
+                </div>
+                <div class="cti-timeline-step">
+                    <strong>3. Prioritize with the Unified Risk Score</strong>
+                    <p>A seven-signal blend (KEV status, EPSS, source confidence, asset exposure, ATT&amp;CK tactic, watchlist match, recency) ranks every finding 0–100 — so triage has one queue, not seven.</p>
+                </div>
+                <div class="cti-timeline-step">
+                    <strong>4. Route to your workflow</strong>
+                    <p>Findings push to Splunk HEC, Elastic, CEF-based SIEMs, Jira, ServiceNow, Slack, Teams, and webhooks. High-confidence IOCs export as an authenticated EDL feed for firewalls and EDR.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPLOYMENT MODELS -->
+    <section class="cti-section tint">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Two Ways to Run It</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    Same platform, same coverage — choose how much you want to operate yourself.
+                </p>
+            </div>
+
+            <div class="deploy-grid">
+
+                <div class="deploy-card">
+                    <span class="deploy-tag">Self-Service SaaS</span>
+                    <h3>Run it yourself</h3>
+                    <p>Direct dashboard access for your team. Configure feeds, watchlists, recipients, and schedules. Full RBAC and unlimited users. Ideal for in-house security teams with at least one analyst.</p>
+                </div>
+
+                <div class="deploy-card">
+                    <span class="deploy-tag">Managed Service</span>
+                    <h3>We watch for you</h3>
+                    <p>Our analysts triage every finding and only escalate what matters. Monthly executive intel briefings, direct line to threat analysts, and quarterly business reviews. Ideal for organizations without a dedicated CTI function.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTEGRATIONS -->
+    <section class="cti-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Built to Fit Your Stack</h2>
+                <p class="lead" style="max-width: 740px; margin: 1rem auto 0;">
+                    Intelligence goes where your team already works — no parallel inbox to babysit.
+                </p>
+            </div>
+
+            <div class="integration-grid">
+
+                <div class="integration-card">
+                    <strong>SIEM</strong>
+                    <span>Splunk HEC · Elastic / OpenSearch · CEF (QRadar, Sentinel, ArcSight)</span>
+                </div>
+
+                <div class="integration-card">
+                    <strong>Ticketing</strong>
+                    <span>Jira · ServiceNow · Zendesk — severity → priority auto-mapped</span>
+                </div>
+
+                <div class="integration-card">
+                    <strong>Identity &amp; SSO</strong>
+                    <span>SAML 2.0 · OIDC · Okta · Azure AD · Google · TOTP 2FA enforced per role</span>
+                </div>
+
+                <div class="integration-card">
+                    <strong>Messaging</strong>
+                    <span>Email · Slack · Teams · generic webhook · full REST API with signed webhooks</span>
+                </div>
+
+                <div class="integration-card">
+                    <strong>CTI Exchange</strong>
+                    <span>STIX 2.1 client + server · TAXII 2.1 discovery / collections · ATT&amp;CK Navigator v4.5 layer JSON</span>
+                </div>
+
+                <div class="integration-card">
+                    <strong>Firewall &amp; EDR</strong>
+                    <span>Authenticated External Dynamic List (EDL) feed of your high-confidence IOCs</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- STANDARDS / RELIABILITY / SECURITY POSTURE -->
+    <section class="cti-section tint">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Standards, Reliability &amp; Security Posture</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    Built to the standards your security and procurement teams will ask about.
+                </p>
+            </div>
+
+            <div class="posture-grid">
+
+                <div class="posture-card">
+                    <h3>Standards Conformance</h3>
+                    <ul>
+                        <li><strong>STIX 2.1</strong> — server + client, bundle export</li>
+                        <li><strong>TAXII 2.1</strong> — discovery, API root, collections</li>
+                        <li><strong>MITRE ATT&amp;CK v14</strong> — technique-level mapping</li>
+                        <li><strong>CVSS 3.1 + EPSS</strong> — exploit-prediction scoring</li>
+                        <li><strong>OAuth 2.0 / OIDC</strong> — SSO + machine-to-machine</li>
+                    </ul>
+                </div>
+
+                <div class="posture-card">
+                    <h3>Reliability &amp; SLA</h3>
+                    <ul>
+                        <li><strong>99.9% uptime</strong> target (rolling 30-day)</li>
+                        <li><strong>Daily encrypted backups</strong> — 30-day default retention</li>
+                        <li><strong>RTO &lt; 4h / RPO &lt; 24h</strong> disaster recovery</li>
+                        <li><strong>Geo-redundant</strong> deployment optional</li>
+                        <li><strong>Data residency</strong> configurable per deployment</li>
+                    </ul>
+                </div>
+
+                <div class="posture-card">
+                    <h3>Security &amp; Data Handling</h3>
+                    <ul>
+                        <li><strong>TLS 1.3</strong> in transit, <strong>AES-256</strong> at rest</li>
+                        <li>Secrets via env vars or KMS-backed vault</li>
+                        <li><strong>BYOK</strong> available on request</li>
+                        <li>Hard multi-tenant isolation at the query layer</li>
+                        <li>Immutable audit log with audit-log API</li>
+                        <li>Responsible disclosure: security@isaphia.com</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOADS -->
+    <section class="cti-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Resources</h2>
+                <p class="lead" style="max-width: 680px; margin: 1rem auto 0;">
+                    Take Isaphia CTI to your team.
+                </p>
+            </div>
+
+            <div class="downloads-grid" style="max-width: 760px; margin-left: auto; margin-right: auto;">
+
+                <a class="download-card" href="downloads/cti/Isaphia_CTI_Datasheet.pdf" download>
+                    <span class="file-icon">PDF</span>
+                    <span class="file-meta">
+                        <strong>Product Datasheet</strong>
+                        <span>One-page overview of capabilities, deployment models, integrations, and security posture.</span>
+                        <em>Download PDF →</em>
+                    </span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="cti-section tint" id="faq">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Frequently Asked Questions</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    Plain-English answers to the questions we hear most often.
+                </p>
+            </div>
+
+            <div class="faq-list">
+
+                <details class="faq-item">
+                    <summary>What is Isaphia CTI, in plain English?</summary>
+                    <p>Isaphia CTI is a cloud-based threat intelligence platform. It collects global signals about attackers — malicious IPs, malware infrastructure, leaked credentials, exploit chatter — and matches them against the assets you actually own. Instead of tens of thousands of generic indicators, your team sees the small set that maps to <em>your</em> real surface today.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How is Isaphia CTI different from Isaphia ASM?</summary>
+                    <p>Isaphia ASM tells you what <em>you</em> have exposed. Isaphia CTI tells you who is targeting things like it, what they use, and which of those things touch your environment right now. CTI is built on top of ASM and reuses your discovered asset inventory — that's what makes it asset-aware.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I buy CTI without ASM?</summary>
+                    <p>ASM is bundled into every CTI tier because the asset correlation is what makes the intelligence actionable. You do not need to be an existing ASM customer — both modules are provisioned together.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What threat feeds are included?</summary>
+                    <p>CISA KEV (known-exploited vulnerabilities), EPSS exploit-prediction scoring, global IOC feeds (botnet C2, malware URLs, malicious infrastructure), multi-source IP reputation, MITRE ATT&amp;CK technique mapping, sector-relevant threat-actor profiles, and paste / leak monitoring. You can also bring your own indicators or subscribe to feeds via TAXII 2.1.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Do I need a CTI analyst to get value from it?</summary>
+                    <p>No. The Self-Service tier is designed for security teams without a dedicated CTI function — findings are pre-prioritized and routed to your existing inbox (email, Slack, Teams, SIEM, ticketing). If you would rather not run it at all, the Managed Service has Isaphia analysts triage every finding and ship monthly intelligence briefs.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can my SOC or SIEM consume the intelligence?</summary>
+                    <p>Yes. High-confidence indicators export as an authenticated External Dynamic List (EDL) feed for firewalls and EDR, as STIX 2.1 bundles, and over a TAXII 2.1 server. Findings also push into Splunk HEC, Elastic / OpenSearch, and CEF-compatible SIEMs (QRadar, Sentinel, ArcSight), plus Jira, ServiceNow, Slack, Teams, and webhooks.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Where is our data stored, and how is it secured?</summary>
+                    <p>Data is stored in a hardened cloud tenant with per-customer isolation at the database query layer, RBAC, SAML / OIDC single sign-on, TOTP 2FA per role, immutable audit logs, TLS 1.3 in transit, and AES-256 at rest. Bring-your-own-key (BYOK) is available on request. Detailed security documentation is provided under NDA.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How long does it take to get started?</summary>
+                    <p>Provisioning is same-day. Because asset discovery and intelligence collection run on independent schedulers, indicator correlation begins as soon as your ASM seed finishes its first discovery pass — typically within hours.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I try it before buying?</summary>
+                    <p>Yes. Request a demo and we'll walk through findings against <em>your</em> actual external surface — not a generic demo tenant — so you can see which threats correlate to your environment before deciding.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How does pricing work?</summary>
+                    <p>Three self-service tiers plus an optional Managed Service add-on. ASM is bundled in every tier. Per-asset pricing with no à la carte line items and no per-seat fees. <a href="contact">Contact us</a> for a scoped quote.</p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cti-final-cta">
+        <div class="container">
+            <h2>See the threats that actually touch your environment</h2>
+            <p class="lead">
+                Get a walkthrough of Isaphia CTI scoped to your surface. We'll show you which active threats already overlap your environment — and which ones don't.
+            </p>
+            <a href="contact" class="cta-button">Talk to Us About Isaphia CTI</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Isaphia Security Inc. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+            <li><a href="privacy"><i class="fas fa-shield-alt"></i> Privacy</a></li>
+            <li><a href="https://www.linkedin.com/company/isaphia" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+        </ul>
+    </div>
+</footer>
+
+<a href="#top" class="back-to-top" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8 8h-5v8h-6v-8H4z"/></svg></a>
+
+<dialog id="image-lightbox" class="image-lightbox" aria-label="Enlarged screenshot">
+    <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+    <img alt="">
+    <p class="lightbox-caption"></p>
+</dialog>
+
+<script>
+    (function () {
+        var lightbox = document.getElementById('image-lightbox');
+        if (!lightbox || typeof lightbox.showModal !== 'function') return;
+
+        var lightboxImg = lightbox.querySelector('img');
+        var lightboxCaption = lightbox.querySelector('.lightbox-caption');
+        var closeBtn = lightbox.querySelector('.lightbox-close');
+
+        function openLightbox(trigger) {
+            var img = trigger.querySelector('img');
+            if (!img) return;
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxCaption.innerHTML = trigger.getAttribute('data-caption') || '';
+            lightbox.showModal();
+        }
+
+        document.querySelectorAll('.showcase-lead, .showcase-card').forEach(function (el) {
+            el.addEventListener('click', function () { openLightbox(el); });
+            el.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openLightbox(el);
+                }
+            });
+        });
+
+        closeBtn.addEventListener('click', function () { lightbox.close(); });
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) lightbox.close();
+        });
+    })();
+</script>
+
+</body>
+</html>

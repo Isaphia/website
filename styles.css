@@ -69,6 +69,11 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    column-gap: 3rem;
+    /* Guarantees vertical breathing room whenever the navbar wraps —
+       whether the nav stays horizontal under the logo (intermediate
+       widths) or stacks vertically (smaller widths). */
+    row-gap: 2.5rem;
 }
 
 .logo-container {
@@ -92,6 +97,23 @@ body {
     list-style: none;
     display: flex;
     gap: 2.6rem;
+    align-items: baseline;
+}
+
+/* Make the navbar span the full viewport so the logo hugs the screen edge
+   with only a small gutter. Content sections keep their centered 1100px
+   container because this only overrides the navbar's container. */
+.navbar > .container {
+    max-width: none;
+    padding-left: 24px;
+    padding-right: 72px;
+}
+
+/* Product nav items: the acronym line baseline-aligns with single-line nav
+   items, so "Home" / "Services" / "Team" / "Contact" all share a baseline
+   with "ASM" and "CTI". The plain-English tagline hangs below as a descender. */
+.nav-links .nav-product a {
+    align-self: baseline;
 }
 
 .nav-links a {
@@ -352,8 +374,25 @@ footer p {
 }
 
 /* =========================
-   Responsive (existing + minor footer tweak)
+   Responsive
 ========================= */
+
+/* Stack the nav under the logo well before the layout gets tight.
+   At ~1200px and below, the horizontal layout starts crowding "Home"
+   against the "Security" in the company name. (Vertical separation
+   from the logo is handled by row-gap on .navbar-container above.) */
+@media (max-width: 1200px) {
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.1rem;
+        width: 100%;
+        text-align: left;
+    }
+}
+
+/* Phone-sized tweaks: shrink the logo + hero + nav typography, and
+   center the logo + menu so they read as a unified branded block. */
 @media (max-width: 768px) {
     .logo {
         height: 90px;
@@ -371,12 +410,36 @@ footer p {
         font-size: 2.3rem;
     }
 
+    /* Center both the logo block and the nav on phone widths. */
+    .navbar-container {
+        justify-content: center;
+    }
+
     .nav-links {
-        flex-direction: column;
-        gap: 1.3rem;
-        width: 100%;
-        margin-top: 1.2rem;
+        align-items: center;
         text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 0.95rem;
+    }
+
+    /* All-caps optically appears ~25% larger than mixed case at the same
+       em-height. Drop the acronym a notch so "ASM" / "CTI" look the same
+       visual size as "Home" / "Services" / "Team" / "Contact". */
+    .nav-links .nav-product .nav-acronym {
+        font-size: 0.78rem;
+    }
+
+    .nav-links .nav-product .nav-tagline {
+        font-size: 0.62rem;
+    }
+
+    /* On mobile the navbar's wide right padding (meant to pull Contact in
+       on desktop) isn't needed — give the stacked menu a normal gutter. */
+    .navbar > .container {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     footer {
@@ -401,6 +464,34 @@ footer p {
 }
 
 .nav-links a:hover {
+    color: var(--brand-green-dark);
+}
+
+/* Product nav items: acronym on top, plain-English tagline beneath.
+   Lets us keep menu items short ("ASM", "CTI") while still telling
+   non-IT visitors what each module is. */
+.nav-links .nav-product a {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1.1;
+    gap: 0.18rem;
+}
+
+.nav-links .nav-product .nav-acronym {
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.nav-links .nav-product .nav-tagline {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6b7280;
+    transition: color 0.2s ease;
+}
+
+.nav-links .nav-product a:hover .nav-tagline {
     color: var(--brand-green-dark);
 }
 
