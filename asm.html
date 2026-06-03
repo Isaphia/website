@@ -79,12 +79,12 @@
         {
           "@type": "Question",
           "name": "How is Isaphia ASM different from a vulnerability scanner like Tenable or Qualys?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Traditional vulnerability scanners assume you already have a list of assets to scan. Isaphia ASM finds the assets first — including the ones nobody remembered to put on the list. Vulnerability detection is one of twelve capabilities; the bigger value is continuous discovery." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Traditional vulnerability scanners assume you already have a list of assets to scan. Isaphia ASM finds the assets first — including the ones nobody remembered to put on the list. Vulnerability detection is one capability among many; the bigger value is continuous discovery." }
         },
         {
           "@type": "Question",
           "name": "Where is our data stored, and how is it secured?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Data is stored in a hardened cloud tenant with per-customer isolation, role-based access control, SAML/OIDC single sign-on, optional 2FA, and immutable audit logs. Detailed security and compliance documentation is available on request." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Data is stored in a managed cloud database (Canadian data residency in Toronto by default; EU / US on request) with AES-256 at rest, 99.95% provider SLA, per-customer isolation enforced at the database query layer, RBAC, SAML / OIDC single sign-on, TOTP and WebAuthn / FIDO2 MFA, an append-only audit log with admin-readable API, and a non-root service posture. Detailed security and compliance documentation is available on request." }
         },
         {
           "@type": "Question",
@@ -738,7 +738,7 @@
             <div style="text-align:center;">
                 <h2>What Isaphia ASM Covers</h2>
                 <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
-                    One platform. Twelve capabilities. Full external visibility — without running your own scanner fleet.
+                    One platform — full external visibility, without running your own scanner fleet.
                 </p>
             </div>
 
@@ -749,7 +749,7 @@
                         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.23 5.6 12.66 3 9.5 3S3.77 5.6 3.77 8.39 6.34 13.78 9.5 13.78c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l4.25 4.25 1.49-1.49L15.5 14zM9.5 12c-2.01 0-3.63-1.63-3.63-3.63S7.49 4.73 9.5 4.73 13.13 6.36 13.13 8.37 11.51 12 9.5 12z"/></svg>
                     </span>
                     <strong>Asset Discovery</strong>
-                    <p>Subdomains, IPs, cloud assets, and M&amp;A footprint — found and inventoried automatically.</p>
+                    <p>Subdomains, IPs, CNAME aliases, cloud assets, and M&amp;A footprint — found, linked, and inventoried automatically.</p>
                 </div>
 
                 <div class="capability-card">
@@ -837,7 +837,15 @@
                         <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
                     </span>
                     <strong>Typosquat Detection</strong>
-                    <p>Lookalike domains, phishing infrastructure, and brand-impersonation risk.</p>
+                    <p>Lookalike domains scored by a transparent risk rubric — parked and for-sale domains auto-suppressed so analysts triage live phishing infrastructure first.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </span>
+                    <strong>Email Discovery</strong>
+                    <p>Employee and role-based addresses surfaced from OSINT sources, certificate SANs, and public pages — so you see the same contact footprint a targeted phishing operator would.</p>
                 </div>
 
             </div>
@@ -997,7 +1005,7 @@
 
                 <div class="integration-card">
                     <strong>Enterprise Readiness</strong>
-                    <span>Immutable audit logs · role-based access control · trend reporting · historical comparisons</span>
+                    <span>Append-only audit log · role-based access control · trend reporting · historical comparisons</span>
                 </div>
 
             </div>
@@ -1063,7 +1071,7 @@
 
                 <details class="faq-item">
                     <summary>How is this different from a vulnerability scanner like Tenable or Qualys?</summary>
-                    <p>Traditional scanners assume you already have a list of assets to scan. Isaphia ASM <em>finds</em> the assets first — including the ones nobody remembered to put on the list. Vulnerability detection is one of twelve capabilities; the bigger value is the discovery and the continuous re-checking.</p>
+                    <p>Traditional scanners assume you already have a list of assets to scan. Isaphia ASM <em>finds</em> the assets first — including the ones nobody remembered to put on the list. Vulnerability detection is one capability among many; the bigger value is the discovery and the continuous re-checking.</p>
                 </details>
 
                 <details class="faq-item">
