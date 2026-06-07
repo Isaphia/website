@@ -1,0 +1,95 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{% assign page_title = page.title | default: site.title %}
+{% assign page_description = page.description | default: site.description %}
+{% assign page_url = site.url | append: page.url %}
+{% assign og_image = page.og_image | default: "/social-banner.jpg" | prepend: site.url %}
+{% assign og_image_alt = page.og_image_alt | default: "Isaphia Security – Precision Cybersecurity" %}
+
+<meta name="description" content="{{ page_description }}">
+<title>{{ page_title }}</title>
+<link rel="canonical" href="{{ page_url }}">
+
+<link rel="alternate" hreflang="en-ca" href="{{ page_url }}" />
+<link rel="alternate" hreflang="en" href="{{ page_url }}" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ page.og_title | default: page_title }}">
+<meta property="og:description" content="{{ page.og_description | default: page_description }}">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:url" content="{{ page_url }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:alt" content="{{ og_image_alt }}">
+<meta property="og:site_name" content="Isaphia Security">
+
+{% if page.layout == 'post' %}
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{% if page.last_modified_at %}<meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
+<meta property="article:author" content="{{ page.author }}">
+{% for tag in page.tags %}<meta property="article:tag" content="{{ tag }}">
+{% endfor %}
+{% endif %}
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.twitter_title | default: page.og_title | default: page_title }}">
+<meta name="twitter:description" content="{{ page.twitter_description | default: page.og_description | default: page_description }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:image:alt" content="{{ og_image_alt }}">
+
+<!-- Structured Data -->
+{% if page.layout == 'post' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page_description | jsonify }},
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "author": {
+    "@type": "Organization",
+    "name": "Isaphia Security",
+    "url": "{{ site.url }}/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Isaphia Security",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}/logo.png"
+    }
+  },
+  "image": "{{ og_image }}",
+  "mainEntityOfPage": "{{ page_url }}",
+  "keywords": {{ page.tags | default: empty | jsonify }}
+}
+</script>
+{% else %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Isaphia Insights",
+  "url": "{{ site.url }}/blog/",
+  "description": {{ site.description | jsonify }},
+  "publisher": {
+    "@type": "Organization",
+    "name": "Isaphia Security",
+    "url": "{{ site.url }}/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}/logo.png"
+    }
+  }
+}
+</script>
+{% endif %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{{ '/styles.css?v=11' | relative_url }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">

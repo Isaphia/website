@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include head.html %}
+</head>
+<body>
+
+{% include header.html %}
+
+<main>
+<article class="blog-post">
+
+    <header class="blog-post-hero">
+        <div class="container">
+            <div class="blog-post-hero-meta">
+                <a href="{{ '/blog/' | relative_url }}" class="blog-post-back">&larr; All Insights</a>
+                {% if page.tags.size > 0 %}
+                    <span class="blog-post-tag">{{ page.tags | first }}</span>
+                {% endif %}
+            </div>
+            <h1 class="blog-post-title">{{ page.title }}</h1>
+            {% if page.subtitle %}
+                <p class="blog-post-subtitle">{{ page.subtitle }}</p>
+            {% endif %}
+            <div class="blog-post-byline">
+                <span class="blog-post-byline-author">{{ page.author }}</span>
+                <span class="blog-post-byline-divider">&middot;</span>
+                <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+                {% if page.reading_time %}
+                    <span class="blog-post-byline-divider">&middot;</span>
+                    <span>{{ page.reading_time }} min read</span>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    {% if page.cover_image %}
+        <div class="blog-post-cover">
+            <div class="container">
+                <img src="{{ page.cover_image | relative_url }}" alt="{{ page.cover_image_alt | default: '' }}">
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="blog-post-body">
+        <div class="container">
+            <div class="blog-post-content">
+                {{ content }}
+            </div>
+
+            <div class="blog-post-share">
+                <span class="blog-post-share-label">Share this article</span>
+                <div class="blog-post-share-buttons">
+                    <a class="blog-share-btn blog-share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </a>
+                    <a class="blog-share-btn blog-share-x" href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ site.url }}{{ page.url }}" target="_blank" rel="noopener" aria-label="Share on X">
+                        <i class="fab fa-x-twitter"></i> X
+                    </a>
+                    <a class="blog-share-btn blog-share-email" href="mailto:?subject={{ page.title | url_encode }}&body={{ site.url }}{{ page.url }}" aria-label="Share by email">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conversion CTA — every post ends here, pointing readers to the product. -->
+    <section class="blog-post-cta-band">
+        <div class="container">
+            <div class="blog-cta-inner">
+                <div class="blog-cta-copy">
+                    <span class="blog-cta-eyebrow">Try Isaphia ASM + CTI</span>
+                    <h2>See what attackers see &mdash; and what threat intel says about you</h2>
+                    <p>
+                        Isaphia continuously discovers your external attack surface and monitors
+                        it against threat intelligence feeds: domains, IPs, services, certs,
+                        blacklist hits, and reputation damage you didn't know about. Built by
+                        practitioners who run engagements every week.
+                    </p>
+                </div>
+                <div class="blog-cta-actions">
+                    <a href="https://app.isaphia.com/signup" class="cta-button blog-cta-primary" target="_blank" rel="noopener">
+                        Start Free <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ '/asm' | relative_url }}" class="blog-cta-secondary">
+                        Learn about ASM
+                    </a>
+                    <a href="{{ '/cti' | relative_url }}" class="blog-cta-secondary">
+                        Learn about CTI
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% assign related = site.posts | where_exp: "p", "p.url != page.url" %}
+    {% if related.size > 0 %}
+    <section class="blog-related section">
+        <div class="container">
+            <h2>Keep reading</h2>
+            <ul class="blog-related-list">
+                {% for r in related limit: 3 %}
+                    <li class="blog-related-item">
+                        <a href="{{ r.url | relative_url }}">
+                            <time class="blog-related-date" datetime="{{ r.date | date_to_xmlschema }}">{{ r.date | date: "%B %-d, %Y" }}</time>
+                            <h3 class="blog-related-title">{{ r.title }}</h3>
+                            <p class="blog-related-excerpt">{{ r.description | default: r.excerpt | strip_html | truncate: 140 }}</p>
+                            <span class="blog-related-cta">Read article &rarr;</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    {% endif %}
+
+</article>
+</main>
+
+{% include footer.html %}
+
+</body>
+</html>

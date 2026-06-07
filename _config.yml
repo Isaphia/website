@@ -1,0 +1,58 @@
+# Jekyll config — used ONLY for the blog under /blog/.
+# All existing hand-written HTML pages (index.html, services.html,
+# asm.html, cti.html, team.html, contact.html, david.html, privacy.html)
+# have no frontmatter and Jekyll passes them through unchanged.
+
+title: Isaphia Insights
+description: >-
+  Practitioner notes from Isaphia Security on attack surface management,
+  threat intelligence, penetration testing, and real-world offensive security.
+url: https://isaphia.com
+baseurl: ""
+lang: en-CA
+
+permalink: /blog/:slug/
+
+# Pretty post URLs: /blog/post-slug/ (not /year/month/day/title.html)
+
+author:
+  name: Isaphia Security Team
+  url: https://isaphia.com
+
+social:
+  name: Isaphia Security
+  links:
+    - https://www.linkedin.com/company/isaphia
+
+# RSS feed at /feed.xml — useful for content syndication and readers.
+plugins:
+  - jekyll-feed
+
+# Don't publish internal collateral, design assets, or local config.
+exclude:
+  - "ASM Isaphia Marketing"
+  - CLAUDE.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - .DS_Store
+  - .well-known/.DS_Store
+  - favicon_io.zip
+  - logoORG.png
+  - logos_transparentes
+  - vendor
+  - node_modules
+
+# Keep the existing manually-curated downloads folder as-is.
+keep_files:
+  - downloads
+
+# Defaults for posts — every post gets layout: post and the team byline
+# unless overridden in frontmatter.
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Isaphia Security Team

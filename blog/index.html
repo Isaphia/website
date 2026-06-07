@@ -1,0 +1,96 @@
+---
+layout: default
+title: Insights | Isaphia Security
+description: Practitioner notes from Isaphia Security on attack surface management, threat intelligence, penetration testing, and real-world offensive security.
+og_title: Isaphia Insights — Cybersecurity Notes from the Trenches
+og_description: Field-tested perspectives on attack surface management, threat intel, and offensive security from the Isaphia Security team.
+---
+
+<section class="hero hero-blog">
+    <div class="hero-content">
+        <h1>Isaphia Insights</h1>
+        <p class="hero-subtitle">
+            Field notes from practitioners — attack surface management, threat intel,
+            offensive security, and what we're seeing in real engagements.
+        </p>
+        <a href="https://app.isaphia.com/signup" class="cta-button" target="_blank" rel="noopener">
+            Try Isaphia ASM + CTI Free
+        </a>
+    </div>
+</section>
+
+<section class="section blog-index-section">
+    <div class="container">
+
+        {% if site.posts.size == 0 %}
+            <div class="blog-empty">
+                <h2>New insights coming soon.</h2>
+                <p>
+                    We're getting our first posts ready. In the meantime, see how Isaphia ASM + CTI
+                    maps your external attack surface and watches it against threat intel feeds &mdash; in minutes.
+                </p>
+                <a href="https://app.isaphia.com/signup" class="cta-button" target="_blank" rel="noopener">Try Isaphia ASM + CTI</a>
+            </div>
+        {% else %}
+            <ul class="blog-post-list">
+                {% for post in site.posts %}
+                    <li class="blog-post-card">
+                        <a href="{{ post.url | relative_url }}" class="blog-post-card-link">
+                            {% if post.cover_image %}
+                                <div class="blog-post-card-imagewrap">
+                                    <img src="{{ post.cover_image | relative_url }}" alt="{{ post.cover_image_alt | default: '' }}" class="blog-post-card-image" loading="lazy">
+                                </div>
+                            {% endif %}
+                            <div class="blog-post-card-body">
+                                <div class="blog-post-card-meta">
+                                    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+                                    {% if post.tags.size > 0 %}
+                                        <span class="blog-post-card-divider">&middot;</span>
+                                        <span class="blog-post-card-tag">{{ post.tags | first }}</span>
+                                    {% endif %}
+                                </div>
+                                <h2 class="blog-post-card-title">{{ post.title }}</h2>
+                                {% if post.subtitle %}
+                                    <p class="blog-post-card-subtitle">{{ post.subtitle }}</p>
+                                {% else %}
+                                    <p class="blog-post-card-subtitle">{{ post.description | default: post.excerpt | strip_html | truncate: 180 }}</p>
+                                {% endif %}
+                                <span class="blog-post-card-cta">Read article &rarr;</span>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- Final-CTA band — converts blog readers into product trial users. -->
+<section class="blog-index-cta">
+    <div class="container">
+        <div class="blog-cta-inner">
+            <div class="blog-cta-copy">
+                <span class="blog-cta-eyebrow">Built by practitioners</span>
+                <h2>Stop guessing about your attack surface &mdash; and what attackers think of you</h2>
+                <p>
+                    Isaphia ASM + CTI continuously maps everything you expose to the internet
+                    &mdash; domains, subdomains, IPs, services, certificates, forgotten assets &mdash;
+                    and watches it against threat intel feeds and blacklists, so you find exposure
+                    and reputation damage before it costs you a deal.
+                </p>
+            </div>
+            <div class="blog-cta-actions">
+                <a href="https://app.isaphia.com/signup" class="cta-button blog-cta-primary" target="_blank" rel="noopener">
+                    Start Free <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+                <a href="{{ '/asm' | relative_url }}" class="blog-cta-secondary">
+                    Learn about ASM
+                </a>
+                <a href="{{ '/cti' | relative_url }}" class="blog-cta-secondary">
+                    Learn about CTI
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

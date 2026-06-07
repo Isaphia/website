@@ -1,0 +1,28 @@
+<header id="top">
+    <nav class="navbar">
+        <div class="container navbar-container">
+
+            <div class="logo-container">
+                <a href="/" aria-label="Isaphia Security home" style="display: inline-flex; align-items: center; text-decoration: none;">
+                    <img
+                        src="{{ '/logo.png' | relative_url }}"
+                        alt="Isaphia Security Logo"
+                        class="logo logo--large"
+                    >
+                    <span class="company-name">Isaphia Security</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li><a href="{{ '/services' | relative_url }}">Services</a></li>
+                <li class="nav-product"><a href="{{ '/asm' | relative_url }}"><span class="nav-acronym">ASM</span><span class="nav-tagline">Attack Surface</span></a></li>
+                <li class="nav-product"><a href="{{ '/cti' | relative_url }}"><span class="nav-acronym">CTI</span><span class="nav-tagline">Threat Intel</span></a></li>
+                <li><a href="{{ '/team' | relative_url }}">Team</a></li>
+                <li><a href="{{ '/blog/' | relative_url }}" class="active">Insights</a></li>
+                <li><a href="{{ '/contact' | relative_url }}">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+</header>

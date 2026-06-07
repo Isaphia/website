@@ -1,5 +1,6 @@
 # Isaphia Security — Responsible-Disclosure Contact
 # Per RFC 9116 (https://www.rfc-editor.org/rfc/rfc9116)
+# Deploy this file at: https://isaphia.com/.well-known/security.txt
 #
 # If you have found a security vulnerability or have a security concern
 # about the Isaphia platform, isaphia.com, or any Isaphia-operated
@@ -8,6 +9,5 @@
 # 7 business days. Coordinated disclosure preferred.
 
 Contact: mailto:security@isaphia.com
-Expires: 2027-06-03T00:00:00.000Z
-Preferred-Languages: en, fr
+Preferred-Languages: en
 Canonical: https://isaphia.com/.well-known/security.txt
