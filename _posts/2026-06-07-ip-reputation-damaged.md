@@ -14,6 +14,8 @@ cover_image_alt: "Isaphia screenshot illustrating IP reputation monitoring"
 
 Most businesses focus on what they can see. Firewalls. Antivirus. Patched software. But there's a silent threat hiding in plain sight — your IP reputation — and by the time you notice it, the damage is already done.
 
+> 👉 **New to ASM and CTI?** Start with our plain-English primer: [**What is ASM? What is CTI? And Why You Need Both →**](/blog/what-is-asm-and-cti/)
+
 ## What Is IP Reputation?
 
 Every device that connects to the internet does so through an IP address. Over time, those IP addresses build a reputation — good or bad — based on the traffic and behavior associated with them.
