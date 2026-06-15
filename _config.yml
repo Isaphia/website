@@ -15,6 +15,11 @@ permalink: /blog/:slug/
 
 # Pretty post URLs: /blog/post-slug/ (not /year/month/day/title.html)
 
+# Include posts whose date is later than the build time. Without this, Jekyll
+# silently drops future-dated posts — and since builds run in UTC, even a post
+# dated "today" in -0500 can be skipped if it builds before that local hour.
+future: true
+
 author:
   name: Isaphia Security Team
   url: https://isaphia.com
