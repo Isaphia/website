@@ -74,9 +74,10 @@
         }
 
         .cert-category .cert-icon {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
+            color: var(--brand-green);
             display: block;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.9rem;
         }
 
         .cert-grid {
@@ -95,9 +96,47 @@
         }
 
         .cert-card .cert-badge {
-            font-size: 2.2rem;
-            display: block;
-            margin-bottom: 0.6rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 0.9rem;
+            border-radius: 50%;
+            background: var(--brand-green-light);
+            color: var(--brand-green);
+            font-size: 1.5rem;
+        }
+
+        /* Official certification badge artwork (with branded monogram fallback) */
+        .cert-card .logo-wrap {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-card .logo-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .cert-card .logo-wrap.noimg::before {
+            content: attr(data-acr);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            border: 3px solid var(--brand-green);
+            background: var(--brand-green-light);
+            color: var(--brand-green-dark);
+            font-weight: 700;
+            font-size: 1.05rem;
         }
 
         .cert-card strong {
@@ -186,36 +225,36 @@
 
             <!-- OFFENSIVE SECURITY -->
             <div class="cert-category">
-                <span class="cert-icon">🛡️</span>
+                <span class="cert-icon"><i class="fas fa-crosshairs"></i></span>
                 <h3>Offensive Security & Penetration Testing</h3>
 
                 <div class="cert-grid">
                     <div class="cert-card">
-                        <span class="cert-badge">💣</span>
+                        <div class="logo-wrap" data-acr="OSCP"><img src="assets/certs/oscp.png" alt="OSCP official certification badge" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('noimg')"></div>
                         <strong>OSCP</strong>
                         <span>Offensive Security Certified Professional</span>
                     </div>
 
                     <div class="cert-card">
-                        <span class="cert-badge">🕸️</span>
+                        <div class="logo-wrap" data-acr="OSWE"><img src="assets/certs/oswe.png" alt="OSWE official certification badge" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('noimg')"></div>
                         <strong>OSWE</strong>
                         <span>Offensive Security Web Expert</span>
                     </div>
 
                     <div class="cert-card">
-                        <span class="cert-badge">🌐</span>
+                        <div class="logo-wrap" data-acr="GWAPT"><img src="assets/certs/gwapt.png" alt="GWAPT official certification badge" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('noimg')"></div>
                         <strong>GWAPT</strong>
                         <span>GIAC Web Application Penetration Tester</span>
                     </div>
 
                     <div class="cert-card">
-                        <span class="cert-badge">🎯</span>
+                        <div class="logo-wrap" data-acr="CREST" data-cert="crest-cpsa"><img src="assets/certs/crest-cpsa.png" alt="CREST CPSA official certification badge" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('noimg')"></div>
                         <strong>CREST CPSA</strong>
                         <span>CREST Practitioner Security Analyst</span>
                     </div>
 
                     <div class="cert-card">
-                        <span class="cert-badge">🕵️</span>
+                        <div class="logo-wrap" data-acr="CEH"><img src="assets/certs/ceh.png" alt="CEH official certification badge" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('noimg')"></div>
                         <strong>CEH</strong>
                         <span>Certified Ethical Hacker</span>
                     </div>
@@ -225,18 +264,18 @@
 
             <!-- GOVERNANCE -->
             <div class="cert-category">
-                <span class="cert-icon">📊</span>
+                <span class="cert-icon"><i class="fas fa-scale-balanced"></i></span>
                 <h3>Governance, Risk & Assurance</h3>
 
                 <div class="cert-grid">
                     <div class="cert-card">
-                        <span class="cert-badge">📘</span>
+                        <div class="logo-wrap" data-acr="CISSP"><img src="assets/certs/cissp.png" alt="CISSP official certification badge" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('noimg')"></div>
                         <strong>CISSP</strong>
                         <span>Certified Information Systems Security Professional</span>
                     </div>
 
                     <div class="cert-card">
-                        <span class="cert-badge">🧾</span>
+                        <div class="logo-wrap" data-acr="CISA" data-cert="cisa"><img src="assets/certs/cisa.png" alt="CISA official certification badge" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('noimg')"></div>
                         <strong>CISA</strong>
                         <span>Certified Information Systems Auditor</span>
                     </div>
@@ -245,18 +284,18 @@
 
             <!-- ADVANCED PRACTICE -->
             <div class="cert-category">
-                <span class="cert-icon">🧠</span>
+                <span class="cert-icon"><i class="fas fa-chess-knight"></i></span>
                 <h3>Advanced Security Practice</h3>
 
                 <div class="cert-grid">
                     <div class="cert-card">
-                        <span class="cert-badge">🟣</span>
+                        <span class="cert-badge"><i class="fas fa-magnifying-glass-chart"></i></span>
                         <strong>Purple Team Operations</strong>
                         <span>Detection validation & adversary emulation</span>
                     </div>
 
                     <div class="cert-card">
-                        <span class="cert-badge">⚔️</span>
+                        <span class="cert-badge"><i class="fas fa-user-ninja"></i></span>
                         <strong>Red Team Operations</strong>
                         <span>Threat-led attack simulation</span>
                     </div>
