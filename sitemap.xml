@@ -32,7 +32,7 @@
   </url>
   <url>
     <loc>https://isaphia.com/blog/</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -53,6 +53,11 @@
   <url>
     <loc>https://isaphia.com/blog/what-leaks-on-the-dark-web/</loc>
     <lastmod>2026-06-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://isaphia.com/blog/internal-asm-module/</loc>
+    <lastmod>2026-06-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
