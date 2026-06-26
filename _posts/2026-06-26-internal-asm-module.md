@@ -1,12 +1,11 @@
 ---
-title: "Attack Surface Management Doesn't Stop at the Firewall: Introducing Internal ASM"
-subtitle: "Attackers don't stop once they're inside your network. Now your attack surface management doesn't either."
-description: "Isaphia ASM + CTI now sees inside the firewall. The new Internal ASM module deploys lightweight collectors on your network to map the assets, services, and dangerous legacy systems attackers pivot to once they get in — and ties them to known CVEs automatically."
+title: "Attack Surface Management Doesn't Stop at the Firewall"
+subtitle: "Attackers don't stop once they're inside your network. Your attack surface management shouldn't either."
+description: "Isaphia ASM + CTI sees inside the firewall. Internal ASM deploys lightweight collectors on your network to map the assets, services, and dangerous legacy systems attackers pivot to once they get in — and ties them to known CVEs automatically."
 date: 2026-06-26 10:00:00 -0500
 author: Isaphia Security Team
 tags:
   - Attack Surface
-  - Product
   - Risk
 reading_time: 5
 cover_image: /assets/blog/internal-asm.png
@@ -15,9 +14,7 @@ cover_image_alt: "Isaphia Internal ASM dashboard showing collectors, internal as
 
 For years, attack surface management has meant one thing: looking at your company the way an attacker on the *outside* does. What domains do you own? What login portals, servers, and forgotten subdomains are exposed to the internet? That outside-in view is the foundation of **Isaphia ASM + CTI**, and it catches the doors and windows you didn't know were unlocked.
 
-But here's the uncomfortable truth: attackers don't stop at the front door. Once they get a foothold — a phished password, a vulnerable web app, an infected laptop — they're *inside* your network. And the inside of most networks is a very different place from the polished perimeter. That's the gap our newest module closes.
-
-Today we're introducing **Internal ASM**.
+But here's the uncomfortable truth: attackers don't stop at the front door. Once they get a foothold — a phished password, a vulnerable web app, an infected laptop — they're *inside* your network. And the inside of most networks is a very different place from the polished perimeter. That's the gap **Internal ASM** is built to close.
 
 > 👉 **New to ASM and CTI?** Start with our plain-English primer: [**What is ASM? What is CTI? And Why You Need Both →**](/blog/what-is-asm-and-cti/)
 
@@ -53,7 +50,7 @@ None of these would ever appear on an *external* scan, because they live inside 
 
 ## One Picture: External, Internal, and What Attackers Already Know
 
-Internal ASM doesn't replace anything — it completes the picture. **Isaphia ASM + CTI** now gives you all three layers in one place:
+Internal ASM is one layer of a larger picture. **Isaphia ASM + CTI** gives you all three in one place:
 
 - **External ASM** — what you expose to the internet (the attacker's way *in*).
 - **Internal ASM** — what's reachable once they're inside (the attacker's way *around*).
@@ -87,7 +84,7 @@ Internal ASM gives you that view. Not the polished outside the world sees — th
 
 ## How Isaphia Helps
 
-**Isaphia ASM + CTI** now sees your attack surface from every angle: what you expose to the internet, what's reachable inside your network, and what attackers already know about you on the dark web — all in one dashboard, with every critical finding tied to the vulnerability that explains it.
+**Isaphia ASM + CTI** sees your attack surface from every angle: what you expose to the internet, what's reachable inside your network, and what attackers already know about you on the dark web — all in one dashboard, with every critical finding tied to the vulnerability that explains it.
 
 You can see what's exposed about your company right now, for free. No credit card. No sales call. Sign up and find out what attackers already see.
 
