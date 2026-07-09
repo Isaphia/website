@@ -6,13 +6,28 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://isaphia.com/helios</loc>
+    <lastmod>2026-07-09</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://isaphia.com/asm</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-07-09</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://isaphia.com/internal-asm</loc>
+    <lastmod>2026-07-09</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://isaphia.com/cti</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-07-09</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://isaphia.com/cspm</loc>
+    <lastmod>2026-07-09</lastmod>
     <priority>0.9</priority>
   </url>
   <url>

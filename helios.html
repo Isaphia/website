@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Helios by Isaphia is a unified exposure-management platform that brings External ASM, Internal ASM, Cyber Threat Intelligence (CTI), and Cloud Security Posture Management (CSPM) into one dashboard — so you see what attackers can reach from outside, inside, and in the cloud, and what they already know about you.">
+
+    <title>Helios by Isaphia | Unified Exposure Management Platform – Isaphia Security</title>
+    <link rel="canonical" href="https://isaphia.com/helios">
+
+    <link rel="alternate" hreflang="en-ca" href="https://isaphia.com/helios" />
+    <link rel="alternate" hreflang="en" href="https://isaphia.com/helios" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Helios by Isaphia | See Everything an Attacker Can">
+    <meta property="og:description" content="One platform for External ASM, Internal ASM, CTI, and CSPM — external exposure, inside-the-firewall risk, threat intelligence, and cloud misconfiguration, unified in a single dashboard.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://isaphia.com/helios">
+    <meta property="og:image" content="https://isaphia.com/social-banner.jpg">
+    <meta property="og:image:alt" content="Helios by Isaphia — unified exposure management platform">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Helios by Isaphia | Unified Exposure Management">
+    <meta name="twitter:description" content="External ASM, Internal ASM, CTI, and CSPM — the full picture of your exposure, in one platform.">
+    <meta name="twitter:image" content="https://isaphia.com/social-banner.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Helios by Isaphia",
+      "description": "Unified exposure-management platform combining External Attack Surface Management, Internal Attack Surface Management, Cyber Threat Intelligence, and Cloud Security Posture Management in a single dashboard.",
+      "applicationCategory": "SecurityApplication",
+      "applicationSubCategory": "Exposure Management",
+      "operatingSystem": "Web-based",
+      "url": "https://isaphia.com/helios",
+      "image": "https://isaphia.com/social-banner.jpg",
+      "brand": { "@type": "Brand", "name": "Isaphia Security" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://isaphia.com/contact",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "description": "Quote-based pricing. Scales with the size of your attack surface and the modules you enable, with a choice of Self-Service SaaS or Managed Service. Users are unlimited within tenant."
+        }
+      },
+      "hasPart": [
+        { "@type": "SoftwareApplication", "name": "External ASM", "applicationSubCategory": "Attack Surface Management", "url": "https://isaphia.com/asm" },
+        { "@type": "SoftwareApplication", "name": "Internal ASM", "applicationSubCategory": "Attack Surface Management", "url": "https://isaphia.com/internal-asm" },
+        { "@type": "SoftwareApplication", "name": "CTI", "applicationSubCategory": "Cyber Threat Intelligence", "url": "https://isaphia.com/cti" },
+        { "@type": "SoftwareApplication", "name": "CSPM", "applicationSubCategory": "Cloud Security Posture Management", "url": "https://isaphia.com/cspm" }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Helios by Isaphia, in plain English?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Helios is a single security platform that shows you everything an attacker could use against you: what you expose to the internet (External ASM), what's reachable once someone gets inside your network (Internal ASM), what's already being said, sold, or leaked about you online (CTI), and how your cloud accounts are configured (CSPM). It all lives in one dashboard, and you log in from a web browser." }
+        },
+        {
+          "@type": "Question",
+          "name": "What modules make up Helios?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Four: External ASM (your internet-facing footprint), Internal ASM (assets and legacy systems inside your network, discovered by lightweight collectors), CTI (asset-aware cyber threat intelligence), and CSPM (cloud security posture management across AWS, Azure, and GCP)." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I have to buy all four modules?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Most customers start with External ASM and add Internal ASM, CTI, and CSPM as they mature. The modules share one asset inventory and one dashboard, so each one you add makes the others more useful." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Helios a SaaS product?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Helios is delivered as Software-as-a-Service — you log in from any web browser. You can run it yourself (Self-Service SaaS) or have the Isaphia team operate it for you (Managed Service)." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to install anything?",
+          "acceptedAnswer": { "@type": "Answer", "text": "External ASM, CTI, and CSPM are agentless — nothing runs on your machines. Internal ASM is the exception: it uses lightweight, safe collectors deployed inside your network to map what's behind the firewall. CSPM connects to your cloud accounts with read-only access." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Helios different from buying separate tools?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Attacks are a chain — a leaked password used against an exposed login to get a foothold, then lateral movement across an unpatched internal network. Separate tools show you one link at a time. Helios correlates all four views against one shared asset inventory, so you see the whole chain and can break it before it reaches anything that matters." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does pricing work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Pricing scales with the size of your attack surface and the modules you enable, and whether you choose Self-Service SaaS or the Managed Service. Users are unlimited within your tenant — no per-seat fees. Contact Isaphia for a scoped quote." }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css?v=12">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* Platform overview styles for Helios by Isaphia — brand-green palette.
+           Reuses the .asm-* product-page vocabulary so Helios and the module
+           pages (asm, internal-asm, cti, cspm) share one visual identity. */
+
+        .asm-hero {
+            background:
+                linear-gradient(135deg, rgba(11, 94, 70, 0.94), rgba(15, 122, 92, 0.94)),
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80')
+                center/cover no-repeat;
+            color: #ffffff;
+            text-align: center;
+            padding: 7rem 1rem 5.5rem;
+        }
+
+        .asm-hero h1 {
+            color: #ffffff;
+            font-size: 3.2rem;
+            line-height: 1.1;
+            margin-bottom: 1.1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+        }
+
+        .asm-hero h1 .accent { color: #6ee7b7; }
+
+        .asm-hero .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 760px;
+            margin: 0 auto 1.6rem;
+            color: #f0fdf4;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .asm-hero .cta-button {
+            background-color: #ffffff;
+            color: var(--brand-green-dark);
+        }
+
+        .asm-hero .cta-button:hover { background-color: #d1fae5; }
+
+        /* Module pills under the hero headline */
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem;
+            max-width: 640px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-pills span {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            backdrop-filter: blur(2px);
+        }
+
+        .asm-section { padding: 5rem 0; }
+        .asm-section.tint { background: var(--brand-green-light); }
+        .asm-section .container.narrow { max-width: 820px; }
+
+        .asm-section h2,
+        .asm-section h3 { color: var(--brand-green-dark); }
+        .asm-section h2 { font-size: 1.9rem; }
+
+        .asm-section .lead {
+            font-size: 1.2rem;
+            color: #4b5563;
+            margin-top: 0.6rem;
+        }
+
+        /* Plain-English callout */
+        .plain-callout {
+            max-width: 720px;
+            margin: 1.8rem auto 0;
+            padding: 1.2rem 1.4rem;
+            background: var(--brand-green-light);
+            border-left: 4px solid var(--brand-green);
+            border-radius: 6px;
+            color: #1f2937;
+            text-align: left;
+            font-size: 0.98rem;
+            line-height: 1.55;
+        }
+
+        .plain-callout strong { color: var(--brand-green-dark); }
+
+        /* Four-module grid */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2.8rem;
+        }
+
+        .module-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 14px;
+            padding: 2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px rgba(11, 94, 70, 0.14);
+            border-color: var(--brand-green);
+        }
+
+        .module-card .module-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 11px;
+            background: var(--brand-green-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .module-card .module-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--brand-green-dark);
+        }
+
+        .module-card .module-tagline {
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--brand-green);
+            margin-bottom: 0.3rem;
+        }
+
+        .module-card h3 {
+            font-size: 1.35rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.6rem;
+        }
+
+        .module-card > p {
+            color: #4b5563;
+            font-size: 0.97rem;
+            line-height: 1.55;
+            margin: 0 0 1rem;
+        }
+
+        .module-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+        }
+
+        .module-card li {
+            position: relative;
+            padding-left: 1.55rem;
+            margin-bottom: 0.55rem;
+            color: #4b5563;
+            font-size: 0.94rem;
+            line-height: 1.45;
+        }
+
+        .module-card li::before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--brand-green);
+            font-weight: 700;
+        }
+
+        .module-card .module-link {
+            margin-top: auto;
+            align-self: flex-start;
+            font-weight: 600;
+            color: var(--brand-green-dark);
+            text-decoration: none;
+            border-bottom: 2px solid var(--brand-green-light);
+            padding-bottom: 2px;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .module-card .module-link:hover {
+            color: var(--brand-green);
+            border-color: var(--brand-green);
+        }
+
+        /* Unified-value grid */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .value-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 12px;
+            padding: 1.4rem 1.3rem;
+        }
+
+        .value-card strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .value-card p {
+            font-size: 0.92rem;
+            color: #4b5563;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Attack-chain flow */
+        .chain {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.3rem;
+            margin-top: 2.8rem;
+        }
+
+        .chain-step {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 12px;
+            padding: 1.5rem 1.3rem;
+            position: relative;
+        }
+
+        .chain-step .chain-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--brand-green);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .chain-step strong {
+            display: block;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .chain-step span.mod {
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--brand-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .chain-step p {
+            color: #4b5563;
+            font-size: 0.92rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Deployment two-card layout */
+        .deploy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2.8rem;
+        }
+
+        .deploy-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 14px;
+            padding: 2rem 1.8rem;
+        }
+
+        .deploy-card .deploy-tag {
+            display: inline-block;
+            background: var(--brand-green-light);
+            color: var(--brand-green-dark);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .deploy-card h3 {
+            font-size: 1.4rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.7rem;
+        }
+
+        .deploy-card p { color: #4b5563; }
+
+        /* Integrations */
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.3rem;
+            margin-top: 2.6rem;
+        }
+
+        .integration-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 10px;
+            padding: 1.3rem 1.3rem;
+        }
+
+        .integration-card strong {
+            display: block;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.45rem;
+        }
+
+        .integration-card span {
+            color: #4b5563;
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        /* Final CTA — flows into the dark footer */
+        body > footer { margin-top: 0; }
+
+        .asm-final-cta {
+            background: linear-gradient(135deg, var(--brand-green-dark), #093d2e);
+            color: #ffffff;
+            text-align: center;
+            padding: 5.5rem 1rem;
+        }
+
+        .asm-final-cta h2 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .asm-final-cta .lead {
+            color: #d1fae5;
+            max-width: 680px;
+            margin: 0.5rem auto 2rem;
+        }
+
+        .asm-final-cta .cta-button {
+            background-color: #ffffff;
+            color: var(--brand-green-dark);
+        }
+
+        .asm-final-cta .cta-button:hover { background-color: #d1fae5; }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 820px;
+            margin: 2.5rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 10px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .faq-item[open] {
+            border-color: var(--brand-green);
+            box-shadow: 0 6px 18px rgba(11, 94, 70, 0.08);
+        }
+
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1.1rem 1.3rem;
+            font-weight: 600;
+            color: var(--brand-green-dark);
+            font-size: 1.02rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-item summary::-webkit-details-marker { display: none; }
+
+        .faq-item summary::after {
+            content: "+";
+            color: var(--brand-green);
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .faq-item[open] summary::after { content: "\2212"; }
+        .faq-item summary:hover { color: var(--brand-green); }
+
+        .faq-item p {
+            margin: 0;
+            padding: 0 1.3rem 1.2rem;
+            color: #4b5563;
+            font-size: 0.97rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .asm-hero h1 { font-size: 2.4rem; }
+            .asm-hero .hero-subtitle { font-size: 1.1rem; }
+            .asm-section { padding: 3.5rem 0; }
+            .faq-item summary { font-size: 0.98rem; padding: 1rem 1.1rem; }
+            .faq-item p { padding: 0 1.1rem 1.1rem; }
+        }
+    </style>
+
+    <!-- Umami analytics (self-hosted, privacy-friendly, no cookies) -->
+    <script defer src="https://analytics.isaphia.com/script.js" data-website-id="9a028ecd-a985-46ac-8ef8-fa27210ca216"></script>
+</head>
+
+<body>
+
+<header id="top">
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Isaphia Security Logo" class="logo logo--large">
+                <span class="company-name">Isaphia Security</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="services">Services</a></li>
+                <li class="nav-product"><a href="helios" class="active"><span class="nav-acronym">Helios</span><span class="nav-tagline">Platform</span></a></li>
+                <li><a href="team">Team</a></li>
+                <li><a href="blog">Insights</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="asm-hero">
+        <div class="container">
+            <h1>See everything an attacker can — <span class="accent">in one platform.</span></h1>
+            <p class="hero-subtitle">
+                Helios by Isaphia is a unified exposure-management platform. It brings your external footprint, your internal network, threat intelligence, and your cloud posture into a single dashboard — so nothing an attacker could use stays in a blind spot.
+            </p>
+            <div class="hero-pills">
+                <span>External ASM</span>
+                <span>Internal ASM</span>
+                <span>CTI</span>
+                <span>CSPM</span>
+            </div>
+            <a href="contact" class="cta-button">Request a Demo</a>
+        </div>
+    </section>
+
+    <!-- WHY UNIFIED -->
+    <section class="asm-section">
+        <div class="container narrow" style="text-align:center;">
+            <h2>Your risk isn't one thing — so one tool was never enough</h2>
+            <p class="lead" style="margin: 1.6rem auto 1.4rem; max-width: 720px;">
+                An attack is a chain: a leaked password, used against an exposed login, to get a foothold, then a quiet walk across an unpatched internal network — and misconfigured cloud along the way.
+            </p>
+            <p style="max-width: 730px; margin: 0 auto; color: #4b5563;">
+                Point tools show you one link at a time. Helios connects them. External ASM, Internal ASM, CTI, and CSPM all run against one shared asset inventory, in one dashboard — so you see the whole chain and can break it before it reaches anything that matters.
+            </p>
+
+            <p class="plain-callout">
+                <strong>In plain terms:</strong> Helios is a cloud (SaaS) platform you log in to from any web browser. It watches four things at once — what you expose to the internet, what's reachable inside your network, what attackers already know about you, and how your cloud is configured — and tells you, continuously, what to fix first. You can run it yourself, or have our team operate it for you.
+            </p>
+        </div>
+    </section>
+
+    <!-- THE FOUR MODULES -->
+    <section class="asm-section tint">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Four modules, one platform</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    Start with one. Add the rest as you grow. Every module you enable makes the others sharper — because they share the same asset inventory.
+                </p>
+            </div>
+
+            <div class="module-grid">
+
+                <!-- External ASM -->
+                <div class="module-card">
+                    <span class="module-icon">
+                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.23 5.6 12.66 3 9.5 3S3.77 5.6 3.77 8.39 6.34 13.78 9.5 13.78c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l4.25 4.25 1.49-1.49L15.5 14zM9.5 12c-2.01 0-3.63-1.63-3.63-3.63S7.49 4.73 9.5 4.73 13.13 6.36 13.13 8.37 11.51 12 9.5 12z"/></svg>
+                    </span>
+                    <span class="module-tagline">The way in</span>
+                    <h3>External ASM</h3>
+                    <p>Continuously discovers, monitors, and prioritizes every internet-facing asset you own — including the ones you forgot.</p>
+                    <ul>
+                        <li>Asset &amp; subdomain discovery</li>
+                        <li>Vulnerability &amp; TLS monitoring</li>
+                        <li>Leaked-secret &amp; dark-web exposure</li>
+                        <li>Email &amp; domain security posture</li>
+                    </ul>
+                    <a href="asm" class="module-link">Explore External ASM →</a>
+                </div>
+
+                <!-- Internal ASM -->
+                <div class="module-card">
+                    <span class="module-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5.25-3.5 10.74-8 12-4.5-1.26-8-6.75-8-12V6l8-4zm-1 12.59l4.3-4.3-1.4-1.4L11 11.79 9.1 9.89l-1.4 1.4 3.3 3.3z"/></svg>
+                    </span>
+                    <span class="module-tagline">The way around</span>
+                    <h3>Internal ASM</h3>
+                    <p>Lightweight collectors map what's reachable behind the firewall — the legacy systems attackers pivot to once they're in.</p>
+                    <ul>
+                        <li>Internal asset &amp; service discovery</li>
+                        <li>Legacy-vuln detection (EternalBlue, BlueKeep, SMBv1)</li>
+                        <li>Automatic CVE correlation</li>
+                        <li>Multi-site collector coverage</li>
+                    </ul>
+                    <a href="internal-asm" class="module-link">Explore Internal ASM →</a>
+                </div>
+
+                <!-- CTI -->
+                <div class="module-card">
+                    <span class="module-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 4a3 3 0 100 6 3 3 0 000-6zm0 14c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08C16.71 18.72 14.5 20 12 20z"/></svg>
+                    </span>
+                    <span class="module-tagline">What they already know</span>
+                    <h3>CTI</h3>
+                    <p>Asset-aware cyber threat intelligence. Every indicator is matched against your real inventory — not 50,000 generic IOCs a week.</p>
+                    <ul>
+                        <li>Global IOC &amp; KEV feeds</li>
+                        <li>Leaked-credential &amp; dark-web signals</li>
+                        <li>MITRE ATT&amp;CK &amp; threat-actor context</li>
+                        <li>Correlated to your discovered assets</li>
+                    </ul>
+                    <a href="cti" class="module-link">Explore CTI →</a>
+                </div>
+
+                <!-- CSPM -->
+                <div class="module-card">
+                    <span class="module-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19.35 10.04A7.49 7.49 0 0012 4a7.5 7.5 0 00-6.93 4.66A5.5 5.5 0 006 19h13a4.5 4.5 0 00.35-8.96z"/></svg>
+                    </span>
+                    <span class="module-tagline">The cloud angle</span>
+                    <h3>CSPM</h3>
+                    <p>Cloud Security Posture Management across AWS, Azure, and GCP — misconfigurations, identity risk, and compliance drift, caught early.</p>
+                    <ul>
+                        <li>Multi-cloud misconfiguration detection</li>
+                        <li>IAM &amp; identity risk</li>
+                        <li>Public-exposure &amp; encryption gaps</li>
+                        <li>CIS / PCI / SOC 2 / ISO mapping</li>
+                    </ul>
+                    <a href="cspm" class="module-link">Explore CSPM →</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ONE PLATFORM VALUE -->
+    <section class="asm-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Why one platform beats four tools</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    The value isn't four dashboards side by side — it's what happens when they share the same brain.
+                </p>
+            </div>
+
+            <div class="value-grid">
+                <div class="value-card">
+                    <strong>One asset inventory</strong>
+                    <p>Every module reads and writes the same living inventory of your assets — external, internal, and cloud. Discover once, use everywhere.</p>
+                </div>
+                <div class="value-card">
+                    <strong>Correlated findings</strong>
+                    <p>A leaked credential (CTI) against an exposed portal (External ASM) that fronts an unpatched internal host (Internal ASM) reads as one story, not three alerts.</p>
+                </div>
+                <div class="value-card">
+                    <strong>Unified risk prioritization</strong>
+                    <p>Findings across all four modules are ranked together, so your team works the handful of issues that actually move risk — not four separate backlogs.</p>
+                </div>
+                <div class="value-card">
+                    <strong>One dashboard, one login</strong>
+                    <p>SSO, role-based access, and a single pane of glass. No tab-hopping between vendors, no reconciling four exports by hand.</p>
+                </div>
+                <div class="value-card">
+                    <strong>Findings where you work</strong>
+                    <p>Route everything into Jira, ServiceNow, Splunk, Slack, Teams, or any webhook — from one integration layer, not four.</p>
+                </div>
+                <div class="value-card">
+                    <strong>Grows with you</strong>
+                    <p>Turn on modules as you mature. Adding one doesn't mean a new rollout — it lights up inside the platform you already use.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATTACK CHAIN -->
+    <section class="asm-section tint">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>One attack. Every angle.</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    A real intrusion is rarely a single event. It's a chain — and Helios watches every link.
+                </p>
+            </div>
+
+            <div class="chain">
+                <div class="chain-step">
+                    <span class="chain-num">1</span>
+                    <span class="mod">CTI</span>
+                    <strong>They learn</strong>
+                    <p>A password shows up in a breach dump. Threat intel flags it against your domain before anyone uses it.</p>
+                </div>
+                <div class="chain-step">
+                    <span class="chain-num">2</span>
+                    <span class="mod">External ASM</span>
+                    <strong>They get in</strong>
+                    <p>That credential is tried against a login portal you forgot was exposed. External ASM already found — and flagged — that portal.</p>
+                </div>
+                <div class="chain-step">
+                    <span class="chain-num">3</span>
+                    <span class="mod">Internal ASM</span>
+                    <strong>They move around</strong>
+                    <p>Inside, they hunt for a flat, unpatched network. Internal ASM has already mapped it and surfaced the EternalBlue box they'd pivot through.</p>
+                </div>
+                <div class="chain-step">
+                    <span class="chain-num">4</span>
+                    <span class="mod">CSPM</span>
+                    <strong>They reach the cloud</strong>
+                    <p>They probe for a wide-open storage bucket or an over-privileged role. CSPM flagged those misconfigurations days ago.</p>
+                </div>
+            </div>
+
+            <p style="max-width: 720px; margin: 2.4rem auto 0; color: #4b5563; text-align:center;">
+                See only one link, and you're guessing about the rest. See all four — in one place — and you break the chain before it reaches anything that matters.
+            </p>
+        </div>
+    </section>
+
+    <!-- DEPLOYMENT MODELS -->
+    <section class="asm-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Two Ways to Run It</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    Same platform, same coverage — choose how much you want to operate yourself.
+                </p>
+            </div>
+
+            <div class="deploy-grid">
+                <div class="deploy-card">
+                    <span class="deploy-tag">Self-Service SaaS</span>
+                    <h3>Run it yourself</h3>
+                    <p>Direct dashboard access for your team across every module. Configure scopes, run scans, review findings, export reports. Full RBAC and unlimited users. Ideal for in-house security teams that want hands-on control.</p>
+                </div>
+                <div class="deploy-card">
+                    <span class="deploy-tag">Managed Service</span>
+                    <h3>We monitor for you</h3>
+                    <p>Our analysts triage findings across all four modules and escalate only what matters. Monthly executive briefings, a direct line to security analysts, and quarterly business reviews. Ideal for organizations without a dedicated cybersecurity team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTEGRATIONS -->
+    <section class="asm-section tint">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Built to Fit Your Stack</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    Findings from every module go where your team already works — no parallel inbox to babysit.
+                </p>
+            </div>
+
+            <div class="integration-grid">
+                <div class="integration-card">
+                    <strong>SIEM</strong>
+                    <span>Splunk · QRadar · Microsoft Sentinel · Elastic · Chronicle</span>
+                </div>
+                <div class="integration-card">
+                    <strong>Ticketing</strong>
+                    <span>Jira · ServiceNow · Zendesk</span>
+                </div>
+                <div class="integration-card">
+                    <strong>Identity &amp; SSO</strong>
+                    <span>SAML 2.0 · OIDC · Okta · Azure AD · Google · TOTP 2FA enforced per role</span>
+                </div>
+                <div class="integration-card">
+                    <strong>Alerts &amp; Automation</strong>
+                    <span>Email · Slack · Teams · webhooks · SMS · full REST API</span>
+                </div>
+                <div class="integration-card">
+                    <strong>Reports &amp; Exports</strong>
+                    <span>PDF · XLSX · CSV · JSON · scheduled or on-demand · white-label for partners</span>
+                </div>
+                <div class="integration-card">
+                    <strong>Enterprise Readiness</strong>
+                    <span>Append-only audit log · role-based access control · trend reporting · historical comparisons</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="asm-section" id="faq">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Frequently Asked Questions</h2>
+                <p class="lead" style="max-width: 700px; margin: 1rem auto 0;">
+                    Plain-English answers to the questions we hear most often.
+                </p>
+            </div>
+
+            <div class="faq-list">
+
+                <details class="faq-item">
+                    <summary>What is Helios by Isaphia, in plain English?</summary>
+                    <p>Helios is a single security platform that shows you everything an attacker could use against you: what you expose to the internet (External ASM), what's reachable once someone gets inside your network (Internal ASM), what's already being said, sold, or leaked about you online (CTI), and how your cloud accounts are configured (CSPM). It all lives in one dashboard, and you log in from a web browser.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What modules make up Helios?</summary>
+                    <p>Four: <a href="asm">External ASM</a> (your internet-facing footprint), <a href="internal-asm">Internal ASM</a> (assets and legacy systems inside your network, discovered by lightweight collectors), <a href="cti">CTI</a> (asset-aware cyber threat intelligence), and <a href="cspm">CSPM</a> (cloud security posture management across AWS, Azure, and GCP).</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Do I have to buy all four modules?</summary>
+                    <p>No. Most customers start with External ASM and add Internal ASM, CTI, and CSPM as they mature. The modules share one asset inventory and one dashboard, so each one you add makes the others more useful.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Is Helios a SaaS product?</summary>
+                    <p>Yes. Helios is delivered as Software-as-a-Service — you log in from any web browser. You can run it yourself (Self-Service SaaS) or have the Isaphia team operate it for you (Managed Service).</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Do I need to install anything?</summary>
+                    <p>External ASM, CTI, and CSPM are agentless — nothing runs on your machines. Internal ASM is the exception: it uses lightweight, safe collectors deployed inside your network to map what's behind the firewall. CSPM connects to your cloud accounts with read-only access.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How is Helios different from buying separate tools?</summary>
+                    <p>Attacks are a chain — a leaked password used against an exposed login to get a foothold, then lateral movement across an unpatched internal network. Separate tools show you one link at a time. Helios correlates all four views against one shared asset inventory, so you see the whole chain and can break it before it reaches anything that matters.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How does pricing work?</summary>
+                    <p>Pricing scales with the size of your attack surface and the modules you enable, and whether you choose Self-Service SaaS or the Managed Service. Users are unlimited within your tenant — no per-seat fees. <a href="contact">Contact us</a> for a scoped quote.</p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="asm-final-cta">
+        <div class="container">
+            <h2>See your whole exposure — in one place</h2>
+            <p class="lead">
+                Get a walkthrough of Helios scoped to your environment. We'll show you what's exposed today, inside and out — and what to fix first.
+            </p>
+            <a href="contact" class="cta-button">Talk to Us About Helios</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Isaphia Security Inc. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+            <li><a href="privacy"><i class="fas fa-shield-alt"></i> Privacy</a></li>
+            <li><a href="https://www.linkedin.com/company/isaphia" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+        </ul>
+    </div>
+</footer>
+
+<a href="#top" class="back-to-top" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8 8h-5v8h-6v-8H4z"/></svg></a>
+
+</body>
+</html>

@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Internal ASM is the inside-the-firewall module of Helios by Isaphia. Lightweight collectors map the assets, services, and dangerous legacy systems — EternalBlue, BlueKeep, SMBv1, Telnet — attackers pivot to once they're inside your network, each tied to a known CVE.">
+
+    <title>Internal ASM | Inside-the-Firewall Attack Surface — Helios by Isaphia</title>
+    <link rel="canonical" href="https://isaphia.com/internal-asm">
+
+    <link rel="alternate" hreflang="en-ca" href="https://isaphia.com/internal-asm" />
+    <link rel="alternate" hreflang="en" href="https://isaphia.com/internal-asm" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Internal ASM | Attackers Don't Stop at the Firewall — Helios by Isaphia">
+    <meta property="og:description" content="Lightweight collectors map what attackers reach once they're inside — internal assets, open services, and legacy killers like EternalBlue, BlueKeep, SMBv1, and Telnet, each tied to a known CVE.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://isaphia.com/internal-asm">
+    <meta property="og:image" content="https://isaphia.com/social-banner.jpg">
+    <meta property="og:image:alt" content="Helios by Isaphia — Internal ASM module">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Internal ASM | Inside-the-Firewall Attack Surface — Helios by Isaphia">
+    <meta name="twitter:description" content="Map the assets, services, and legacy weaknesses attackers pivot to once they're inside — each tied to a known CVE.">
+    <meta name="twitter:image" content="https://isaphia.com/social-banner.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Helios by Isaphia — Internal ASM",
+      "description": "The Internal ASM module of Helios by Isaphia. Lightweight collectors discover internal assets and services, detect dangerous legacy systems used for lateral movement, and correlate each finding to a known CVE — extending attack-surface discipline to the inside of your network.",
+      "applicationCategory": "SecurityApplication",
+      "applicationSubCategory": "Attack Surface Management",
+      "operatingSystem": "Web-based dashboard with on-premise collectors",
+      "url": "https://isaphia.com/internal-asm",
+      "image": "https://isaphia.com/social-banner.jpg",
+      "brand": { "@type": "Brand", "name": "Helios by Isaphia" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://isaphia.com/contact",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "description": "Quote-based pricing. Scales with the size of your internal environment (assets, sites, and collectors) and choice of Self-Service SaaS or Managed Service. Users are unlimited within tenant."
+        }
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Internal ASM, in plain English?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Internal ASM is the module of Helios by Isaphia that maps the inside of your network the way an attacker would once they're past the firewall. It shows you every device and server on your internal network, what each one is running, and the dangerous legacy weaknesses attackers use to spread from one machine to the next — each tied to the known vulnerability (CVE) that explains it." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to install anything?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Unlike External ASM, which is fully agentless, Internal ASM works from inside your network — so you deploy one or more lightweight collectors: small, safe agents that quietly map what's there and report back to the same Helios dashboard. They don't need to touch every machine; a collector observes its network segment. You add more collectors to cover more offices, data centers, or segments." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does Internal ASM find?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Four things: assets (every device, server, and workstation the collectors can see), services (what each machine is running and on which ports), coverage (which sites and segments your collectors reach), and findings — the dangerous, exploitable problems attackers count on, such as EternalBlue (MS17-010), BlueKeep (CVE-2019-0708), SMBv1 still enabled, and plaintext services like Telnet. Each finding is ranked by severity and tied automatically to its public CVE." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Internal ASM different from External ASM?",
+          "acceptedAnswer": { "@type": "Answer", "text": "External ASM looks at your organization from the outside-in — the attacker's way in — and is fully agentless. Internal ASM looks at what's reachable once an attacker is already inside — the attacker's way around — and uses lightweight collectors to see behind the firewall. The legacy weaknesses that enable lateral movement never appear on an external scan, because they live inside the network." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Internal ASM part of the same platform?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Internal ASM is one of the four modules of Helios by Isaphia, alongside External ASM, CTI, and CSPM. Findings from every module land in the same Helios dashboard, so you can follow an attack across the whole chain instead of stitching together separate tools." }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is Internal ASM for?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Any organization with an internal network — multiple offices, data centers, or segments — that has no reliable map of what's actually running inside it. You do not need a dedicated cybersecurity team; many customers choose the Managed Service so the Isaphia team triages internal findings for them." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Internal ASM pricing work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Pricing scales with the size of your internal environment — the number of assets, sites, and collectors — and whether you choose Self-Service SaaS or the Managed Service. Users are unlimited within your tenant, with no per-seat fees. Contact Isaphia for a scoped quote." }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css?v=12">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* Product-page styles for Helios Internal ASM — brand-green palette. */
+
+        .asm-hero {
+            background:
+                linear-gradient(135deg, rgba(11, 94, 70, 0.94), rgba(15, 122, 92, 0.94)),
+                url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80')
+                center/cover no-repeat;
+            color: #ffffff;
+            text-align: center;
+            padding: 7rem 1rem 5.5rem;
+        }
+
+        .asm-hero h1 {
+            color: #ffffff;
+            font-size: 3.2rem;
+            line-height: 1.1;
+            margin-bottom: 1.1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+        }
+
+        .asm-hero h1 .accent {
+            color: #6ee7b7;
+        }
+
+        .asm-hero .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 740px;
+            margin: 0 auto 2rem;
+            color: #f0fdf4;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .asm-hero .cta-button {
+            background-color: #ffffff;
+            color: var(--brand-green-dark);
+        }
+
+        .asm-hero .cta-button:hover {
+            background-color: #d1fae5;
+        }
+
+        .asm-section {
+            padding: 5rem 0;
+        }
+
+        .asm-section.tint {
+            background: var(--brand-green-light);
+        }
+
+        .asm-section.card {
+            background: #ffffff;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+            margin: 2.5rem auto;
+            border-radius: 10px;
+            max-width: 1100px;
+        }
+
+        .asm-section .container.narrow {
+            max-width: 820px;
+        }
+
+        .asm-section h2,
+        .asm-section h3 {
+            color: var(--brand-green-dark);
+        }
+
+        .asm-section h2 {
+            font-size: 1.9rem;
+        }
+
+        .asm-section .lead {
+            font-size: 1.2rem;
+            color: #4b5563;
+            margin-top: 0.6rem;
+        }
+
+        /* Capability grid */
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .capability-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 12px;
+            padding: 1.4rem 1.3rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .capability-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(11, 94, 70, 0.1);
+            border-color: var(--brand-green);
+        }
+
+        .capability-card .cap-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--brand-green-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.9rem;
+        }
+
+        .capability-card .cap-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--brand-green-dark);
+        }
+
+        .capability-card strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .capability-card p {
+            font-size: 0.92rem;
+            color: #4b5563;
+            margin: 0;
+        }
+
+        /* How-it-works timeline */
+        .asm-timeline {
+            max-width: 780px;
+            margin: 3rem auto 0;
+            border-left: 4px solid var(--brand-green);
+            padding-left: 2.2rem;
+        }
+
+        .asm-timeline-step {
+            margin-bottom: 2.3rem;
+        }
+
+        .asm-timeline-step strong {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .asm-timeline-step p {
+            color: #4b5563;
+            margin: 0;
+        }
+
+        /* Deployment two-card layout */
+        .deploy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2.8rem;
+        }
+
+        .deploy-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 14px;
+            padding: 2rem 1.8rem;
+        }
+
+        .deploy-card .deploy-tag {
+            display: inline-block;
+            background: var(--brand-green-light);
+            color: var(--brand-green-dark);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .deploy-card h3 {
+            font-size: 1.4rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.7rem;
+        }
+
+        .deploy-card p {
+            color: #4b5563;
+        }
+
+        /* Integrations bands */
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.3rem;
+            margin-top: 2.6rem;
+        }
+
+        .integration-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 10px;
+            padding: 1.3rem 1.3rem;
+        }
+
+        .integration-card strong {
+            display: block;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.45rem;
+        }
+
+        .integration-card span {
+            color: #4b5563;
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        /* Final CTA — flows directly into the dark footer on this page,
+           so override the global footer margin-top set in styles.css. */
+        body > footer { margin-top: 0; }
+
+        .asm-final-cta {
+            background: linear-gradient(135deg, var(--brand-green-dark), #093d2e);
+            color: #ffffff;
+            text-align: center;
+            padding: 5.5rem 1rem;
+        }
+
+        .asm-final-cta h2 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .asm-final-cta .lead {
+            color: #d1fae5;
+            max-width: 680px;
+            margin: 0.5rem auto 2rem;
+        }
+
+        .asm-final-cta .cta-button {
+            background-color: #ffffff;
+            color: var(--brand-green-dark);
+        }
+
+        .asm-final-cta .cta-button:hover {
+            background-color: #d1fae5;
+        }
+
+        /* Plain-English callout in the problem section */
+        .plain-callout {
+            max-width: 720px;
+            margin: 1.8rem auto 0;
+            padding: 1.2rem 1.4rem;
+            background: var(--brand-green-light);
+            border-left: 4px solid var(--brand-green);
+            border-radius: 6px;
+            color: #1f2937;
+            text-align: left;
+            font-size: 0.98rem;
+            line-height: 1.55;
+        }
+
+        .plain-callout strong {
+            color: var(--brand-green-dark);
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 820px;
+            margin: 2.5rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 10px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .faq-item[open] {
+            border-color: var(--brand-green);
+            box-shadow: 0 6px 18px rgba(11, 94, 70, 0.08);
+        }
+
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1.1rem 1.3rem;
+            font-weight: 600;
+            color: var(--brand-green-dark);
+            font-size: 1.02rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-item summary::-webkit-details-marker { display: none; }
+
+        .faq-item summary::after {
+            content: "+";
+            color: var(--brand-green);
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .faq-item[open] summary::after {
+            content: "\2212"; /* minus */
+        }
+
+        .faq-item summary:hover {
+            color: var(--brand-green);
+        }
+
+        .faq-item p {
+            margin: 0;
+            padding: 0 1.3rem 1.2rem;
+            color: #4b5563;
+            font-size: 0.97rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .asm-hero h1 { font-size: 2.4rem; }
+            .asm-hero .hero-subtitle { font-size: 1.1rem; }
+            .asm-section { padding: 3.5rem 0; }
+            .faq-item summary { font-size: 0.98rem; padding: 1rem 1.1rem; }
+            .faq-item p { padding: 0 1.1rem 1.1rem; }
+        }
+    </style>
+
+    <!-- Umami analytics (self-hosted, privacy-friendly, no cookies) -->
+    <script defer src="https://analytics.isaphia.com/script.js" data-website-id="9a028ecd-a985-46ac-8ef8-fa27210ca216"></script>
+</head>
+
+<body>
+
+<header id="top">
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Isaphia Security Logo" class="logo logo--large">
+                <span class="company-name">Isaphia Security</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="services">Services</a></li>
+                <li class="nav-product"><a href="helios" class="active"><span class="nav-acronym">Helios</span><span class="nav-tagline">Platform</span></a></li>
+                <li><a href="team">Team</a></li>
+                <li><a href="blog">Insights</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="asm-hero">
+        <div class="container">
+            <h1>Attackers don't stop at the firewall. <span class="accent">Neither should you.</span></h1>
+            <p class="hero-subtitle">
+                Internal ASM is the inside-the-firewall module of Helios by Isaphia. Lightweight collectors map the assets, services, and dangerous legacy systems attackers pivot to once they're inside — each tied automatically to the CVE that explains it.
+            </p>
+            <a href="contact" class="cta-button">Request a Demo</a>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="asm-section">
+        <div class="container narrow" style="text-align:center;">
+            <h2>The inside of your network is its own attack surface</h2>
+            <p class="lead" style="margin: 1.6rem auto 1.4rem; max-width: 700px;">
+                Lateral movement, flat unpatched networks, and legacy systems nobody has mapped.
+            </p>
+            <p style="max-width: 720px; margin: 0 auto; color: #4b5563;">
+                A firewall isn't a wall — it's a door, and doors get opened. Once an attacker has a foothold, they don't go straight for the crown jewels. They look around, find the old server nobody patches and the file share running weak protocols, and use them to move from one machine to the next until they reach something valuable. Security teams call this <em>lateral movement</em>. The trouble is that most organizations have no map of their own internal network — and you can't defend what you can't see behind the firewall.
+            </p>
+
+            <p class="plain-callout">
+                <strong>In plain terms:</strong> Internal ASM works from <em>inside</em> your network, so it's not agentless the way External ASM is. You deploy one or more lightweight collectors — small, safe agents — inside your environment. They quietly map what's actually there and report it back to the same Helios dashboard as the rest of the platform. Add more collectors to cover more offices, data centers, or segments.
+            </p>
+        </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section class="asm-section tint">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>What Helios Internal ASM Covers</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    The same outside-in discipline of attack surface management — pointed at the half of your surface that lives behind the firewall.
+                </p>
+            </div>
+
+            <div class="capability-grid">
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.23 5.6 12.66 3 9.5 3S3.77 5.6 3.77 8.39 6.34 13.78 9.5 13.78c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l4.25 4.25 1.49-1.49L15.5 14zM9.5 12c-2.01 0-3.63-1.63-3.63-3.63S7.49 4.73 9.5 4.73 13.13 6.36 13.13 8.37 11.51 12 9.5 12z"/></svg>
+                    </span>
+                    <strong>Internal Asset Discovery</strong>
+                    <p>Every device, server, and workstation the collectors can see on your internal network — inventoried automatically.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 17h3v4H3v-4zm6-6h3v10H9V11zm6-4h3v14h-3V7zm6-4h3v18h-3V3z"/></svg>
+                    </span>
+                    <strong>Service &amp; Port Mapping</strong>
+                    <p>What each machine is actually running, and on which ports — so nothing is left as an unknown.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 17.93C7.06 19.45 4 16.08 4 12c0-.61.07-1.21.19-1.78L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41C17.93 5.43 20 8.47 20 12c0 2.19-.81 4.19-2.1 5.39z"/></svg>
+                    </span>
+                    <strong>Multi-Site Coverage</strong>
+                    <p>Deploy collectors across offices, data centers, and network segments — and see coverage for every site in one place.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                    </span>
+                    <strong>Legacy System Detection</strong>
+                    <p>The killers attackers count on — EternalBlue, BlueKeep, SMBv1, and plaintext Telnet — surfaced the moment a collector sees them.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5.25-3.5 10.74-8 12-4.5-1.26-8-6.75-8-12V6l8-4zm-1 12.59l4.3-4.3-1.4-1.4L11 11.79 9.1 9.89l-1.4 1.4 3.3 3.3z"/></svg>
+                    </span>
+                    <strong>Automatic CVE Correlation</strong>
+                    <p>Every finding is tied automatically to the public vulnerability (CVE) that explains it — so your team knows exactly what it is.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                    </span>
+                    <strong>Lateral-Movement Exposure</strong>
+                    <p>The paths a single compromised machine opens up — the flat, unpatched routes attackers use to spread across your network.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5.25-3.5 10.74-8 12-4.5-1.26-8-6.75-8-12V6l8-4z"/></svg>
+                    </span>
+                    <strong>Severity Ranking</strong>
+                    <p>Findings ranked Critical and High first, so your team fixes the handful of issues that actually turn an incident into a disaster.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 1l9 4v6c0 6-4 11-9 12-5-1-9-6-9-12V5l9-4z"/></svg>
+                    </span>
+                    <strong>Weak &amp; Plaintext Protocols</strong>
+                    <p>Services that send logins in the clear — like Telnet — so anyone already inside can read the password as it goes by.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 00-5 5v3H5v12h14V10h-2V7a5 5 0 00-5-5zm-3 8V7a3 3 0 016 0v3H9z"/></svg>
+                    </span>
+                    <strong>Shadow &amp; Unmanaged Devices</strong>
+                    <p>Forgotten devices, a contractor's laptop, a server spun up "just for testing" — the unmanaged assets nobody put on the list.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 5v5l4.25 2.52.75-1.23-3.5-2.08V7h-1.5z"/></svg>
+                    </span>
+                    <strong>Continuous Rescan</strong>
+                    <p>Networks change every day. Collectors rescan on a continuous cycle so the internal map stays honest instead of going stale.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- THE FINDINGS ATTACKERS COUNT ON -->
+    <section class="asm-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>The findings attackers are counting on</h2>
+                <p class="lead" style="max-width: 740px; margin: 1rem auto 0;">
+                    None of these ever show up on an external scan — they live inside the network. But to an attacker who's already in, they're the difference between being stuck on one machine and owning the whole environment. Internal ASM finds them first, labels each Critical or High, and correlates it to the known CVE.
+                </p>
+            </div>
+
+            <div class="capability-grid">
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                    </span>
+                    <strong>EternalBlue &mdash; MS17-010</strong>
+                    <p>The wormable flaw behind WannaCry. Still alive on unpatched legacy systems years later — and enough to spread ransomware machine-to-machine on its own.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                    </span>
+                    <strong>BlueKeep &mdash; CVE-2019-0708</strong>
+                    <p>A "wormable" Remote Desktop vulnerability that lets an attacker take over a machine with no password at all.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                    </span>
+                    <strong>SMBv1 Still Enabled</strong>
+                    <p>An ancient file-sharing protocol that should have been retired long ago — a favorite highway for ransomware spreading from machine to machine.</p>
+                </div>
+
+                <div class="capability-card">
+                    <span class="cap-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                    </span>
+                    <strong>Plaintext Services like Telnet</strong>
+                    <p>Logins sent across the network with no encryption, so anyone already inside can simply read the password as it goes by.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="asm-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>How It Works</h2>
+                <p class="lead" style="max-width: 680px; margin: 1rem auto 0;">
+                    Deploy once, discover everything, and keep the map current — with findings routed into the tools your team already uses.
+                </p>
+            </div>
+
+            <div class="asm-timeline">
+                <div class="asm-timeline-step">
+                    <strong>1. Deploy lightweight collectors</strong>
+                    <p>Drop one or more small, safe collectors inside your environment. Add more to cover additional offices, data centers, or network segments.</p>
+                </div>
+                <div class="asm-timeline-step">
+                    <strong>2. Discover assets &amp; services across every site</strong>
+                    <p>Collectors quietly map every device, server, and workstation they can see, along with the services and ports each one is running — and report it all to the Helios dashboard.</p>
+                </div>
+                <div class="asm-timeline-step">
+                    <strong>3. Correlate findings to CVEs and rank by severity</strong>
+                    <p>Dangerous, exploitable problems are surfaced, tied automatically to the public CVE that explains them, and ranked Critical or High first.</p>
+                </div>
+                <div class="asm-timeline-step">
+                    <strong>4. Continuously rescan &amp; route to your workflow</strong>
+                    <p>The internal map is refreshed on a continuous cycle, and findings are pushed into Jira, ServiceNow, Splunk, Slack, Teams, or any webhook.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPLOYMENT MODELS -->
+    <section class="asm-section tint">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Two Ways to Run It</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    Same platform, same coverage — choose how much you want to operate yourself. In both, the collectors are lightweight and safe.
+                </p>
+            </div>
+
+            <div class="deploy-grid">
+
+                <div class="deploy-card">
+                    <span class="deploy-tag">Self-Service SaaS</span>
+                    <h3>Run it yourself</h3>
+                    <p>Deploy your own collectors, then work directly in the Helios dashboard. Configure sites, review internal findings, and export reports. Full RBAC and unlimited users. Ideal for in-house security teams that want hands-on control.</p>
+                </div>
+
+                <div class="deploy-card">
+                    <span class="deploy-tag">Managed Service</span>
+                    <h3>We monitor for you</h3>
+                    <p>Our team triages internal findings and escalates only what matters. Monthly executive briefings, a direct line to security analysts, and quarterly business reviews. Ideal for organizations without a dedicated cybersecurity team.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTEGRATIONS -->
+    <section class="asm-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Built to Fit Your Stack</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    Findings go where your team already works — no parallel inbox to babysit.
+                </p>
+            </div>
+
+            <div class="integration-grid">
+
+                <div class="integration-card">
+                    <strong>SIEM</strong>
+                    <span>Splunk · QRadar · Microsoft Sentinel · Elastic · Chronicle</span>
+                </div>
+
+                <div class="integration-card">
+                    <strong>Ticketing</strong>
+                    <span>Jira · ServiceNow · Zendesk</span>
+                </div>
+
+                <div class="integration-card">
+                    <strong>Identity &amp; SSO</strong>
+                    <span>SAML 2.0 · OIDC · Okta · Azure AD · Google · TOTP 2FA enforced per role</span>
+                </div>
+
+                <div class="integration-card">
+                    <strong>Alerts &amp; Automation</strong>
+                    <span>Email · Slack · Teams · webhooks · SMS · full REST API</span>
+                </div>
+
+                <div class="integration-card">
+                    <strong>Reports &amp; Exports</strong>
+                    <span>PDF · XLSX · CSV · JSON · scheduled or on-demand · white-label for partners</span>
+                </div>
+
+                <div class="integration-card">
+                    <strong>Enterprise Readiness</strong>
+                    <span>Append-only audit log · role-based access control · trend reporting · historical comparisons</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PART OF HELIOS -->
+    <section class="asm-section tint">
+        <div class="container narrow" style="text-align:center;">
+            <h2>One picture, four modules</h2>
+            <p class="lead" style="margin: 1.6rem auto 1.4rem; max-width: 720px;">
+                Internal ASM is one of the four modules of <a href="helios">Helios by Isaphia</a> — the unified exposure-management platform.
+            </p>
+            <p style="max-width: 740px; margin: 0 auto; color: #4b5563;">
+                An attack is rarely a single event — it's a chain. A leaked password surfaced by <a href="cti">CTI</a>, used against an exposed login portal found by <a href="asm">External ASM</a>, gives an attacker a foothold. From there they pivot across a flat, unpatched internal network — the ground <strong>Internal ASM</strong> maps — while <a href="cspm">CSPM</a> covers the cloud side of the same surface. Seeing only one link leaves you guessing about the rest; seeing all four in one dashboard is what lets you break the chain before it reaches anything that matters.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="asm-section" id="faq">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>Frequently Asked Questions</h2>
+                <p class="lead" style="max-width: 700px; margin: 1rem auto 0;">
+                    Plain-English answers to the questions we hear most often.
+                </p>
+            </div>
+
+            <div class="faq-list">
+
+                <details class="faq-item">
+                    <summary>What is Internal ASM, in plain English?</summary>
+                    <p>It's the module of Helios by Isaphia that maps the inside of your network the way an attacker would once they're past the firewall. It shows you every device and server on your internal network, what each one is running, and the dangerous legacy weaknesses attackers use to spread from one machine to the next — each tied to the known vulnerability (CVE) that explains it.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Do I need to install anything?</summary>
+                    <p>Yes. Unlike <a href="asm">External ASM</a>, which is fully agentless, Internal ASM works from <em>inside</em> your network — so you deploy one or more lightweight <strong>collectors</strong>: small, safe agents that quietly map what's there and report back to the same Helios dashboard. A collector observes its network segment rather than touching every machine, and you add more collectors to cover more offices, data centers, or segments.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does it find?</summary>
+                    <p>Four things: <em>assets</em> (every device, server, and workstation the collectors can see), <em>services</em> (what each machine is running and on which ports), <em>coverage</em> (which sites and segments your collectors reach), and <em>findings</em> — the dangerous problems attackers count on, such as EternalBlue (MS17-010), BlueKeep (CVE-2019-0708), SMBv1 still enabled, and plaintext services like Telnet. Every finding is ranked by severity and tied automatically to its public CVE.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How is this different from External ASM?</summary>
+                    <p><a href="asm">External ASM</a> looks at your organization from the outside-in — the attacker's way <em>in</em> — and is fully agentless. Internal ASM looks at what's reachable once an attacker is already inside — the attacker's way <em>around</em> — and uses lightweight collectors to see behind the firewall. The legacy weaknesses that enable lateral movement never appear on an external scan, because they live inside the network.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Is it part of the same platform?</summary>
+                    <p>Yes. Internal ASM is one of the four modules of <a href="helios">Helios by Isaphia</a>, alongside External ASM, <a href="cti">CTI</a>, and <a href="cspm">CSPM</a>. Findings from every module land in the same Helios dashboard, so you can follow an attack across the whole chain instead of stitching together separate tools.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Who is it for?</summary>
+                    <p>Any organization with an internal network — multiple offices, data centers, or segments — that has no reliable map of what's actually running inside it. You do <em>not</em> need a dedicated cybersecurity team; many customers choose the Managed Service so the Isaphia team triages internal findings for them.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How does pricing work?</summary>
+                    <p>Pricing scales with the size of your internal environment — the number of assets, sites, and collectors — and whether you choose Self-Service SaaS or the Managed Service. Users are unlimited within your tenant, with no per-seat fees. <a href="contact">Contact us</a> for a scoped quote.</p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="asm-final-cta">
+        <div class="container">
+            <h2>Assume the perimeter will be breached</h2>
+            <p class="lead">
+                Modern security planning doesn't assume the firewall holds — it asks how far an attacker gets once they're in. Internal ASM answers that with evidence instead of hope. Get a walkthrough scoped to your environment.
+            </p>
+            <a href="contact" class="cta-button">Talk to Us About Helios Internal ASM</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Isaphia Security Inc. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+            <li><a href="privacy"><i class="fas fa-shield-alt"></i> Privacy</a></li>
+            <li><a href="https://www.linkedin.com/company/isaphia" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+        </ul>
+    </div>
+</footer>
+
+<a href="#top" class="back-to-top" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8 8h-5v8h-6v-8H4z"/></svg></a>
+
+</body>
+</html>
