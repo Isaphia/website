@@ -507,6 +507,68 @@ footer p {
 }
 
 /* =========================
+   Helios module sub-nav
+   Appears on the platform hub and the four module pages (helios, asm,
+   internal-asm, cti, cspm) so visitors can hop straight between modules
+   without returning to the hub. Sits directly under the main navbar.
+========================= */
+.module-subnav {
+    background: #ffffff;
+    border-top: 1px solid #ecfdf5;
+    border-bottom: 1px solid #d1fae5;
+    box-shadow: 0 2px 10px rgba(11, 94, 70, 0.05);
+}
+
+.module-subnav > .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+.module-subnav .subnav-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-right: 0.7rem;
+}
+
+.module-subnav a {
+    text-decoration: none;
+    color: var(--brand-green-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.4rem 0.95rem;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.module-subnav a:hover {
+    background: var(--brand-green-light);
+    color: var(--brand-green-dark);
+}
+
+.module-subnav a.active {
+    background: var(--brand-green);
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .module-subnav > .container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .module-subnav .subnav-label { display: none; }
+    .module-subnav a { white-space: nowrap; font-size: 0.9rem; }
+}
+
+/* =========================
    Back-to-top button (shared across all pages)
 ========================= */
 .back-to-top {

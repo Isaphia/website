@@ -102,7 +102,7 @@
     </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
-    <link rel="stylesheet" href="styles.css?v=12">
+    <link rel="stylesheet" href="styles.css?v=13">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -158,16 +158,24 @@
             margin: 0 auto 2rem;
         }
 
-        .hero-pills span {
+        .hero-pills a {
             background: rgba(255, 255, 255, 0.14);
             border: 1px solid rgba(255, 255, 255, 0.35);
             color: #ffffff;
+            text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
             letter-spacing: 0.03em;
             padding: 0.4rem 0.9rem;
             border-radius: 999px;
             backdrop-filter: blur(2px);
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+        }
+
+        .hero-pills a:hover {
+            background: rgba(255, 255, 255, 0.28);
+            border-color: #ffffff;
+            transform: translateY(-2px);
         }
 
         .asm-section { padding: 5rem 0; }
@@ -569,6 +577,17 @@
     </nav>
 </header>
 
+<nav class="module-subnav" aria-label="Helios modules">
+    <div class="container">
+        <span class="subnav-label">Helios Platform</span>
+        <a href="helios" class="active">Overview</a>
+        <a href="asm">External ASM</a>
+        <a href="internal-asm">Internal ASM</a>
+        <a href="cti">CTI</a>
+        <a href="cspm">CSPM</a>
+    </div>
+</nav>
+
 <main>
 
     <!-- HERO -->
@@ -579,10 +598,10 @@
                 Helios by Isaphia is a unified exposure-management platform. It brings your external footprint, your internal network, threat intelligence, and your cloud posture into a single dashboard — so nothing an attacker could use stays in a blind spot.
             </p>
             <div class="hero-pills">
-                <span>External ASM</span>
-                <span>Internal ASM</span>
-                <span>CTI</span>
-                <span>CSPM</span>
+                <a href="asm">External ASM</a>
+                <a href="internal-asm">Internal ASM</a>
+                <a href="cti">CTI</a>
+                <a href="cspm">CSPM</a>
             </div>
             <a href="contact" class="cta-button">Request a Demo</a>
         </div>
