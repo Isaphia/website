@@ -59,37 +59,37 @@
         {
           "@type": "Question",
           "name": "What is Internal ASM, in plain English?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Internal ASM is the module of Helios by Isaphia that maps the inside of your network the way an attacker would once they're past the firewall. It shows you every device and server on your internal network, what each one is running, and the dangerous legacy weaknesses attackers use to spread from one machine to the next — each tied to the known vulnerability (CVE) that explains it." }
+          "acceptedAnswer": { "@type": "Answer", "text": "It's the module of Helios by Isaphia that maps the inside of your network the way an attacker would once they're past the firewall. It shows you every device and server on your internal network, what each one is running, and the dangerous legacy weaknesses attackers use to spread from one machine to the next — each tied to the known vulnerability (CVE) that explains it." }
         },
         {
           "@type": "Question",
           "name": "Do I need to install anything?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Unlike External ASM, which is fully agentless, Internal ASM works from inside your network — so you deploy one or more lightweight collectors: small, safe agents that quietly map what's there and report back to the same Helios dashboard. They don't need to touch every machine; a collector observes its network segment. You add more collectors to cover more offices, data centers, or segments." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Unlike External ASM, which is fully agentless, Internal ASM works from inside your network — so you deploy one or more lightweight collectors: small, safe agents that quietly map what's there and report back to the same Helios dashboard. A collector observes its network segment rather than touching every machine, and you add more collectors to cover more offices, data centers, or segments." }
         },
         {
           "@type": "Question",
-          "name": "What does Internal ASM find?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Four things: assets (every device, server, and workstation the collectors can see), services (what each machine is running and on which ports), coverage (which sites and segments your collectors reach), and findings — the dangerous, exploitable problems attackers count on, such as EternalBlue (MS17-010), BlueKeep (CVE-2019-0708), SMBv1 still enabled, and plaintext services like Telnet. Each finding is ranked by severity and tied automatically to its public CVE." }
+          "name": "What does it find?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Four things: assets (every device, server, and workstation the collectors can see), services (what each machine is running and on which ports), coverage (which sites and segments your collectors reach), and findings — the dangerous problems attackers count on, such as EternalBlue (MS17-010), BlueKeep (CVE-2019-0708), SMBv1 still enabled, and plaintext services like Telnet. Every finding is ranked by severity and tied automatically to its public CVE." }
         },
         {
           "@type": "Question",
-          "name": "How is Internal ASM different from External ASM?",
+          "name": "How is this different from External ASM?",
           "acceptedAnswer": { "@type": "Answer", "text": "External ASM looks at your organization from the outside-in — the attacker's way in — and is fully agentless. Internal ASM looks at what's reachable once an attacker is already inside — the attacker's way around — and uses lightweight collectors to see behind the firewall. The legacy weaknesses that enable lateral movement never appear on an external scan, because they live inside the network." }
         },
         {
           "@type": "Question",
-          "name": "Is Internal ASM part of the same platform?",
+          "name": "Is it part of the same platform?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. Internal ASM is one of the four modules of Helios by Isaphia, alongside External ASM, CTI, and CSPM. Findings from every module land in the same Helios dashboard, so you can follow an attack across the whole chain instead of stitching together separate tools." }
         },
         {
           "@type": "Question",
-          "name": "Who is Internal ASM for?",
+          "name": "Who is it for?",
           "acceptedAnswer": { "@type": "Answer", "text": "Any organization with an internal network — multiple offices, data centers, or segments — that has no reliable map of what's actually running inside it. You do not need a dedicated cybersecurity team; many customers choose the Managed Service so the Isaphia team triages internal findings for them." }
         },
         {
           "@type": "Question",
-          "name": "How does Internal ASM pricing work?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Pricing scales with the size of your internal environment — the number of assets, sites, and collectors — and whether you choose Self-Service SaaS or the Managed Service. Users are unlimited within your tenant, with no per-seat fees. Contact Isaphia for a scoped quote." }
+          "name": "How does pricing work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Pricing scales with the size of your internal environment — the number of assets, sites, and collectors — and whether you choose Self-Service SaaS or the Managed Service. Users are unlimited within your tenant, with no per-seat fees. Contact us for a scoped quote." }
         }
       ]
     }

@@ -1,6 +1,6 @@
 # Jekyll config — used ONLY for the blog under /blog/.
 # All existing hand-written HTML pages (index.html, services.html,
-# asm.html, cti.html, team.html, contact.html, david.html, privacy.html)
+# asm.html, cti.html, team.html, contact.html, privacy.html)
 # have no frontmatter and Jekyll passes them through unchanged.
 
 title: Isaphia Insights
