@@ -45,7 +45,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-    <link rel="stylesheet" href="styles.css?v=13">
+    <link rel="stylesheet" href="styles.css?v=14">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,12 +56,13 @@
 </head>
 
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <header id="top">
     <nav class="navbar">
         <div class="container navbar-container">
             <div class="logo-container">
-                <img src="logo.png" alt="Isaphia Security Logo" class="logo">
+                <img src="logo.png" alt="" class="logo">
                 <span class="company-name">Isaphia Security</span>
             </div>
             <ul class="nav-links">
@@ -76,7 +77,7 @@
     </nav>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
 
 <section class="hero">
     <div class="hero-content">
@@ -169,7 +170,7 @@
             <li>Access the personal information we hold about you;</li>
             <li>Request correction of inaccurate or incomplete information;</li>
             <li>Withdraw consent where processing is based on consent; and</li>
-            <li>File a complaint with the Office of the Privacy Commissioner of Canada (<a href="https://www.priv.gc.ca/" target="_blank" rel="noopener">priv.gc.ca</a>).</li>
+            <li>File a complaint with the Office of the Privacy Commissioner of Canada (<a href="https://www.priv.gc.ca/" target="_blank" rel="noopener noreferrer" aria-label="priv.gc.ca (opens in new tab)">priv.gc.ca</a>).</li>
         </ul>
         <p>
             To exercise any of these rights, email <a href="mailto:info@isaphia.com">info@isaphia.com</a>. We may need to verify your identity before responding.
@@ -204,9 +205,9 @@
     <div class="container">
         <p>&copy; 2026 Isaphia Security Inc. All rights reserved.</p>
         <ul class="footer-links">
-            <li><a href="contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
-            <li><a href="privacy"><i class="fas fa-shield-alt"></i> Privacy</a></li>
-            <li><a href="https://www.linkedin.com/company/isaphia" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+            <li><a href="contact"><span class="fas fa-envelope" aria-hidden="true"></span> Contact Us</a></li>
+            <li><a href="privacy"><span class="fas fa-shield-alt" aria-hidden="true"></span> Privacy</a></li>
+            <li><a href="https://www.linkedin.com/company/isaphia" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)"><span class="fab fa-linkedin-in" aria-hidden="true"></span> LinkedIn</a></li>
         </ul>
     </div>
 </footer>

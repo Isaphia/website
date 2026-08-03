@@ -50,7 +50,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-    <link rel="stylesheet" href="styles.css?v=13">
+    <link rel="stylesheet" href="styles.css?v=14">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,12 +61,13 @@
 </head>
 
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <header id="top">
     <nav class="navbar">
         <div class="container navbar-container">
             <div class="logo-container">
-                <img src="logo.png" alt="Isaphia Security Logo" class="logo logo--large">
+                <img src="logo.png" alt="" class="logo logo--large">
                 <span class="company-name">Isaphia Security</span>
             </div>
 
@@ -82,7 +83,7 @@
     </nav>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
 
 <section class="hero">
     <div class="hero-content">
@@ -97,13 +98,13 @@
 <!-- OFFENSIVE SECURITY -->
 <section class="section services-hero">
     <div class="container">
-        <h2><i class="fas fa-crosshairs section-icon" aria-hidden="true"></i>Offensive Security & Penetration Testing</h2>
+        <h2><span class="fas fa-crosshairs section-icon" aria-hidden="true"></span>Offensive Security & Penetration Testing</h2>
         <p class="lead">Identify exploitable weaknesses before attackers do through realistic, adversary-driven testing.</p>
 
         <ul class="service-list">
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-window-maximize" aria-hidden="true"></i>
+                    <span class="fas fa-window-maximize" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Web Application Penetration Testing</strong>
@@ -113,7 +114,7 @@
 
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-network-wired" aria-hidden="true"></i>
+                    <span class="fas fa-network-wired" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Network Penetration Testing</strong>
@@ -123,7 +124,7 @@
 
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-wifi" aria-hidden="true"></i>
+                    <span class="fas fa-wifi" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Wireless Security Assessment</strong>
@@ -133,7 +134,7 @@
 
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-user-ninja" aria-hidden="true"></i>
+                    <span class="fas fa-user-ninja" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Red & Purple Team Engagements</strong>
@@ -147,13 +148,13 @@
 <!-- SECURITY INTELLIGENCE -->
 <section class="section services-hero">
     <div class="container">
-        <h2><i class="fas fa-magnifying-glass-chart section-icon" aria-hidden="true"></i>Security Intelligence & Assessments</h2>
+        <h2><span class="fas fa-magnifying-glass-chart section-icon" aria-hidden="true"></span>Security Intelligence & Assessments</h2>
         <p class="lead">Intelligence-driven assessments designed to reduce exposure and strengthen security posture.</p>
 
         <ul class="service-list">
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-user-secret" aria-hidden="true"></i>
+                    <span class="fas fa-user-secret" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Open Source Intelligence (OSINT)</strong>
@@ -163,7 +164,7 @@
 
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-cloud" aria-hidden="true"></i>
+                    <span class="fas fa-cloud" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Cloud Hygiene & CIS Alignment</strong>
@@ -173,7 +174,7 @@
 
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-key" aria-hidden="true"></i>
+                    <span class="fas fa-key" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Enterprise Password Audits</strong>
@@ -187,13 +188,13 @@
 <!-- ADVISORY -->
 <section class="section services-hero">
     <div class="container">
-        <h2><i class="fas fa-scale-balanced section-icon" aria-hidden="true"></i>Advanced Security & Advisory Services</h2>
+        <h2><span class="fas fa-scale-balanced section-icon" aria-hidden="true"></span>Advanced Security & Advisory Services</h2>
         <p class="lead">Strategic cybersecurity consulting for organizations operating at scale or under regulatory pressure.</p>
 
         <ul class="service-list">
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                    <span class="fas fa-shield-halved" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Attack Surface Management</strong>
@@ -203,7 +204,7 @@
 
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-compass" aria-hidden="true"></i>
+                    <span class="fas fa-compass" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Strategic Guidance</strong>
@@ -213,7 +214,7 @@
 
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-list-check" aria-hidden="true"></i>
+                    <span class="fas fa-list-check" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Cyber Security Controls Benchmarks</strong>
@@ -223,7 +224,7 @@
 
             <li class="service-item">
                 <span class="icon">
-                    <i class="fas fa-file-shield" aria-hidden="true"></i>
+                    <span class="fas fa-file-shield" aria-hidden="true"></span>
                 </span>
                 <div>
                     <strong>Governance, Risk & Compliance Support</strong>
@@ -256,9 +257,9 @@
     <div class="container">
         <p>&copy; 2026 Isaphia Security Inc. All rights reserved.</p>
         <ul class="footer-links">
-            <li><a href="contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
-            <li><a href="privacy"><i class="fas fa-shield-alt"></i> Privacy</a></li>
-            <li><a href="https://www.linkedin.com/company/isaphia" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+            <li><a href="contact"><span class="fas fa-envelope" aria-hidden="true"></span> Contact Us</a></li>
+            <li><a href="privacy"><span class="fas fa-shield-alt" aria-hidden="true"></span> Privacy</a></li>
+            <li><a href="https://www.linkedin.com/company/isaphia" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)"><span class="fab fa-linkedin-in" aria-hidden="true"></span> LinkedIn</a></li>
         </ul>
     </div>
 </footer>

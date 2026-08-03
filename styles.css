@@ -29,6 +29,30 @@ body {
     background-color: var(--brand-green-light);
 }
 
+/* Accessibility: skip-to-content link. Off-screen (not display:none,
+   which would hide it from screen readers) until keyboard focus. */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 1001;
+    background-color: var(--brand-green-dark);
+    color: #ffffff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 0;
+}
+
+/* The skip link targets <main tabindex="-1">; no focus ring needed there. */
+main:focus {
+    outline: none;
+}
+
 /* Inline content links in body copy — keep them on-brand,
    not browser-default blue. Navbar, footer, CTA buttons, and
    download cards all set their own colors and are unaffected. */
