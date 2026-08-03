@@ -11,6 +11,8 @@ tags:
 reading_time: 6
 cover_image: /assets/blog/helios-platform.png
 cover_image_alt: "Helios dashboard showing a Security Posture Risk Score with combined ASM and cloud findings: 3 domains, 111 hosts, 73 IPs, 126 open ports, 8 cloud fails, and 127 open findings ranked by severity"
+og_image: /assets/blog/helios-platform.png
+og_image_alt: "Helios by Isaphia dashboard — unified security posture risk score across ASM and cloud"
 ---
 
 A real attack is almost never one event. It's a chain, and each link lives in a different blind spot:
