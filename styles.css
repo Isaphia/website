@@ -213,6 +213,25 @@ main:focus {
     background-color: #d1fae5;
 }
 
+/* Dual-CTA hero: primary button + ghost secondary */
+.hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+}
+
+.hero .cta-button--ghost {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+}
+
+.hero .cta-button--ghost:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+}
+
 /* =========================
    Sections (Global)
 ========================= */
