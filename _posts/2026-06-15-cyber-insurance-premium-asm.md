@@ -1,5 +1,6 @@
 ---
 title: "Why Your Cyber Insurance Premium Just Went Up (And What ASM Has to Do With It)"
+seo_title: "Why Your Cyber Insurance Premium Just Went Up | Isaphia"
 subtitle: "Insurers stopped trusting questionnaires. They want proof — and most companies can't give it."
 description: "Cyber insurance premiums are climbing, coverage is shrinking, and underwriters are asking harder questions. Here's why your attack surface is now a line item on your insurance bill — and what to do about it."
 date: 2026-06-15 10:00:00 -0500
