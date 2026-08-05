@@ -37,6 +37,9 @@ Every one of those is a door an attacker can knock on. None of them are in the i
 
 ASM, done properly, is the discipline of finding all of those doors — continuously, not as a one-time audit — and giving you a working map of what attackers can actually see. The same map they're already building about you, except now you have it too.
 
+![ASM dashboard showing an attack surface overview for a demo company: a security posture risk score, domains, hosts, IPs, open ports, and open findings by severity](/downloads/asm/images/dashboard.png)
+*What ASM looks like in practice: a live map of everything you expose — one risk score, asset counts, and open findings by severity, with the critical items on top.*
+
 ## What is CTI (Cyber Threat Intelligence)?
 
 If ASM tells you *what you own*, **CTI** tells you *what the rest of the world knows about it*.
@@ -51,6 +54,9 @@ Threat intelligence is the broad category of information about threats, threat a
 A lot of "threat intelligence" sold today is really just news — scary articles about attacks happening to other people. That's not what we mean. **Useful CTI is signal that maps to a specific thing you own, with enough context that you can make a decision.** "Your IP 198.51.100.42 was added to Spamhaus yesterday" is signal. "Ransomware is up 30% globally" is news.
 
 CTI on its own can feel academic. Lots of data, lots of feeds, lots of "interesting" but no clear action. The thing that makes it actionable is knowing what to map it against — which is exactly the job of ASM.
+
+![Threat Intel dashboard showing critical matches, leak exposures, and exploitable CVEs correlated against specific assets, ranked by a unified risk score](/downloads/cti/images/threat-intel.png)
+*CTI done right: every indicator matched to a specific asset you own, ranked by risk — signal, not news.*
 
 ## Why You Need Both
 

@@ -83,6 +83,9 @@ IP reputation changes constantly. New threats emerge. New IPs get associated wit
 
 Isaphia's attack surface management and threat intelligence platform does this automatically. We discover the IPs associated with your organization — including ones you may not know about — and continuously monitor them against major threat intelligence feeds and blacklists.
 
+![IP Reputation view scoring three IPs against GreyNoise, AbuseIPDB, VirusTotal, Spamhaus and other sources, with two flagged as malicious](/downloads/cti/images/ip-reputation.png)
+*Every IP you own, scored against GreyNoise, AbuseIPDB, VirusTotal, Spamhaus, and more — flagged the day it turns bad, not the day a customer complains.*
+
 When something gets flagged, you find out immediately. Not when a customer tells you. Not when a deal falls through. **Immediately.**
 
 The best part — you can see your own IP reputation right now, for free. No credit card. No sales call. Sign up and see what's out there associated with your organization in minutes.

@@ -35,6 +35,9 @@ That's the problem **Helios by Isaphia** is built to solve. Helios is a unified 
 
 **[CSPM](/cspm)** — the cloud view. Cloud Security Posture Management continuously audits your AWS, Azure, and GCP accounts for the misconfigurations attackers hunt for: public storage buckets, databases reachable from the internet, over-privileged identities, disabled logging. It's agentless and read-only — you grant read access, and Helios reviews your cloud the way an auditor and an attacker both would, with every check mapped to CIS Benchmarks and the compliance frameworks your auditors care about. This is the attacker's *favorite modern way in*.
 
+![Helios attack surface overview dashboard for a demo company: a security posture risk score with breakdown, asset counts, open findings by severity, and risk posture across hosts, domains, IPs, and cloud](/downloads/asm/images/dashboard.png)
+*The Helios overview: what you own, what's open, and what needs attention first — one screen, one risk score.*
+
 ## What a Platform Means in Practice
 
 Plenty of vendors staple products together and call the bundle a platform. Here's what the word actually buys you in Helios:
@@ -43,6 +46,9 @@ Plenty of vendors staple products together and call the bundle a platform. Here'
 - **One severity language.** A Critical is a Critical, whether it lives in your cloud, your network, or your DNS. Your team triages one queue, not four.
 - **One conversation with your insurer or auditor.** As we covered in [our cyber-insurance post](/blog/cyber-insurance-premium-asm/), underwriters increasingly want evidence, not questionnaires. A single exposure report that spans external, internal, and cloud is exactly the artifact they're asking for.
 - **Unlimited users, no per-seat math.** Pricing scales with the size of what we're watching, not with how many people on your team get to look.
+
+![Helios relationship graph linking assets and vulnerabilities to MITRE ATT&CK technique T1190 and ransomware groups Cl0p, Conti, and LockBit](/downloads/cti/images/relationship-graph.png)
+*"One inventory" in practice: assets, findings, ATT&CK techniques, and threat actors connected in a single relationship graph.*
 
 ## Do I Need All Four?
 

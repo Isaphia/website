@@ -70,12 +70,15 @@ Attack Surface Management and Cyber Threat Intelligence — taken together — a
 
 **CTI** continuously monitors threat intelligence feeds, blacklists, breach dumps, and dark web sources for any sign of your organization being mentioned, targeted, or already compromised — leaked credentials, damaged IP reputation, mentions in attacker forums. It gives you the visibility into "have you been targeted" that underwriters increasingly want to see.
 
-Together, **Isaphia ASM + CTI** gives you:
+Together, **Helios by Isaphia** gives you:
 
 - A defensible, current inventory of internet-facing assets — so your questionnaire answers are accurate and provable.
 - Early warning on the exposures underwriters scan for — so you can fix them before renewal, not explain them after.
 - Documented evidence of continuous monitoring — exactly the kind of operational maturity that lowers premiums.
 - A clear paper trail showing what you knew and when — the difference between a covered claim and a denied one.
+
+![Reports page offering a findings report as CSV, asset inventory as Excel, executive report as PDF, and an API summary as JSON](/downloads/asm/images/reports.png)
+*The evidence, on demand: findings, asset inventory, and a board-ready executive report — the artifacts underwriters actually ask for.*
 
 ## What You Should Do Before Your Next Renewal
 
@@ -90,6 +93,9 @@ Pull up the cyber insurance questionnaire you filled out last year. Walk through
 ### 3. Close the exposures that get scored hardest
 
 Exposed admin interfaces, missing MFA on external logins, expired certificates, known-vulnerable software on internet-facing systems — these are the high-impact findings that move premium math. Most are fixable in days once you know they exist.
+
+![Certificate exposure view listing every TLS certificate with issuer, expiry date, TLS version, and flags for expired and self-signed certificates](/downloads/asm/images/tls.png)
+*The kind of thing underwriters scan for: every certificate across your surface, with expired and self-signed ones flagged automatically.*
 
 ### 4. Make this continuous
 

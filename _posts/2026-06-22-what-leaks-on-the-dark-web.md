@@ -61,7 +61,10 @@ This is exactly the gap **Cyber Threat Intelligence (CTI)** exists to close.
 
 Where Attack Surface Management (ASM) tells you *what you own* on the internet, CTI tells you *what's being said and sold about it* — continuously monitoring breach dumps, stealer logs, paste sites, dark web marketplaces, forums, and blacklists for any mention of your organization, your domains, your people, or your data.
 
-The two work as a pair. ASM finds the exposed login portal; CTI finds the leaked password that opens it. One without the other leaves half the door unguarded. That's why **Isaphia ASM + CTI** treats them as a single picture: your external footprint *and* everything attackers already know about it, in one place.
+The two work as a pair. ASM finds the exposed login portal; CTI finds the leaked password that opens it. One without the other leaves half the door unguarded. That's why **Helios by Isaphia** treats them as a single picture: your external footprint *and* everything attackers already know about it, in one place.
+
+![Threat Indicators view showing a global indicator store of malicious domains and IPs from open threat-intelligence feeds, with threat type, source, confidence, and last-seen age](/downloads/cti/images/threat-indicators.png)
+*The raw material of CTI: a continuously updated store of indicators from threat feeds — which only becomes useful when it's matched against what you actually own.*
 
 ## What You Should Do
 

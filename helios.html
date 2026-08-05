@@ -346,6 +346,172 @@
             line-height: 1.5;
         }
 
+        /* Product screenshot showcase (same pattern as module pages) */
+        .showcase-lead {
+            margin-top: 2.8rem;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(11, 94, 70, 0.18);
+            border: 1px solid #d1fae5;
+            cursor: zoom-in;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .showcase-lead:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 26px 50px rgba(11, 94, 70, 0.22);
+        }
+
+        .showcase-lead:focus-visible {
+            outline: 3px solid var(--brand-green);
+            outline-offset: 4px;
+        }
+
+        .showcase-lead img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .showcase-caption {
+            text-align: center;
+            margin-top: 1.1rem;
+            font-size: 0.98rem;
+            color: #4b5563;
+        }
+
+        .showcase-caption strong {
+            color: var(--brand-green-dark);
+            font-weight: 600;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.6rem;
+            margin-top: 2.8rem;
+        }
+
+        .showcase-card {
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(11, 94, 70, 0.08);
+            display: flex;
+            flex-direction: column;
+            cursor: zoom-in;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px rgba(11, 94, 70, 0.14);
+            border-color: var(--brand-green);
+        }
+
+        .showcase-card:focus-visible {
+            outline: 3px solid var(--brand-green);
+            outline-offset: 4px;
+        }
+
+        .showcase-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ecfdf5;
+        }
+
+        .showcase-card .showcase-card-body {
+            padding: 1.1rem 1.2rem 1.3rem;
+        }
+
+        .showcase-card strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: 1.02rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .showcase-card p {
+            margin: 0;
+            color: #4b5563;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        /* Lightbox */
+        .image-lightbox {
+            border: none;
+            padding: 0;
+            background: transparent;
+            max-width: 95vw;
+            max-height: 95vh;
+            overflow: visible;
+        }
+
+        .image-lightbox::backdrop {
+            background: rgba(8, 40, 30, 0.88);
+            backdrop-filter: blur(2px);
+        }
+
+        .image-lightbox[open] {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+        }
+
+        .image-lightbox img {
+            display: block;
+            max-width: 95vw;
+            max-height: 82vh;
+            width: auto;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+        }
+
+        .lightbox-caption {
+            color: #d1fae5;
+            font-size: 0.95rem;
+            text-align: center;
+            max-width: 720px;
+            margin: 0;
+            padding: 0 0.8rem;
+            line-height: 1.5;
+        }
+
+        .lightbox-caption strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: #ffffff;
+            color: var(--brand-green-dark);
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .lightbox-close:hover {
+            background: #d1fae5;
+        }
+
         /* Attack-chain flow */
         .chain {
             display: grid;
@@ -753,6 +919,61 @@
         </div>
     </section>
 
+    <!-- SEE IT IN ACTION -->
+    <section class="asm-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <h2>See It in Action</h2>
+                <p class="lead" style="max-width: 720px; margin: 1rem auto 0;">
+                    Real screens from the platform — one login, every module. Click any screenshot to enlarge.
+                </p>
+            </div>
+
+            <figure class="showcase-lead" tabindex="0" role="button"
+                    aria-label="Enlarge: Helios Attack Surface Overview dashboard"
+                    data-caption="<strong>The Helios overview.</strong> One security-posture risk score across external assets and cloud, with asset counts, severity breakdown, and the findings that need attention now.">
+                <img src="downloads/asm/images/dashboard.png" alt="Helios dashboard showing the Attack Surface Overview for the Acme Corporation demo tenant: a Security Posture Risk Score of 29 with score breakdown, 3 domains, 111 hosts, 73 IPs, 126 open ports, 8 cloud fails, open findings by severity, and a risk posture donut across hosts, domains, IPs, and cloud." loading="lazy">
+            </figure>
+            <p class="showcase-caption">
+                <strong>The Helios overview.</strong> One security-posture risk score across external assets and cloud, with asset counts, severity breakdown, and the findings that need attention now.
+            </p>
+
+            <div class="showcase-grid">
+
+                <figure class="showcase-card" tabindex="0" role="button"
+                        aria-label="Enlarge: Threat Intel dashboard"
+                        data-caption="<strong>CTI — Risk-prioritized findings.</strong> External threat indicators correlated against your attack surface, ranked by one unified 0–100 risk score.">
+                    <img src="downloads/cti/images/threat-intel.png" alt="Helios Threat Intel dashboard showing critical matches, leak exposures, exploitable CVEs, and risk-prioritized findings such as Log4Shell and BlueKeep correlated to specific assets." loading="lazy">
+                    <figcaption class="showcase-card-body">
+                        <strong>CTI — Risk-prioritized findings</strong>
+                        <p>External threat indicators correlated against your attack surface, ranked by one unified 0–100 risk score.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="showcase-card" tabindex="0" role="button"
+                        aria-label="Enlarge: Relationship graph"
+                        data-caption="<strong>One shared brain.</strong> Assets, findings, ATT&amp;CK techniques, and threat actors linked in one relationship graph — the chain, made visible.">
+                    <img src="downloads/cti/images/relationship-graph.png" alt="Helios relationship graph linking Acme Corporation assets and vulnerabilities to MITRE ATT&CK technique T1190 and ransomware groups Cl0p, Conti, LockBit, and Magecart." loading="lazy">
+                    <figcaption class="showcase-card-body">
+                        <strong>One shared brain</strong>
+                        <p>Assets, findings, ATT&amp;CK techniques, and threat actors linked in one relationship graph — the chain, made visible.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="showcase-card" tabindex="0" role="button"
+                        aria-label="Enlarge: ATT&amp;CK Matrix view"
+                        data-caption="<strong>ATT&amp;CK Matrix.</strong> Your findings mapped to MITRE ATT&amp;CK adversary techniques — so you speak the same language as your SOC and your auditors.">
+                    <img src="downloads/cti/images/attack-matrix.png" alt="Helios ATT&CK Matrix view showing findings mapped to MITRE ATT&CK techniques across reconnaissance, resource development, initial access, credential access, and command and control tactics." loading="lazy">
+                    <figcaption class="showcase-card-body">
+                        <strong>ATT&amp;CK Matrix</strong>
+                        <p>Your findings mapped to MITRE ATT&amp;CK adversary techniques — so you speak the same language as your SOC and your auditors.</p>
+                    </figcaption>
+                </figure>
+
+            </div>
+        </div>
+    </section>
+
     <!-- ATTACK CHAIN -->
     <section class="asm-section tint">
         <div class="container">
@@ -952,6 +1173,47 @@
 </footer>
 
 <a href="#top" class="back-to-top" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8 8h-5v8h-6v-8H4z"/></svg></a>
+
+<dialog id="image-lightbox" class="image-lightbox" aria-label="Enlarged screenshot">
+    <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+    <img alt="Enlarged product screenshot">
+    <p class="lightbox-caption"></p>
+</dialog>
+
+<script>
+    (function () {
+        var lightbox = document.getElementById('image-lightbox');
+        if (!lightbox || typeof lightbox.showModal !== 'function') return;
+
+        var lightboxImg = lightbox.querySelector('img');
+        var lightboxCaption = lightbox.querySelector('.lightbox-caption');
+        var closeBtn = lightbox.querySelector('.lightbox-close');
+
+        function openLightbox(trigger) {
+            var img = trigger.querySelector('img');
+            if (!img) return;
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxCaption.innerHTML = trigger.getAttribute('data-caption') || '';
+            lightbox.showModal();
+        }
+
+        document.querySelectorAll('.showcase-lead, .showcase-card').forEach(function (el) {
+            el.addEventListener('click', function () { openLightbox(el); });
+            el.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openLightbox(el);
+                }
+            });
+        });
+
+        closeBtn.addEventListener('click', function () { lightbox.close(); });
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) lightbox.close();
+        });
+    })();
+</script>
 
 </body>
 </html>
