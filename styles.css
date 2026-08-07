@@ -431,17 +431,20 @@ footer p {
    Responsive
 ========================= */
 
-/* Stack the nav under the logo well before the layout gets tight.
-   At ~1200px and below, the horizontal layout starts crowding "Home"
-   against the "Security" in the company name. (Vertical separation
-   from the logo is handled by row-gap on .navbar-container above.) */
+/* Below ~1200px the single-line navbar starts crowding "Home" against
+   the "Security" in the company name, so the menu drops to its own
+   full-width row under the logo — but stays horizontal, wrapping onto
+   a second line only when it truly runs out of room. A vertical list
+   here would make the sticky header very tall on tablets. */
 @media (max-width: 1200px) {
+    .navbar-container {
+        row-gap: 1.5rem;
+    }
+
     .nav-links {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.1rem;
         width: 100%;
-        text-align: left;
+        flex-wrap: wrap;
+        gap: 0.9rem 2.2rem;
     }
 }
 
@@ -470,8 +473,8 @@ footer p {
     }
 
     .nav-links {
-        align-items: center;
-        text-align: center;
+        justify-content: center;
+        gap: 0.8rem 1.3rem;
     }
 
     .nav-links a {
