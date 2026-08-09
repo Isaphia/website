@@ -474,23 +474,16 @@ footer p {
 
     .nav-links {
         justify-content: center;
-        gap: 0.8rem 1.3rem;
+        gap: 0.8rem 1.1rem;
     }
 
     .nav-links a {
         font-size: 0.95rem;
     }
 
-    /* All-caps optically appears ~25% larger than mixed case at the same
-       em-height. Drop the acronym a notch so "ASM" / "CTI" look the same
-       visual size as "Home" / "Services" / "Team" / "Contact". */
-    .nav-links .nav-product .nav-acronym {
-        font-size: 0.78rem;
-    }
-
-    .nav-links .nav-product .nav-tagline {
-        font-size: 0.62rem;
-    }
+    /* Note: the phone-sized type for .nav-product's acronym/tagline lives in
+       the "Mobile navigation" block further down — it has to come after the
+       base .nav-acronym / .nav-tagline rules or it loses on source order. */
 
     /* On mobile the navbar's wide right padding (meant to pull Contact in
        on desktop) isn't needed — give the stacked menu a normal gutter. */
@@ -550,6 +543,74 @@ footer p {
 
 .nav-links .nav-product a:hover .nav-tagline {
     color: var(--brand-green-dark);
+}
+
+/* =========================
+   Mobile navigation
+   Must live after the .nav-product / .nav-acronym / .nav-tagline base rules
+   above: those aren't inside a media query, so anything declared earlier for
+   phones gets overridden on source order.
+========================= */
+@media (max-width: 768px) {
+    /* "Helios" is mixed case, so match it to the plain nav items' size
+       rather than treating it as an optically-large acronym. */
+    .nav-links .nav-product .nav-acronym {
+        font-size: 0.95rem;
+    }
+
+    .nav-links .nav-product .nav-tagline {
+        font-size: 0.6rem;
+        letter-spacing: 0.04em;
+    }
+}
+
+/* Six menu items can't share one line on a phone without shrinking the type
+   past comfortable reading. Below 480px, lay them out as an even 3x2 grid so
+   the second row looks deliberate instead of leaving "Contact" orphaned by
+   flex-wrap. Also tighten the header chrome: at full size the sticky navbar
+   ate roughly a third of a 360x800 screen. */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 1.1rem 0;
+    }
+
+    .logo {
+        height: 64px;
+        margin-right: 14px;
+    }
+
+    .company-name {
+        font-size: 1.35rem;
+    }
+
+    .navbar-container {
+        row-gap: 1rem;
+    }
+
+    .nav-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.7rem 0.4rem;
+        width: 100%;
+        align-items: center;
+    }
+
+    .nav-links li {
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        text-align: center;
+        padding: 0.2rem 0;
+    }
+
+    /* Centre the two-line product item in its cell instead of hanging it
+       off the shared text baseline, which only makes sense in a flex row. */
+    .nav-links .nav-product a {
+        align-self: center;
+        align-items: center;
+    }
 }
 
 /* =========================
