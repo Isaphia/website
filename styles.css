@@ -431,20 +431,52 @@ footer p {
    Responsive
 ========================= */
 
-/* Below ~1200px the single-line navbar starts crowding "Home" against
-   the "Security" in the company name, so the menu drops to its own
-   full-width row under the logo — but stays horizontal, wrapping onto
-   a second line only when it truly runs out of room. A vertical list
-   here would make the sticky header very tall on tablets. */
+/* Below ~1200px the single-line navbar starts crowding "Home" against the
+   "Security" in the company name. Rather than immediately dropping the menu
+   onto its own row, trim the header chrome — smaller logo and wordmark,
+   tighter gaps — so the logo and menu keep sharing one line all the way
+   down to ~1000px. */
 @media (max-width: 1200px) {
+    .logo {
+        height: 90px;
+    }
+
+    .company-name {
+        font-size: 1.7rem;
+    }
+
     .navbar-container {
+        column-gap: 2rem;
         row-gap: 1.5rem;
     }
 
     .nav-links {
-        width: 100%;
         flex-wrap: wrap;
-        gap: 0.9rem 2.2rem;
+        gap: 0.9rem 1.6rem;
+    }
+
+    .navbar > .container {
+        padding-right: 32px;
+    }
+}
+
+/* Below ~1000px the logo and the menu can no longer share a line. Centre
+   both so the header reads as one stacked brand block — left-aligning a
+   full-width menu row under the logo left a wide dead gap on the right.
+   The threshold sits ~50px above the measured wrap point (~950px) on
+   purpose: if the breakpoint were tuned exactly to the fit, any device
+   that renders the wordmark slightly wider would drop the menu onto its
+   own row while still left-aligned, which is the exact look this avoids.
+   A vertical list here would make the sticky header very tall on tablets,
+   so the menu stays horizontal and only wraps if it truly runs out of room. */
+@media (max-width: 1000px) {
+    .navbar-container {
+        justify-content: center;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
     }
 }
 
