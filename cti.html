@@ -968,7 +968,8 @@
 
             <figure class="showcase-lead" tabindex="0" role="button"
                     aria-label="Enlarge: Threat Intel Dashboard"
-                    data-caption="<strong>Threat Intel Dashboard.</strong> Risk-prioritized findings across your assets — KEV-exploited CVEs, malicious IP hits, and high-confidence indicators ranked by Unified Risk Score, not feed volume.">
+                    data-caption-title="Threat Intel Dashboard."
+                        data-caption-text="Risk-prioritized findings across your assets — KEV-exploited CVEs, malicious IP hits, and high-confidence indicators ranked by Unified Risk Score, not feed volume.">
                 <img src="downloads/cti/images/threat-intel.png" alt="Isaphia CTI Threat Intel dashboard showing external feed indicators correlated against attack surface: KEV findings, watchlist matches, IP reputation hits, dark web exposures, and a Risk-Prioritized Findings table for Acme Corporation." loading="lazy">
             </figure>
             <p class="showcase-caption">
@@ -979,7 +980,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: MITRE ATT&amp;CK live technique heatmap"
-                        data-caption="<strong>ATT&amp;CK Matrix — live technique heatmap.</strong> Findings auto-mapped to the techniques attackers actually use against you, with mapped-finding counts per cell so you can see where the pressure is.">
+                        data-caption-title="ATT&amp;CK Matrix — live technique heatmap."
+                        data-caption-text="Findings auto-mapped to the techniques attackers actually use against you, with mapped-finding counts per cell so you can see where the pressure is.">
                     <img src="downloads/cti/images/attack-matrix.png" alt="Isaphia CTI ATT&CK Matrix view showing 10 techniques observed across 5 tactics — Reconnaissance, Resource Development, Initial Access, Credential Access, Command and Control — with 92 mapped findings." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>MITRE ATT&amp;CK live heatmap</strong>
@@ -989,7 +991,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: IOC Relationship Graph"
-                        data-caption="<strong>IOC Relationship Graph.</strong> Indicator → Finding → Technique → Actor — pivot the full kill chain from a single suspicious IP to the ransomware crews known to use it.">
+                        data-caption-title="IOC Relationship Graph."
+                        data-caption-text="Indicator → Finding → Technique → Actor — pivot the full kill chain from a single suspicious IP to the ransomware crews known to use it.">
                     <img src="downloads/cti/images/relationship-graph.png" alt="Isaphia CTI Relationship Graph visualization linking domains and IPs to MITRE technique T1190 Exploit Public-Facing Application, then to threat actors CL0p, Conti, LockBit and Magecart." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>IOC relationship graph</strong>
@@ -999,7 +1002,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: IP Reputation — multi-source consensus"
-                        data-caption="<strong>IP Reputation — multi-source consensus.</strong> Every IP across your surface scored against GreyNoise, AbuseIPDB, VirusTotal, Spamhaus, Censys, OTX, urlscan.io and Shodan — at a glance.">
+                        data-caption-title="IP Reputation — multi-source consensus."
+                        data-caption-text="Every IP across your surface scored against GreyNoise, AbuseIPDB, VirusTotal, Spamhaus, Censys, OTX, urlscan.io and Shodan — at a glance.">
                     <img src="downloads/cti/images/ip-reputation.png" alt="Isaphia CTI IP Reputation view showing three IPs scored against eight reputation sources, with worst-score 100, 50, and 15 highlighted in malicious, suspicious, and benign tiers." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>Multi-source IP reputation</strong>
@@ -1009,7 +1013,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: Threat Indicators store"
-                        data-caption="<strong>Threat Indicators store.</strong> A TIP-style browser of the global indicator corpus — filter by type, source, threat category, and confidence; pivot to enrichment in a single click.">
+                        data-caption-title="Threat Indicators store."
+                        data-caption-text="A TIP-style browser of the global indicator corpus — filter by type, source, threat category, and confidence; pivot to enrichment in a single click.">
                     <img src="downloads/cti/images/threat-indicators.png" alt="Isaphia CTI Threat Indicators page showing a paginated table of domain and IP indicators from ThreatFox tagged Payload Delivery and Botnet C2, with confidence scores of 75 and 100." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>Indicator search &amp; pivot</strong>
@@ -1019,7 +1024,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: Intel Requests workflow"
-                        data-caption="<strong>Analyst RFI workflow.</strong> Ask the threat-intel team to research an indicator, finding, or asset — track every question through to a closed answer, with full audit trail.">
+                        data-caption-title="Analyst RFI workflow."
+                        data-caption-text="Ask the threat-intel team to research an indicator, finding, or asset — track every question through to a closed answer, with full audit trail.">
                     <img src="downloads/cti/images/intel-requests.png" alt="Isaphia CTI Intel Requests page showing two analyst RFIs for Acme Corporation — one open, one answered — with status filters and a New Request button." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>Analyst RFI workflow</strong>
@@ -1338,7 +1344,17 @@
             if (!img) return;
             lightboxImg.src = img.src;
             lightboxImg.alt = img.alt;
-            lightboxCaption.innerHTML = trigger.getAttribute('data-caption') || '';
+            // Caption is built as text nodes, never parsed as HTML (no innerHTML sink).
+            var capTitle = trigger.getAttribute('data-caption-title') || '';
+            var capText = trigger.getAttribute('data-caption-text') || '';
+            lightboxCaption.textContent = '';
+            if (capTitle) {
+                var strong = document.createElement('strong');
+                strong.textContent = capTitle;
+                lightboxCaption.appendChild(strong);
+                lightboxCaption.appendChild(document.createTextNode(' '));
+            }
+            lightboxCaption.appendChild(document.createTextNode(capText));
             lightbox.showModal();
         }
 

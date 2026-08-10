@@ -931,7 +931,8 @@
 
             <figure class="showcase-lead" tabindex="0" role="button"
                     aria-label="Enlarge: Helios Attack Surface Overview dashboard"
-                    data-caption="<strong>The Helios overview.</strong> One security-posture risk score across external assets and cloud, with asset counts, severity breakdown, and the findings that need attention now.">
+                    data-caption-title="The Helios overview."
+                        data-caption-text="One security-posture risk score across external assets and cloud, with asset counts, severity breakdown, and the findings that need attention now.">
                 <img src="downloads/asm/images/dashboard.png" alt="Helios dashboard showing the Attack Surface Overview for the Acme Corporation demo tenant: a Security Posture Risk Score of 29 with score breakdown, 3 domains, 111 hosts, 73 IPs, 126 open ports, 8 cloud fails, open findings by severity, and a risk posture donut across hosts, domains, IPs, and cloud." loading="lazy">
             </figure>
             <p class="showcase-caption">
@@ -942,7 +943,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: Threat Intel dashboard"
-                        data-caption="<strong>CTI — Risk-prioritized findings.</strong> External threat indicators correlated against your attack surface, ranked by one unified 0–100 risk score.">
+                        data-caption-title="CTI — Risk-prioritized findings."
+                        data-caption-text="External threat indicators correlated against your attack surface, ranked by one unified 0–100 risk score.">
                     <img src="downloads/cti/images/threat-intel.png" alt="Helios Threat Intel dashboard showing critical matches, leak exposures, exploitable CVEs, and risk-prioritized findings such as Log4Shell and BlueKeep correlated to specific assets." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>CTI — Risk-prioritized findings</strong>
@@ -952,7 +954,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: Relationship graph"
-                        data-caption="<strong>One shared brain.</strong> Assets, findings, ATT&amp;CK techniques, and threat actors linked in one relationship graph — the chain, made visible.">
+                        data-caption-title="One shared brain."
+                        data-caption-text="Assets, findings, ATT&amp;CK techniques, and threat actors linked in one relationship graph — the chain, made visible.">
                     <img src="downloads/cti/images/relationship-graph.png" alt="Helios relationship graph linking Acme Corporation assets and vulnerabilities to MITRE ATT&CK technique T1190 and ransomware groups Cl0p, Conti, LockBit, and Magecart." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>One shared brain</strong>
@@ -962,7 +965,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: ATT&amp;CK Matrix view"
-                        data-caption="<strong>ATT&amp;CK Matrix.</strong> Your findings mapped to MITRE ATT&amp;CK adversary techniques — so you speak the same language as your SOC and your auditors.">
+                        data-caption-title="ATT&amp;CK Matrix."
+                        data-caption-text="Your findings mapped to MITRE ATT&amp;CK adversary techniques — so you speak the same language as your SOC and your auditors.">
                     <img src="downloads/cti/images/attack-matrix.png" alt="Helios ATT&CK Matrix view showing findings mapped to MITRE ATT&CK techniques across reconnaissance, resource development, initial access, credential access, and command and control tactics." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>ATT&amp;CK Matrix</strong>
@@ -1194,7 +1198,17 @@
             if (!img) return;
             lightboxImg.src = img.src;
             lightboxImg.alt = img.alt;
-            lightboxCaption.innerHTML = trigger.getAttribute('data-caption') || '';
+            // Caption is built as text nodes, never parsed as HTML (no innerHTML sink).
+            var capTitle = trigger.getAttribute('data-caption-title') || '';
+            var capText = trigger.getAttribute('data-caption-text') || '';
+            lightboxCaption.textContent = '';
+            if (capTitle) {
+                var strong = document.createElement('strong');
+                strong.textContent = capTitle;
+                lightboxCaption.appendChild(strong);
+                lightboxCaption.appendChild(document.createTextNode(' '));
+            }
+            lightboxCaption.appendChild(document.createTextNode(capText));
             lightbox.showModal();
         }
 

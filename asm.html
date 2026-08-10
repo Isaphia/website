@@ -885,7 +885,8 @@
 
             <figure class="showcase-lead" tabindex="0" role="button"
                     aria-label="Enlarge: Attack Surface Overview dashboard"
-                    data-caption="<strong>Attack Surface Overview.</strong> One screen for your security-posture risk score, asset counts, severity breakdown, and the findings that need attention now.">
+                    data-caption-title="Attack Surface Overview."
+                        data-caption-text="One screen for your security-posture risk score, asset counts, severity breakdown, and the findings that need attention now.">
                 <img src="downloads/asm/images/dashboard.png" alt="Helios dashboard showing the Attack Surface Overview for Acme Corporation: a Security Posture Risk Score of 29 with score breakdown, 3 domains, 111 hosts, 73 IPs, 126 open ports, open findings by severity, and a risk posture breakdown across hosts, domains, IPs, and cloud." loading="lazy">
             </figure>
             <p class="showcase-caption">
@@ -896,7 +897,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: Reports page"
-                        data-caption="<strong>Reports built for every audience.</strong> Findings, inventory, and executive views — CSV, XLSX, PDF, and JSON for your SIEM or board pack.">
+                        data-caption-title="Reports built for every audience."
+                        data-caption-text="Findings, inventory, and executive views — CSV, XLSX, PDF, and JSON for your SIEM or board pack.">
                     <img src="downloads/asm/images/reports.png" alt="Isaphia ASM Reports page with Findings Report (CSV), Asset Inventory (XLSX), Executive Report (PDF), and API Summary (JSON) export options." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>Reports built for every audience</strong>
@@ -906,7 +908,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: Email &amp; domain security view"
-                        data-caption="<strong>Email &amp; domain security posture.</strong> SPF, DKIM, and DMARC posture across every sending domain — at a glance, with the exact records you need to fix.">
+                        data-caption-title="Email &amp; domain security posture."
+                        data-caption-text="SPF, DKIM, and DMARC posture across every sending domain — at a glance, with the exact records you need to fix.">
                     <img src="downloads/asm/images/email-security.png" alt="Isaphia ASM Email Security view showing SPF, SPF record, DMARC, DMARC record, and DKIM posture for three Acme Corporation domains." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>Email &amp; domain security posture</strong>
@@ -916,7 +919,8 @@
 
                 <figure class="showcase-card" tabindex="0" role="button"
                         aria-label="Enlarge: Certificate inventory view"
-                        data-caption="<strong>Certificate inventory &amp; expiry tracking.</strong> Every cert across your surface — issuers, expiry, weak protocols, self-signed and expired certs flagged automatically.">
+                        data-caption-title="Certificate inventory &amp; expiry tracking."
+                        data-caption-text="Every cert across your surface — issuers, expiry, weak protocols, self-signed and expired certs flagged automatically.">
                     <img src="downloads/asm/images/tls.png" alt="Isaphia ASM TLS exposure view showing certificate inventory with hosts, subject CN, issuer, expiry dates, days remaining, TLS version, and flags such as EXPIRED and SELF-SIGNED." loading="lazy">
                     <figcaption class="showcase-card-body">
                         <strong>Certificate inventory &amp; expiry tracking</strong>
@@ -1180,7 +1184,17 @@
             if (!img) return;
             lightboxImg.src = img.src;
             lightboxImg.alt = img.alt;
-            lightboxCaption.innerHTML = trigger.getAttribute('data-caption') || '';
+            // Caption is built as text nodes, never parsed as HTML (no innerHTML sink).
+            var capTitle = trigger.getAttribute('data-caption-title') || '';
+            var capText = trigger.getAttribute('data-caption-text') || '';
+            lightboxCaption.textContent = '';
+            if (capTitle) {
+                var strong = document.createElement('strong');
+                strong.textContent = capTitle;
+                lightboxCaption.appendChild(strong);
+                lightboxCaption.appendChild(document.createTextNode(' '));
+            }
+            lightboxCaption.appendChild(document.createTextNode(capText));
             lightbox.showModal();
         }
 
