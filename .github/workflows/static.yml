@@ -1,7 +1,8 @@
 # Build the Jekyll-rendered blog at /blog/ and deploy the whole site to GitHub Pages.
-# The hand-written HTML pages (index.html, services.html, asm.html, cti.html, team.html,
-# david.html, contact.html, privacy.html) have no frontmatter and Jekyll passes them
-# through unchanged. Only /blog/ and its layouts/includes are processed.
+# The hand-written HTML pages (index.html, helios.html, asm.html, internal-asm.html,
+# cti.html, cspm.html, services.html, team.html, contact.html, privacy.html, 404.html)
+# have no frontmatter and Jekyll passes them through unchanged.
+# Only /blog/ and its layouts/includes are processed.
 name: Deploy site to Pages
 
 on:
