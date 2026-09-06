@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="A practical guide to attack surface management for Canadian organizations: data residency, PIPEDA and provincial privacy law, OSFI B-13, and CCCS guidance — plus what to look for in a platform.">
+
+    <title>Attack Surface Management in Canada | PIPEDA, OSFI &amp; CCCS Guide</title>
+    <link rel="canonical" href="https://isaphia.com/attack-surface-management-canada">
+
+    <link rel="alternate" hreflang="en-ca" href="https://isaphia.com/attack-surface-management-canada" />
+    <link rel="alternate" hreflang="en" href="https://isaphia.com/attack-surface-management-canada" />
+    <link rel="alternate" hreflang="x-default" href="https://isaphia.com/attack-surface-management-canada" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Attack Surface Management in Canada: A Practical Guide">
+    <meta property="og:description" content="Data residency, PIPEDA, Quebec Law 25, OSFI B-13 and CCCS guidance — what Canadian security leads should actually look for in an exposure management platform.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://isaphia.com/attack-surface-management-canada">
+    <meta property="og:image" content="https://isaphia.com/social-banner.jpg">
+    <meta property="og:image:alt" content="Attack surface management for Canadian organizations">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Attack Surface Management in Canada">
+    <meta name="twitter:description" content="What Canadian organizations need from ASM, threat intelligence and cloud posture — mapped to PIPEDA, OSFI B-13 and CCCS guidance.">
+    <meta name="twitter:image" content="https://isaphia.com/social-banner.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Attack Surface Management in Canada: A Practical Guide",
+      "description": "A practical guide to attack surface management for Canadian organizations, covering data residency, PIPEDA and provincial privacy law, OSFI B-13 expectations for federally regulated financial institutions, and Canadian Centre for Cyber Security guidance.",
+      "about": [
+        { "@type": "Thing", "name": "Attack Surface Management" },
+        { "@type": "Thing", "name": "Cyber Threat Intelligence" },
+        { "@type": "Thing", "name": "Cloud Security Posture Management" },
+        { "@type": "Thing", "name": "Canadian data residency" },
+        { "@type": "Thing", "name": "PIPEDA" }
+      ],
+      "inLanguage": "en-CA",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://isaphia.com/attack-surface-management-canada"
+      },
+      "image": "https://isaphia.com/social-banner.jpg",
+      "author": {
+        "@type": "Organization",
+        "name": "Isaphia Security",
+        "url": "https://isaphia.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Isaphia Security",
+        "url": "https://isaphia.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://isaphia.com/logo.png"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Toronto",
+          "addressRegion": "ON",
+          "addressCountry": "CA"
+        }
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is attack surface management?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Attack surface management (ASM) is the practice of continuously discovering everything your organization exposes that an attacker could reach, then tracking and reducing it. External ASM covers your internet-facing footprint — domains, IP ranges, cloud storage, login portals, forgotten test environments. Internal ASM covers what is reachable once someone is already inside your network. The defining feature is that discovery is continuous and attacker-driven, rather than a point-in-time list maintained by hand." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is attack surface management enough on its own?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Usually not. ASM tells you what is exposed, but not whether anyone is preparing to use it. A leaked employee password sold online is invisible to ASM, and a misconfigured cloud storage bucket is a configuration problem rather than an exposed host. In practice ASM works best combined with cyber threat intelligence (CTI), which watches for leaked credentials and data about your organization, and cloud security posture management (CSPM), which checks how your cloud accounts are configured. Together these three give you the full picture of what an attacker could use." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Canadian privacy law require attack surface management?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No Canadian law names attack surface management as a required control. PIPEDA requires organizations to protect personal information with safeguards appropriate to its sensitivity, and requires reporting breaches to the Office of the Privacy Commissioner where there is a real risk of significant harm, notifying affected individuals, and keeping a record of every breach for 24 months after determining it occurred. You cannot safeguard, assess, or report on systems you do not know you have, which is why asset discovery underpins compliance in practice even though it is not named in the statute." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does my security data have to stay in Canada?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For most private-sector organizations, no. PIPEDA permits transferring personal information outside Canada provided the organization uses contractual or other means to give it a comparable level of protection, and is transparent about the practice. Requirements are stricter in the public sector and in some provinces, and many Canadian organizations adopt Canadian data residency as policy regardless, because it simplifies procurement, vendor review, and answering questions from customers and regulators." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does OSFI B-13 expect around attack surface?",
+          "acceptedAnswer": { "@type": "Answer", "text": "OSFI Guideline B-13 (Technology and Cyber Risk Management), in force since January 2024, applies to federally regulated financial institutions. It sets expectations that an institution maintains a current inventory of its technology assets and manages technology and cyber risk across their lifecycle. A complete, continuously updated asset inventory is foundational to meeting that expectation. B-13 is often read alongside Guideline B-10 on third-party risk management, which is relevant when your exposure includes systems operated by vendors." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a Canadian-built alternative to the large US ASM vendors?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Helios by Isaphia is a Canadian-built unified exposure management platform. It combines External ASM, Internal ASM, CTI, and CSPM against one shared asset inventory, so external exposure, internal reachability, leaked credentials, and cloud misconfiguration are correlated rather than sitting in four separate tools. Isaphia is headquartered in Toronto, Canadian data residency is the default across all four modules, and the platform can be run by your own team or operated for you as a managed service." }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="styles.css?v=18">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* Canada guide page — reuses the brand-green palette from styles.css.
+           Self-contained so it can't disturb the shared content-page styles. */
+
+        .ca-callout {
+            background: #fff;
+            border: 1px solid #e3e8e5;
+            border-left: 4px solid var(--brand-green, #2e7d52);
+            border-radius: 8px;
+            padding: 1.6rem 1.8rem;
+            margin: 2rem auto 0;
+            max-width: 820px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+        .ca-callout h3 {
+            margin: 0 0 0.7rem;
+            font-size: 1.05rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: var(--brand-green-dark, #1f5a3a);
+        }
+        .ca-callout p { margin: 0 0 0.8rem; }
+        .ca-callout p:last-child { margin-bottom: 0; }
+
+        /* Left-aligned so it lines up with the section heading, which is
+           left-aligned in .services-hero sections. */
+        .ca-prose { max-width: 820px; margin: 0; }
+        .ca-prose p { margin: 0 0 1.1rem; line-height: 1.75; }
+        .ca-prose h3 {
+            margin: 2.2rem 0 0.8rem;
+            font-size: 1.25rem;
+            color: var(--brand-green-dark, #1f5a3a);
+        }
+
+        /* Regulation cards */
+        .ca-reg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.4rem;
+            margin-top: 2.2rem;
+        }
+        .ca-reg-card {
+            background: #fff;
+            border: 1px solid #e3e8e5;
+            border-left: 4px solid var(--brand-green, #2e7d52);
+            border-radius: 10px;
+            padding: 1.5rem 1.6rem;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .ca-reg-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+        }
+        .ca-reg-card h3 {
+            margin: 0 0 0.3rem;
+            font-size: 1.12rem;
+            color: var(--brand-green-dark, #1f5a3a);
+        }
+        .ca-reg-card .ca-who {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: #6b7280;
+            margin-bottom: 0.8rem;
+        }
+        .ca-reg-card p { margin: 0; font-size: 0.97rem; line-height: 1.65; color: #4b5563; }
+        .ca-src {
+            display: block;
+            margin-top: 0.9rem;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        .ca-src a { color: var(--brand-green-dark, #1f5a3a); font-weight: 600; }
+
+        /* Checklist */
+        .ca-checklist { list-style: none; padding: 0; margin: 2rem auto 0; max-width: 820px; }
+        .ca-checklist li {
+            position: relative;
+            padding: 0 0 1.4rem 2.4rem;
+            line-height: 1.7;
+        }
+        .ca-checklist li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0.15rem;
+            color: var(--brand-green, #2e7d52);
+        }
+        .ca-checklist strong { display: block; margin-bottom: 0.15rem; }
+        .ca-checklist span { color: #4b5563; }
+
+        /* FAQ (mirrors the product-page pattern) */
+        .ca-faq-list { max-width: 820px; margin: 2.2rem auto 0; }
+        .ca-faq-item {
+            background: #fff;
+            border: 1px solid #e3e8e5;
+            border-radius: 10px;
+            margin-bottom: 0.9rem;
+            overflow: hidden;
+        }
+        .ca-faq-item[open] { border-color: var(--brand-green, #2e7d52); }
+        .ca-faq-item summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 1.15rem 1.4rem;
+            font-weight: 600;
+            position: relative;
+            padding-right: 3rem;
+        }
+        .ca-faq-item summary::-webkit-details-marker { display: none; }
+        .ca-faq-item summary::after {
+            content: "+";
+            position: absolute;
+            right: 1.3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.35rem;
+            font-weight: 400;
+            color: var(--brand-green, #2e7d52);
+        }
+        .ca-faq-item[open] summary::after { content: "\2212"; }
+        .ca-faq-item summary:hover { color: var(--brand-green, #2e7d52); }
+        .ca-faq-item p {
+            padding: 0 1.4rem 1.3rem;
+            margin: 0;
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        .ca-disclaimer {
+            max-width: 820px;
+            margin: 2.5rem auto 0;
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-style: italic;
+            line-height: 1.65;
+        }
+
+        @media (max-width: 640px) {
+            .ca-callout { padding: 1.2rem 1.3rem; }
+            .ca-reg-card { padding: 1.25rem 1.3rem; }
+            .ca-faq-item summary { font-size: 0.98rem; padding: 1rem 1.1rem; padding-right: 2.8rem; }
+            .ca-faq-item p { padding: 0 1.1rem 1.1rem; }
+        }
+    </style>
+
+    <!-- Umami analytics (self-hosted, privacy-friendly, no cookies) -->
+    <script defer src="https://analytics.isaphia.com/script.js" data-website-id="9a028ecd-a985-46ac-8ef8-fa27210ca216"></script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header id="top">
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Isaphia Security logo" class="logo logo--large">
+                <span class="company-name">Isaphia Security</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li class="nav-product"><a href="helios"><span class="nav-acronym">Helios</span><span class="nav-tagline">Platform</span></a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="team">Team</a></li>
+                <li><a href="blog">Insights</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main id="main" tabindex="-1">
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Attack Surface Management in Canada</h1>
+        <p class="hero-subtitle">
+            What Canadian organizations actually need from attack surface management — and why ASM on its own only covers a third of the problem.
+        </p>
+        <a href="contact" class="cta-button">Talk to a Canadian Security Team</a>
+    </div>
+</section>
+
+<!-- SHORT ANSWER -->
+<section class="section">
+    <div class="container">
+        <div class="ca-callout">
+            <h3>The short answer</h3>
+            <p>
+                Attack surface management is the practice of continuously finding everything your organization exposes that an attacker could reach, and reducing it. For Canadian organizations, three things make it different from the generic advice you will find on US vendor sites: <strong>where your security data is allowed to live</strong>, <strong>what PIPEDA and provincial privacy law expect you to be able to demonstrate</strong>, and — if you are a federally regulated financial institution — <strong>what OSFI B-13 expects you to know about your own technology assets</strong>.
+            </p>
+            <p>
+                ASM alone will not get you there. Knowing what is exposed is one third of the picture; you also need to know what is already leaking about you, and how your cloud is configured. That is why this page is about <strong>unified exposure management</strong> — External ASM, Internal ASM, threat intelligence, and cloud posture — rather than ASM in isolation.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- WHAT ASM IS -->
+<section class="section services-hero">
+    <div class="container">
+        <h2><span class="fas fa-binoculars section-icon" aria-hidden="true"></span>What attack surface management actually is</h2>
+        <div class="ca-prose">
+            <p>
+                Your attack surface is everything an attacker could reach and try to use. That includes the obvious — your website, your customer portal, your VPN endpoint — and the parts nobody is tracking: a marketing subdomain spun up for a campaign three years ago, a test environment someone exposed "temporarily," a cloud storage bucket that was set to public during a migration and never set back.
+            </p>
+            <p>
+                Attack surface management is the discipline of finding all of that continuously, from the outside in, the way an attacker would. The word <em>continuously</em> is what separates it from a spreadsheet-based asset inventory. Asset lists are accurate the day they are written. Attack surfaces change every week, and the things that hurt you are almost always the assets nobody remembered to add to the list.
+            </p>
+
+            <h3>External ASM and Internal ASM are different problems</h3>
+            <p>
+                <strong>External ASM</strong> maps what you expose to the internet — domains, IP ranges, certificates, exposed services, login portals, cloud storage. It answers the question an attacker asks first: where do I even start?
+            </p>
+            <p>
+                <strong>Internal ASM</strong> maps what is reachable once someone is already inside, whether through a phished employee, a compromised VPN credential, or a contractor's laptop. This is where unpatched legacy systems, flat network segments, and forgotten domain controllers live. Most Canadian mid-market organizations have far more internal exposure than they expect, because internal systems have historically been treated as "behind the firewall" and therefore safe.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- WHY ASM ALONE ISN'T ENOUGH -->
+<section class="section">
+    <div class="container">
+        <h2 style="text-align:center;"><span class="fas fa-layer-group section-icon" aria-hidden="true"></span>Why ASM on its own leaves gaps</h2>
+        <p class="lead" style="max-width: 760px; margin: 1rem auto 0; text-align:center;">
+            Attacks are a chain. Tools that see one link at a time make you reconstruct the chain yourself.
+        </p>
+
+        <div class="ca-prose" style="margin-top: 2rem;">
+            <p>
+                Consider a realistic incident. An employee reuses a work password on a personal site. That site is breached, and the credential ends up in a dump traded online. An attacker buys it, tries it against a login portal your team forgot was exposed, and gets in. From there they move sideways across a flat internal network to a server running software that has not been patched in years.
+            </p>
+            <p>
+                ASM would have flagged the exposed portal. It would not have told you the credential was circulating. Threat intelligence would have caught the credential, but not that the portal existed. Neither would have noticed that the cloud account holding your backups was configured to allow public access. Three tools, three partial views, and a chain that nobody sees end to end.
+            </p>
+            <p>
+                This is the practical argument for unified <strong>exposure management</strong>: <strong>External ASM</strong> for the internet-facing footprint, <strong>Internal ASM</strong> for what is reachable inside, <strong>CTI</strong> for credentials and data already leaking, and <strong>CSPM</strong> for how your cloud accounts are configured — all resolving against one shared asset inventory, so a leaked credential and an exposed portal and an unpatched host read as one story instead of three unrelated alerts.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- CANADIAN REGULATORY CONTEXT -->
+<section class="section services-hero">
+    <div class="container">
+        <h2><span class="fas fa-scale-balanced section-icon" aria-hidden="true"></span>The Canadian regulatory picture</h2>
+        <p class="lead" style="max-width: 820px;">
+            No Canadian law names "attack surface management" as a required control. But several create obligations you cannot meet without knowing what you have.
+        </p>
+
+        <div class="ca-reg-grid">
+
+            <div class="ca-reg-card">
+                <h3>PIPEDA</h3>
+                <span class="ca-who">Federal · most private-sector organizations</span>
+                <p>
+                    Requires safeguards appropriate to the sensitivity of the personal information you hold. It also requires reporting breaches to the Office of the Privacy Commissioner where there is a <em>real risk of significant harm</em>, notifying affected individuals, and keeping a record of <em>every</em> breach — not only reportable ones — for 24 months after you determine it occurred. You cannot safeguard or report on a system you do not know exists.
+                    <span class="ca-src">Source: <a href="https://www.priv.gc.ca/en/privacy-topics/business-privacy/breaches-and-safeguards/privacy-breaches-at-your-business/gd_pb_201810/" target="_blank" rel="noopener noreferrer" aria-label="Office of the Privacy Commissioner of Canada breach reporting guidance (opens in new tab)">Office of the Privacy Commissioner of Canada</a></span>
+                </p>
+            </div>
+
+            <div class="ca-reg-card">
+                <h3>Quebec — Law 25</h3>
+                <span class="ca-who">Quebec · strictest in Canada</span>
+                <p>
+                    Phased in from September 2022 through September 2024, Law 25 goes further than PIPEDA: a designated person responsible for protecting personal information, confidentiality incident reporting to the Commission d'accès à l'information, privacy impact assessments before communicating personal information outside Quebec, and — since September 2024 — data portability on request. If you hold data on Quebec residents, this is usually the highest bar you have to clear.
+                    <span class="ca-src">Source: <a href="https://www.cai.gouv.qc.ca/protection-renseignements-personnels/sujets-et-domaines-dinteret/principaux-changements-loi-25" target="_blank" rel="noopener noreferrer" aria-label="Commission d'acces a l'information du Quebec, main changes under Law 25 (opens in new tab)">Commission d'accès à l'information</a></span>
+                </p>
+            </div>
+
+            <div class="ca-reg-card">
+                <h3>Alberta &amp; British Columbia PIPA</h3>
+                <span class="ca-who">Provincial private-sector law</span>
+                <p>
+                    Alberta and BC have their own private-sector privacy statutes, recognized as substantially similar to PIPEDA, which apply in place of it for organizations operating within those provinces. Alberta's PIPA requires notifying the provincial Commissioner of breaches posing a real risk of significant harm; BC's PIPA has historically not carried the same mandatory reporting duty. Confirm which regime applies to you before assuming PIPEDA is the whole story.
+                    <span class="ca-src">Sources: <a href="https://oipc.ab.ca/breach-notification/" target="_blank" rel="noopener noreferrer" aria-label="Office of the Information and Privacy Commissioner of Alberta, breach notification requirements (opens in new tab)">OIPC Alberta</a> · <a href="https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/r_o_p/prov-pipeda/" target="_blank" rel="noopener noreferrer" aria-label="Office of the Privacy Commissioner of Canada, provincial laws that may apply instead of PIPEDA (opens in new tab)">OPC</a></span>
+                </p>
+            </div>
+
+            <div class="ca-reg-card">
+                <h3>OSFI Guideline B-13</h3>
+                <span class="ca-who">Federally regulated financial institutions</span>
+                <p>
+                    Published July 2022 and in force since 1 January 2024, B-13 sets OSFI's expectations for technology and cyber risk management. It states that institutions "should maintain a current and comprehensive asset management system, or inventory, that catalogues technology assets throughout their life cycle" — which is difficult to satisfy with a hand-maintained list. B-13 is usually read alongside <strong>Guideline B-10</strong> on third-party risk, in force since 1 May 2024, which matters when part of your exposure is operated by a vendor.
+                    <span class="ca-src">Source: <a href="https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/technology-cyber-risk-management" target="_blank" rel="noopener noreferrer" aria-label="OSFI Guideline B-13 Technology and Cyber Risk Management (opens in new tab)">OSFI Guideline B-13</a></span>
+                </p>
+            </div>
+
+            <div class="ca-reg-card">
+                <h3>CCCS guidance</h3>
+                <span class="ca-who">Canadian Centre for Cyber Security</span>
+                <p>
+                    The CCCS, part of the Communications Security Establishment, publishes the <em>Baseline Cyber Security Controls for Small and Medium Organizations</em> and the <em>Top 10 IT Security Actions</em> (ITSM.10.089). These are practical guidance rather than law. Neither names attack surface management, but the Baseline asks you to scope which systems and assets are in play, and Top 10 actions such as consolidating and defending internet gateways, patching, and isolating web-facing applications all assume you know which gateways and applications you have. Canadian buyers increasingly cite CCCS baselines in procurement.
+                    <span class="ca-src">Sources: <a href="https://www.cyber.gc.ca/en/guidance/baseline-cyber-security-controls-small-and-medium-organizations" target="_blank" rel="noopener noreferrer" aria-label="CCCS Baseline Cyber Security Controls for Small and Medium Organizations (opens in new tab)">CCCS Baseline Controls</a> · <a href="https://www.cyber.gc.ca/en/guidance/top-10-it-security-actions-protect-internet-connected-networks-and-information-itsm10089" target="_blank" rel="noopener noreferrer" aria-label="CCCS Top 10 IT security actions ITSM.10.089 (opens in new tab)">Top 10 IT Security Actions</a></span>
+                </p>
+            </div>
+
+            <div class="ca-reg-card">
+                <h3>Data residency</h3>
+                <span class="ca-who">Contractual and procurement pressure</span>
+                <p>
+                    PIPEDA does not prohibit transferring personal information outside Canada for processing, but you must use contractual or other means to give it a comparable level of protection, remain accountable for it, and tell individuals clearly that it may be processed abroad and accessed by foreign authorities. Public-sector rules are stricter, and many private organizations adopt Canadian residency as policy anyway — it removes an entire category of question from vendor reviews, customer security questionnaires, and board reporting.
+                    <span class="ca-src">Source: <a href="https://www.priv.gc.ca/en/privacy-topics/airports-and-borders/gl_dab_090127/" target="_blank" rel="noopener noreferrer" aria-label="OPC guidelines for processing personal data across borders (opens in new tab)">OPC guidelines on transborder data flows</a></span>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="ca-callout" style="margin-top: 2.4rem;">
+            <h3>One caution</h3>
+            <p>
+                No platform — ours included — makes you compliant with any of the above. These obligations sit with your organization, and none of these instruments names a product you can buy to satisfy them. What continuous discovery gives you is the <strong>evidence to demonstrate diligence</strong>: what you had, when you learned about it, and what you did next, at the point a regulator, an insurer, or an enterprise customer's security review asks you to show your work.
+            </p>
+        </div>
+
+        <p class="ca-disclaimer">
+            Each statement above links to the regulator's own published guidance so you can check it directly. This page is a practical summary for security teams, not legal advice: obligations vary by sector, province, and the kind of information you hold, and guidance is updated over time — confirm your specific requirements with qualified counsel. Last reviewed against the linked sources in September 2026.
+        </p>
+    </div>
+</section>
+
+<!-- WHAT TO LOOK FOR -->
+<section class="section">
+    <div class="container">
+        <h2 style="text-align:center;"><span class="fas fa-list-check section-icon" aria-hidden="true"></span>What to look for in a platform</h2>
+        <p class="lead" style="max-width: 760px; margin: 1rem auto 0; text-align:center;">
+            Vendor-neutral criteria worth putting in your evaluation, whoever you end up buying from.
+        </p>
+
+        <ul class="ca-checklist">
+            <li>
+                <strong>Ask where the data lives, and get it in writing.</strong>
+                <span>Not where the vendor is headquartered — where your findings, asset inventory, and any personal information are actually stored and backed up. Ask whether Canadian residency is the default or a paid upgrade, and whether it applies to every module or only some.</span>
+            </li>
+            <li>
+                <strong>Check whether discovery is continuous or scheduled.</strong>
+                <span>A platform that rescans quarterly is an audit tool. The exposures that cause incidents typically appear and are exploited well inside that window.</span>
+            </li>
+            <li>
+                <strong>Find out how much is one product versus several acquisitions.</strong>
+                <span>Many vendors assembled their ASM, threat intelligence, and cloud posture capabilities through acquisition. Ask whether the modules share one asset inventory, or whether correlating them is left to you.</span>
+            </li>
+            <li>
+                <strong>Confirm internal coverage, not just external.</strong>
+                <span>Plenty of platforms marketed as ASM only see the internet-facing side. If you want to know what an attacker reaches after the first foothold, ask specifically about internal discovery and how it is deployed.</span>
+            </li>
+            <li>
+                <strong>Ask what happens when nobody is watching the dashboard.</strong>
+                <span>Most Canadian mid-market teams do not have someone assigned to triage findings daily. A managed option — where the vendor's own analysts work the queue — is often more realistic than another dashboard nobody opens.</span>
+            </li>
+            <li>
+                <strong>Ask who wrote the prioritization logic.</strong>
+                <span>Severity scores generated from a generic database will bury the finding that actually matters. Ask whether practitioners who perform offensive engagements shaped the ranking, and how the platform decides what to show first.</span>
+            </li>
+            <li>
+                <strong>Get the evidence trail you will need later.</strong>
+                <span>Exportable findings, historical snapshots, and an audit log matter when you are demonstrating due diligence to a regulator, an insurer, or an enterprise customer's security review.</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- WHERE HELIOS FITS -->
+<section class="section services-hero">
+    <div class="container">
+        <h2><span class="fas fa-location-crosshairs section-icon" aria-hidden="true"></span>Where Helios by Isaphia fits</h2>
+        <div class="ca-prose">
+            <p>
+                <a href="helios">Helios by Isaphia</a> is a Canadian-built unified exposure management platform. It combines four modules — <a href="asm">External ASM</a>, <a href="internal-asm">Internal ASM</a>, <a href="cti">CTI</a>, and <a href="cspm">CSPM</a> — against one shared asset inventory, so the leaked credential, the exposed portal, and the unpatched internal host that make up a single attack chain appear as one story rather than three separate alerts.
+            </p>
+            <p>
+                Isaphia is headquartered in Toronto. Canadian data residency is the default across all four modules, with EU or US regions available on request — the full detail is in the <a href="helios#faq">Helios FAQ</a>. You can run the platform yourself, or have Isaphia's own practitioners operate it for you as a managed service, which is how most teams without a dedicated security headcount use it.
+            </p>
+            <p>
+                The reason we build it this way is that Isaphia's other work is offensive security: penetration tests, red-team engagements, and OSINT investigations. Every module started as something we kept doing by hand on client engagements. When Helios ranks a finding first, that ordering reflects what a team that breaks into networks actually reaches for — not a generic severity score.
+            </p>
+            <p>
+                If you want to see this against your own environment rather than read about it, the fastest starting point is a <a href="contact">scoped walkthrough</a>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+    <div class="container">
+        <h2 style="text-align:center;">Frequently asked questions</h2>
+
+        <div class="ca-faq-list">
+
+            <details class="ca-faq-item">
+                <summary>What is attack surface management?</summary>
+                <p>Attack surface management (ASM) is the practice of continuously discovering everything your organization exposes that an attacker could reach, then tracking and reducing it. External ASM covers your internet-facing footprint — domains, IP ranges, cloud storage, login portals, forgotten test environments. Internal ASM covers what is reachable once someone is already inside your network. The defining feature is that discovery is continuous and attacker-driven, rather than a point-in-time list maintained by hand.</p>
+            </details>
+
+            <details class="ca-faq-item">
+                <summary>Is attack surface management enough on its own?</summary>
+                <p>Usually not. ASM tells you what is exposed, but not whether anyone is preparing to use it. A leaked employee password sold online is invisible to ASM, and a misconfigured cloud storage bucket is a configuration problem rather than an exposed host. In practice ASM works best combined with cyber threat intelligence (CTI), which watches for leaked credentials and data about your organization, and cloud security posture management (CSPM), which checks how your cloud accounts are configured. Together these three give you the full picture of what an attacker could use.</p>
+            </details>
+
+            <details class="ca-faq-item">
+                <summary>Does Canadian privacy law require attack surface management?</summary>
+                <p>No Canadian law names attack surface management as a required control. PIPEDA requires organizations to protect personal information with safeguards appropriate to its sensitivity, and requires reporting breaches to the Office of the Privacy Commissioner where there is a real risk of significant harm, notifying affected individuals, and keeping a record of every breach for 24 months after determining it occurred. You cannot safeguard, assess, or report on systems you do not know you have, which is why asset discovery underpins compliance in practice even though it is not named in the statute.</p>
+            </details>
+
+            <details class="ca-faq-item">
+                <summary>Does my security data have to stay in Canada?</summary>
+                <p>For most private-sector organizations, no. PIPEDA permits transferring personal information outside Canada provided the organization uses contractual or other means to give it a comparable level of protection, and is transparent about the practice. Requirements are stricter in the public sector and in some provinces, and many Canadian organizations adopt Canadian data residency as policy regardless, because it simplifies procurement, vendor review, and answering questions from customers and regulators.</p>
+            </details>
+
+            <details class="ca-faq-item">
+                <summary>What does OSFI B-13 expect around attack surface?</summary>
+                <p>OSFI Guideline B-13 (Technology and Cyber Risk Management), in force since January 2024, applies to federally regulated financial institutions. It sets expectations that an institution maintains a current inventory of its technology assets and manages technology and cyber risk across their lifecycle. A complete, continuously updated asset inventory is foundational to meeting that expectation. B-13 is often read alongside Guideline B-10 on third-party risk management, which is relevant when your exposure includes systems operated by vendors.</p>
+            </details>
+
+            <details class="ca-faq-item">
+                <summary>What is a Canadian-built alternative to the large US ASM vendors?</summary>
+                <p>Helios by Isaphia is a Canadian-built unified exposure management platform. It combines External ASM, Internal ASM, CTI, and CSPM against one shared asset inventory, so external exposure, internal reachability, leaked credentials, and cloud misconfiguration are correlated rather than sitting in four separate tools. Isaphia is headquartered in Toronto, Canadian data residency is the default across all four modules, and the platform can be run by your own team or operated for you as a managed service.</p>
+            </details>
+
+        </div>
+    </div>
+</section>
+
+<section class="section contact">
+    <div class="container" style="text-align:center;">
+        <h2>See your exposure, mapped to Canadian requirements</h2>
+        <p class="lead">
+            We will walk through what is exposed today — outside, inside, and in your cloud — and what to fix first. Canadian team, Canadian data residency.
+        </p>
+        <a href="contact" class="cta-button">Book a Scoped Walkthrough</a>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Isaphia Security Inc. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="contact"><span class="fas fa-envelope" aria-hidden="true"></span> Contact Us</a></li>
+            <li><a href="privacy"><span class="fas fa-shield-alt" aria-hidden="true"></span> Privacy</a></li>
+            <li><a href="https://www.linkedin.com/company/isaphia" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)"><span class="fab fa-linkedin-in" aria-hidden="true"></span> LinkedIn</a></li>
+        </ul>
+    </div>
+</footer>
+
+<a href="#top" class="back-to-top" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8 8h-5v8h-6v-8H4z"/></svg></a>
+
+</body>
+</html>
