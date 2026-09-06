@@ -34,10 +34,27 @@
       "description": "Unified exposure-management platform combining External Attack Surface Management, Internal Attack Surface Management, Cyber Threat Intelligence, and Cloud Security Posture Management in a single dashboard.",
       "applicationCategory": "SecurityApplication",
       "applicationSubCategory": "Exposure Management",
+      "keywords": "unified exposure management, attack surface management, external attack surface management, internal attack surface management, cyber threat intelligence, cloud security posture management, ASM, CTI, CSPM, Canadian data residency, Canadian cybersecurity platform",
       "operatingSystem": "Web-based",
       "url": "https://isaphia.com/helios",
       "image": "https://isaphia.com/social-banner.jpg",
       "brand": { "@type": "Brand", "name": "Isaphia Security" },
+      "provider": {
+        "@type": "Organization",
+        "name": "Isaphia Security",
+        "url": "https://isaphia.com/",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Toronto",
+          "addressRegion": "ON",
+          "addressCountry": "CA"
+        }
+      },
+      "countryOfOrigin": { "@type": "Country", "name": "Canada" },
+      "areaServed": [
+        { "@type": "Country", "name": "Canada" },
+        { "@type": "Country", "name": "United States" }
+      ],
       "offers": {
         "@type": "Offer",
         "url": "https://isaphia.com/contact",
@@ -70,6 +87,11 @@
         },
         {
           "@type": "Question",
+          "name": "Who is Helios by Isaphia for?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Organizations that have an internet-facing footprint, an internal network, cloud accounts, or credentials and data circulating online they can't fully see — and who want all four views in one place rather than four separate tools. That's the whole point of Helios: External ASM, Internal ASM, CTI, and CSPM against one shared asset inventory. Isaphia's work spans finance, government, retail, hospitality, and nonprofit sectors, in Canada and globally. You do not need a dedicated security team: Helios is built to be readable by an IT lead who wears the security hat part-time, and if you'd rather not watch it day to day, the Managed Service means Isaphia's own practitioners operate it for you." }
+        },
+        {
+          "@type": "Question",
           "name": "What modules make up Helios?",
           "acceptedAnswer": { "@type": "Answer", "text": "Four: External ASM (your internet-facing footprint), Internal ASM (assets and legacy systems inside your network, discovered by lightweight collectors), CTI (asset-aware cyber threat intelligence), and CSPM (cloud security posture management across AWS, Azure, and GCP)." }
         },
@@ -87,6 +109,11 @@
           "@type": "Question",
           "name": "Do I need to install anything?",
           "acceptedAnswer": { "@type": "Answer", "text": "External ASM, CTI, and CSPM are agentless — nothing runs on your machines. Internal ASM is the exception: it uses lightweight, safe collectors deployed inside your network to map what's behind the firewall. CSPM connects to your cloud accounts with read-only access." }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is my data hosted?",
+          "acceptedAnswer": { "@type": "Answer", "text": "In Canada by default — across the whole platform, not one module. Findings from External ASM, Internal ASM, CTI, and CSPM all live in the same managed cloud database, with Canadian data residency in Toronto; EU or US regions are available on request. Isaphia is a Canadian company headquartered in Toronto, operating under PIPEDA and applicable provincial privacy law — which matters if you're subject to Canadian data-residency requirements. Data is encrypted with AES-256 at rest, each customer tenant is isolated at the database query layer, and access is controlled with SAML / OIDC single sign-on, MFA, and an append-only audit log." }
         },
         {
           "@type": "Question",
@@ -1103,6 +1130,11 @@
                 </details>
 
                 <details class="faq-item">
+                    <summary>Who is Helios by Isaphia for?</summary>
+                    <p>Organizations that have an internet-facing footprint, an internal network, cloud accounts, or credentials and data circulating online they can't fully see — and who want all four views in one place rather than four separate tools. That's the whole point of Helios: External ASM, Internal ASM, CTI, and CSPM against one shared asset inventory. Isaphia's work spans finance, government, retail, hospitality, and nonprofit sectors, in Canada and globally. You do <em>not</em> need a dedicated security team: Helios is built to be readable by an IT lead who wears the security hat part-time, and if you'd rather not watch it day to day, the Managed Service means Isaphia's own practitioners operate it for you.</p>
+                </details>
+
+                <details class="faq-item">
                     <summary>What modules make up Helios?</summary>
                     <p>Four: <a href="asm">External ASM</a> (your internet-facing footprint), <a href="internal-asm">Internal ASM</a> (assets and legacy systems inside your network, discovered by lightweight collectors), <a href="cti">CTI</a> (asset-aware cyber threat intelligence), and <a href="cspm">CSPM</a> (cloud security posture management across AWS, Azure, and GCP).</p>
                 </details>
@@ -1120,6 +1152,11 @@
                 <details class="faq-item">
                     <summary>Do I need to install anything?</summary>
                     <p>External ASM, CTI, and CSPM are agentless — nothing runs on your machines. Internal ASM is the exception: it uses lightweight, safe collectors deployed inside your network to map what's behind the firewall. CSPM connects to your cloud accounts with read-only access.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Where is my data hosted?</summary>
+                    <p>In Canada by default — across the whole platform, not one module. Findings from External ASM, Internal ASM, CTI, and CSPM all live in the same managed cloud database, with Canadian data residency in Toronto; EU or US regions are available on request. Isaphia is a Canadian company headquartered in Toronto, operating under PIPEDA and applicable provincial privacy law — which matters if you're subject to Canadian data-residency requirements. Data is encrypted with AES-256 at rest, each customer tenant is isolated at the database query layer, and access is controlled with SAML / OIDC single sign-on, MFA, and an append-only audit log.</p>
                 </details>
 
                 <details class="faq-item">
@@ -1144,7 +1181,7 @@
                 Helios is built by people who break into networks for a living — the platform we wished we had on engagements.
             </p>
             <p style="max-width: 730px; margin: 0 auto 1.2rem; color: #4b5563;">
-                Isaphia's other job is offensive security: penetration tests, red-team engagements, OSINT investigations. Every Helios module started as a question we kept answering by hand for clients — what's exposed to the internet, what's reachable once you're inside, what's already leaked, what's misconfigured in the cloud. We turned that work into a platform, and we still run the engagements that keep it honest.
+                Isaphia is a Canadian company, headquartered in Toronto, and Helios is built and hosted in Canada — Canadian data residency is the default, not an upgrade. Isaphia's other job is offensive security: penetration tests, red-team engagements, OSINT investigations. Every Helios module started as a question we kept answering by hand for clients — what's exposed to the internet, what's reachable once you're inside, what's already leaked, what's misconfigured in the cloud. We turned that work into a platform, and we still run the engagements that keep it honest.
             </p>
             <p style="max-width: 730px; margin: 0 auto; color: #4b5563;">
                 So when Helios ranks a finding first, it's not a generic severity score — it's the judgment of a team that knows, first-hand, what attackers actually reach for. <a href="team" style="color: var(--brand-green-dark); font-weight: 600;">Meet the team</a> or <a href="services" style="color: var(--brand-green-dark); font-weight: 600;">explore our services</a>.
